@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class GameManager {
 
 	public static void main(String[] args) {
+
 		
 		//Main menu
 		System.out.println("Welcome to JestGame !");
