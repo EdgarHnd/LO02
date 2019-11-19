@@ -7,3 +7,12 @@
 /Player.class
 /RealPlayer.class
 /VirtualPlayer.class
+/GameOptions$IAction.class
+/GameOptions$ActionSetPlayer.class
+/GameOptions$ChooseVariant.class
+/GameOptions$QuitOptions.class
+/GameOptions$SetNamePlayer.class
+/GameOptions$SetNumberPlayer.class
+/GameOptions$SetPlayer.class
+/GameOptions$SetPlayer$ChooseVariant.class
+/GameOptions$SetPlayer$QuitOptions.class

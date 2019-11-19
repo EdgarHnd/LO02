@@ -2,6 +2,11 @@ package JestGame;
 
 public class RealPlayer extends Player {
 
+	public RealPlayer(String name) {
+		super(name);
+	}
+	
+
 	private String name;
 	
 	public void setName(String newName) {
@@ -15,6 +20,18 @@ public class RealPlayer extends Player {
 	public static void main(String[] args) {
 			
 		
+		
+	}
+
+	@Override
+	void makeOffer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void pickOffer() {
+		// TODO Auto-generated method stub
 		
 	}
 

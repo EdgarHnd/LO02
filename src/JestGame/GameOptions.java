@@ -1,9 +1,11 @@
 package JestGame;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class GameOptions extends GameManager {
+public class GameOptions {
 	
+			
 	public static int optionMenu() {
 
         int selection;
@@ -11,8 +13,8 @@ public class GameOptions extends GameManager {
 
         System.out.println("Choose from these choices");
         System.out.println("____________________\n");
-        System.out.println("1 - Enter the number of players and their name");
-        System.out.println("2 - Choose a variante");
+        System.out.println("1 - Enter the number of players and their names");
+        System.out.println("2 - Choose a variant");
         System.out.println("3 - Quit");
 
         selection = input.nextInt();
@@ -20,61 +22,123 @@ public class GameOptions extends GameManager {
         
     }
 	
+	public interface IAction{
+		public void execute();
+	}
+	
+	public static class SetPlayer implements IAction{
 		
-	public static void main(String []args) {
-		
-		boolean validChoice = false;
-		int userChoice;
-		
-		// WHILE LOOP in order to choose once again in case of wrong type from the user
-		while (validChoice == false) {
-			userChoice = optionMenu();
+		public void execute() {
 			
-			switch (userChoice) {
-				case 1 :
-					
-					validChoice = true;
-					// The user writes the number of players
-					Scanner sc = new Scanner(System.in);
-					System.out.println("How many players in total ?");
-					int numberPlayer;
-					numberPlayer = sc.nextInt();
-					System.out.println(numberPlayer + " players will play the next game. \n");
-					
-					System.out.println("How many players are real for this game ?");
-					int numberRealPlayer;
-					numberRealPlayer = sc.nextInt();
-					System.out.println(numberRealPlayer + " real player(s) will play the next game.");
-					int numberVirtualPlayer = numberPlayer - numberRealPlayer;
-					System.out.println("So there will be " + numberVirtualPlayer + " virtual player(s). \n");
-					
-					// The user writes each player's name
-					System.out.println("Enter each real player's name :");
-					for (int i = 1; i < numberRealPlayer + 1; i ++) {
-						RealPlayer player = new RealPlayer(); //Instantiation for each RealPlayer
-						System.out.println("Name Player " + i + " :");
-						String newName = sc.nextLine();
-						player.setName(newName);
-						System.out.println(player.getName());
-						}
-					
+			boolean correctChoice = false;
+			while(!correctChoice) {
+				
+				Scanner sc = new Scanner(System.in);
+				System.out.println("How many players for your game ? You have the choice between 3 or 4.");
+				int nbPlayer;
+				nbPlayer = sc.nextInt();
+						
+				switch(nbPlayer) {
+				
+					case 3 :
+						
+						correctChoice = true;
+						System.out.println("3 players will play the next game. \n");
+						
+						boolean correctNumber = false;
+						while(!correctNumber) {
+							
+							System.out.println("How many players are real for this game ?");
+							int nbRealPlayer3;
+							nbRealPlayer3 = sc.nextInt();
+							
+								if (nbRealPlayer3 < 4 && nbRealPlayer3 > 0) {
+									correctNumber = true;
+									System.out.println(nbRealPlayer3 + " real player(s) will play the next game.");
+									int numberVirtualPlayer = nbPlayer - nbRealPlayer3;
+									System.out.println("So there will be " + numberVirtualPlayer + " virtual player(s).");
+									
+									System.out.println("Enter each real player's name :");
+									for (int i = 1; i < nbRealPlayer3 + 1; i ++) {
+										System.out.println("Name of Player " + i + " :");
+										String newName = sc.nextLine();
+										RealPlayer player = new RealPlayer(newName); //Instantiation for each RealPlayer
+										System.out.println(player.getName());
+									}
+								}
+								
+								else {
+									System.out.println("Your value is not correct... Please enter a number between 1 and 3.");
+								}
+							}
+						
 					break;
-				case 2 :
-					validChoice = true;
-					System.out.println("Choose a variante ");
+						
+					case 4 :
+						
+						correctChoice = true;
+						System.out.println("4 players will play the next game. \n");
+						
+						boolean correctNb = false;
+						while(!correctNb) {
+							System.out.println("How many players are real for this game ?");
+							int nbRealPlayer4;
+							nbRealPlayer4 = sc.nextInt();
+							
+							
+								if (nbRealPlayer4 < 5 && nbRealPlayer4 > 0) {
+									correctNb = true;
+									System.out.println(nbRealPlayer4 + " real player(s) will play the next game.");
+									int nbVirtualPlayer = nbPlayer - nbRealPlayer4;
+									System.out.println("So there will be " + nbVirtualPlayer + " virtual player(s).");
+									
+									System.out.println("Enter each real player's name :");
+									for (int i = 1; i < nbRealPlayer4 + 1; i ++) {
+										System.out.println("Name of Player " + i + " :");
+										String newName = sc.nextLine();
+										RealPlayer player = new RealPlayer(newName); //Instantiation for each RealPlayer
+										System.out.println(player.getName());
+									}
+									
+								}
+								else {
+									System.out.println("Your value is not correct... Please enter a number between 1 and 4.");
+								}
+							}
 					break;
-					
-				case 3 :
-					validChoice = true;
-					System.out.println("Return to Menu...");
-					break;
-					
-				default :
-					System.out.println("Invalid choice. Please choose again.");
-					validChoice = false;
-					break;
+						
+					default :
+						System.out.println("Your value is not correct ! You have only two choices : 3 or 4 players. It's not hard, trust me.");
 				}
+			}
 		}
+	}
+	
+	
+	
+	public static class ChooseVariant implements IAction{
+		public void execute() {
+			System.out.println("Choose your variant");
+		}
+	}
+	
+	public static class QuitOptions implements IAction{
+		public void execute() {
+			System.out.println("Quit option menu...");
+		
+		}
+	}
+	
+	public static void main(String[] args) {
+						
+		HashMap<Integer, IAction> playerAction = new HashMap<Integer, IAction>();
+		playerAction.put(1, new SetPlayer());
+		playerAction.put(2, new ChooseVariant());
+		playerAction.put(3, new QuitOptions());
+		
+		GameOptions gameOp = new GameOptions();
+		int playerChoice = gameOp.optionMenu();
+		playerAction.get(playerChoice).execute();
 		
 	}
 }

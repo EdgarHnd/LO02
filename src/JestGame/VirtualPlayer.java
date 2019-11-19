@@ -13,10 +13,18 @@ public class VirtualPlayer extends Player {
 	}
 	
 	public VirtualPlayer(String name) {
-		super();
+		super(name);
 		this.name = name;
 	}
 
+	void makeOffer() {
+		
+	}
+	
+	void pickOffer() {
+		
+	}
+	
 	public static void main(String[] args) {
 
 		
