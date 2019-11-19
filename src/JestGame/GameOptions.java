@@ -139,6 +139,7 @@ public class GameOptions {
 		GameOptions gameOp = new GameOptions();
 		int playerChoice = gameOp.optionMenu();
 		playerAction.get(playerChoice).execute();
+		}
 		
 	}
-}
+

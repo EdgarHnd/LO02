@@ -4,7 +4,10 @@ import java.util.Scanner;
 public class GameManager {
 
 	public static void main(String[] args) {
-
+		
+		//Initialiase all game components
+		Effect.createEffect();
+		Card.createCard();
 		
 		//Main menu
 		System.out.println("Welcome to JestGame !");
