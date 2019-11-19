@@ -16,12 +16,9 @@ public class GameManager {
         
         switch (userChoice) {
         case 1:
-        	System.out.println("Game starting");
+        	System.out.println("Open settings");
         	break;
         case 2:
-        	System.out.println("Opening settings");
-        	break;
-        case 3:
         	System.out.println("Quiting..");
         	System.exit(0);
         	break;
@@ -42,8 +39,7 @@ public class GameManager {
         System.out.println("Choose from these choices");
         System.out.println("-------------------------\n");
         System.out.println("1 - Start game");
-        System.out.println("2 - Setup game");
-        System.out.println("3 - Quit");
+        System.out.println("2 - Quit");
         
 
         selection = input.nextInt();
