@@ -6,9 +6,8 @@ public class GameManager {
 	public static void main(String[] args) {
 		
 		//Initialiase all game components
-		Effect.createEffect();
-		Card.createCard();
-		
+		CardsCollection cardsColl = new  CardsCollection();
+		System.out.println(cardsColl.cards.get("fourClub"));
 		//Main menu
 		System.out.println("Welcome to JestGame !");
 		

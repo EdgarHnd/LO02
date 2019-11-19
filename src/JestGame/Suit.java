@@ -5,4 +5,5 @@ enum Suit {
 	Clubs,
 	Diamonds,
 	Hearts,
+	None,
 }
