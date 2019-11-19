@@ -129,7 +129,7 @@ public class GameOptions {
 		}
 	}
 	
-	public static void main(String[] args) {
+	public static void setup() {
 						
 		HashMap<Integer, IAction> playerAction = new HashMap<Integer, IAction>();
 		playerAction.put(1, new SetPlayer());

@@ -14,4 +14,7 @@ public class RoundsManager {
 	public void checkBestOffer() {
 		
 	}
+	public void printFinalRanking() {
+		
+	}
 }

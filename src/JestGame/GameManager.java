@@ -6,8 +6,8 @@ public class GameManager {
 	public static void main(String[] args) {
 		
 		//Initialiase all game components
-		CardsCollection cardsColl = new  CardsCollection();
-		System.out.println(cardsColl.cards.get("fourClub"));
+		
+		
 		//Main menu
 		System.out.println("Welcome to JestGame !");
 		
@@ -19,6 +19,7 @@ public class GameManager {
         switch (userChoice) {
         case 1:
         	System.out.println("Open settings");
+        	GameOptions.setup();
         	break;
         case 2:
         	System.out.println("Quiting..");
@@ -26,7 +27,6 @@ public class GameManager {
         	break;
         
         }
-
 	}
 	
 		//Menu selection method
@@ -45,7 +45,7 @@ public class GameManager {
         
 
         selection = input.nextInt();
-        input.close();
+        
         return selection;    
     }
 }
