@@ -11,10 +11,6 @@ public abstract class Player {
 		this.name = newName;
 	}
 	
-	public static void main(String[] args) {
-			
-		
-		
-	}
+	
 
 }

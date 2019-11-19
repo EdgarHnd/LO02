@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class GameOptions extends GameManager {
 	
-	public static int optionMenu() {
-
+		public static int optionMenu() {
+			/*
         int selection;
         Scanner input = new Scanner(System.in);
 
@@ -74,7 +74,7 @@ public class GameOptions extends GameManager {
 					validChoice = false;
 					break;
 				}
-		}
+		}*/
 		
 	}
 }
