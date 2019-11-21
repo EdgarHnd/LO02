@@ -1,9 +1,11 @@
 package JestGame;
 
+import java.util.LinkedList;
+
 public abstract class Player {
 	private String name;
-	private CardsCollection hand;
-	private CardsCollection jest;
+	private LinkedList<Card> hand;
+	private LinkedList<Card> jest;
 	private int finalScore;
 	private int finalBoolean;
 	private boolean hasPlayed;
