@@ -5,7 +5,22 @@ import java.util.Scanner;
 
 public class GameOptions {
 	
-			
+	//variables pouvant être utiles
+	protected int nbPlayer;
+	protected int nbRealPlayer;
+	protected int nbVirtualPlayer;
+	protected int variant;
+	
+	//getters and setters
+	public int getNbPlayer() {
+		return nbPlayer;
+	}
+
+	public void setNbPlayer(int nbPlayer) {
+		this.nbPlayer = nbPlayer;
+	}
+	
+	//Menu des options
 	public static int optionMenu() {
 
         int selection;
@@ -22,6 +37,7 @@ public class GameOptions {
         
     }
 	
+	//Interface qui gère le menu
 	public interface IAction{
 		public void execute();
 	}
@@ -115,7 +131,7 @@ public class GameOptions {
 	}
 	
 	
-	
+	//Child class of the menu interface
 	public static class ChooseVariant implements IAction{
 		public void execute() {
 			System.out.println("Choose your variant");
@@ -128,6 +144,7 @@ public class GameOptions {
 		
 		}
 	}
+	
 	
 	public static void setup() {
 						
