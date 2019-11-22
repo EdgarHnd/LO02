@@ -24,11 +24,5 @@ public class VirtualPlayer extends Player {
 	void pickOffer() {
 		
 	}
-	
-	public static void main(String[] args) {
-
-		
-		
-	}
 
 }

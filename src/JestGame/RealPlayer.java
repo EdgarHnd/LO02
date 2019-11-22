@@ -16,12 +16,6 @@ public class RealPlayer extends Player {
 	public String getName() {
 		return name;
 	}
-	
-	public static void main(String[] args) {
-			
-		
-		
-	}
 
 	@Override
 	void makeOffer() {

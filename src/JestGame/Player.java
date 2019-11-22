@@ -24,11 +24,5 @@ public abstract class Player {
 	
 	abstract void pickOffer();
 	
-	public static void main(String[] args) {
-			
-		
-		
-	}
-	
 
 }

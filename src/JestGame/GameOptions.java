@@ -3,15 +3,22 @@ package JestGame;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * Class which allows the user to setup different parameters of the game, such as :
+ * The number of players, and more precisely the number of real and virtual players
+ * The name of each player
+ * The user can choose one variant
+ *
+ * @author Elina
+ * @version 1.0
+ */
 public class GameOptions {
 	
-	//variables pouvant être utiles
 	protected int nbPlayer;
 	protected int nbRealPlayer;
 	protected int nbVirtualPlayer;
 	protected int variant;
 	
-	//getters and setters
 	public int getNbPlayer() {
 		return nbPlayer;
 	}
@@ -147,16 +154,15 @@ public class GameOptions {
 	
 	
 	public static void setup() {
-						
+
 		HashMap<Integer, IAction> playerAction = new HashMap<Integer, IAction>();
 		playerAction.put(1, new SetPlayer());
 		playerAction.put(2, new ChooseVariant());
 		playerAction.put(3, new QuitOptions());
-		
+
 		GameOptions gameOp = new GameOptions();
 		int playerChoice = gameOp.optionMenu();
 		playerAction.get(playerChoice).execute();
 		}
-		
 	}
 

@@ -28,17 +28,5 @@ ArrayList<Card> cards;
 		cards.add(new Card(Kind.Tree,Suit.Clubs,Trophy.Lowest));
 		
 	}
-	public void printCollection() {
-		for(int i=0; i < this.cards.size(); i++) {
-			System.out.println(this.cards.get(i));
-		}
-	}
-	public static void main(String[] args) {
-		
-		CardsCollection cardsColl = new  CardsCollection();
-		System.out.println(cardsColl.cards.get(5));
-		cardsColl.printCollection();
-		
-	}
 	
 }
