@@ -16,31 +16,35 @@ public class GameManager {
         return selection;
     }
 
+    public void executeUserChoice(int userChoice){
+        switch (userChoice) {
+            case 1:
+                System.out.println("Open settings");
+                try {
+                    GameOptions.setup();
+                }
+                catch (NbPlayerException e){
+                    System.out.println(e.getMessage());
+                }
+                break;
+            case 2:
+                System.out.println("Quiting..");
+                System.exit(0);
+                break;
+            default:
+                //Gestion d'exception à faire
+                System.out.println("Une exception est levée");
+        }
+    }
 	public static void main(String[] args) throws NbPlayerException {
-		
+
+        GameManager game = new GameManager();
 		//Initialise all game components
 		
 		//Main menu
 		System.out.println("Welcome to JestGame !");
 		int userChoice = menu();
+        game.executeUserChoice(userChoice);
 
-        switch (userChoice) {
-        case 1:
-        	System.out.println("Open settings");
-        	try {
-                GameOptions.setup();
-            }
-        	catch (NbPlayerException e){
-                System.out.println(e.getMessage());
-            }
-        	break;
-        case 2:
-        	System.out.println("Quiting..");
-        	System.exit(0);
-        	break;
-        default:
-            //Gestion d'exception à faire
-            System.out.println("Une exception est levée");
-        }
 	}
 }
