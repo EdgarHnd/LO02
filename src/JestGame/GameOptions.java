@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class GameOptions {
 	
 	//variables pouvant être utiles
-	protected int nbPlayer;
-	protected int nbRealPlayer;
-	protected int nbVirtualPlayer;
-	protected int variant;
+	protected static int nbPlayer;
+	protected static int nbRealPlayer;
+	protected static int nbVirtualPlayer;
+	protected static int variant;
 	
 	//getters and setters
-	public int getNbPlayer() {
+	public static int getNbPlayer() {
 		return nbPlayer;
 	}
 

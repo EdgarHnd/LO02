@@ -22,15 +22,18 @@ public abstract class Player {
 		this.name = name;
 	}
 	
+	//Players methods
+	
+	public void receiveCard(Card c) {
+		this.hand.add(c);
+	}
+	
 	abstract void makeOffer();
 	
-	abstract void pickOffer();
+	abstract void pickOffer(Card crd);
+
 	
-	public static void main(String[] args) {
-			
-		
-		
-	}
+	
 	
 
 }

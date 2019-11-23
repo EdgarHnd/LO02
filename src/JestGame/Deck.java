@@ -41,9 +41,14 @@ public class Deck {
 		return cards.pop();
 	}
 	
-	/*public String toString() {
-		return cards.toString();
-	}*/
+	
+	public void deal() {
+		System.out.println("Start dealing cards to the player");
+		for(i = 0; i < (GameOptions.getNbPlayer() * 2); i++ ) {
+		Player p;
+		p.receiveCard(this.topCard());
+		}
+	}
 	
 	  public static void main(String[] args) {
 		  
