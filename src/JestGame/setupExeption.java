@@ -1,7 +1,7 @@
 package JestGame;
 
-public class NbPlayerException extends Throwable {
-    public NbPlayerException(){
+public class setupExeption extends Throwable {
+    public setupExeption(){
         System.out.println("Your value is not correct !");
     }
 }

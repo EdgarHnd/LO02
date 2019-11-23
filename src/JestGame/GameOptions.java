@@ -19,11 +19,11 @@ public class GameOptions {
 	protected static int nbVirtualPlayer;
 	protected static int variant;
 
-	public static int getNbPlayer() throws NbPlayerException {
+	public static int getNbPlayer() throws setupExeption {
 			return nbPlayer;
 	}
 
-	public int setNbPlayer() throws NbPlayerException {
+	public int setNbPlayer() throws setupExeption {
 			boolean correctChoice = false;
 			while (!correctChoice) {
 				Scanner sc = new Scanner(System.in);
@@ -35,13 +35,13 @@ public class GameOptions {
 					System.out.println(nbPlayer + " players will play the next game. \n");
 				} else {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new NbPlayerException();
+					throw new setupExeption();
 				}
 			}
 			return nbPlayer;
 	}
 
-	public int setNbRealPlayer( int nbPlayer) throws NbPlayerException {
+	public int setNbRealPlayer( int nbPlayer) throws setupExeption {
 			this.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
@@ -51,25 +51,25 @@ public class GameOptions {
 				this.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new NbPlayerException();
+					throw new setupExeption();
 				} else {
 					correctNumber = true;
-					System.out.println(nbRealPlayer + " real player(s) will play the next game.");
+					System.out.println(nbRealPlayer + " REAL PLAYER(S)");
 					int nbVirtualPlayer = nbPlayer - nbRealPlayer;
-					System.out.println("So there will be " + nbVirtualPlayer + " virtual player(s).");
+					System.out.println(nbVirtualPlayer + " VIRTUAL PLAYER(S)");
 				}
 			}
 			return nbRealPlayer;
 	}
 
-	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws NbPlayerException {
+	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupExeption {
 			this.nbPlayer = nbPlayer;
 			this.nbRealPlayer = nbRealPlayer;
 			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
 			return nbVirtualPlayer;
 	}
 
-	public int chooseVariant () {
+	public static int chooseVariant () {
 			System.out.println("We have different variants for your game. Make your choice ! :)");
 			System.out.println("1- Variant 1");
 			System.out.println("2- Variant 2");
@@ -87,7 +87,7 @@ public class GameOptions {
 			return selection;
 	}
 
-	public static void setup () throws NbPlayerException {
+	public static boolean setup () throws setupExeption {
 		GameOptions gameOp = new GameOptions();
 		System.out.println("First, enter the number of players !");
 		nbPlayer = gameOp.setNbPlayer();
@@ -102,7 +102,7 @@ public class GameOptions {
 				case 1:
 					System.out.println("Choose variant");
 					gameOp.chooseVariant();
-					System.out.println("You will play with the variant : " + variant);
+					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
 				case 2:
 					startGame = true;
@@ -110,9 +110,10 @@ public class GameOptions {
 					//gameOp.startGame();
 					break;
 				default:
+					throw new setupExeption();
 					//Gestion d'exceptions à faire
-					break;
 			}
 		}
+		return startGame;
 	}
 }
