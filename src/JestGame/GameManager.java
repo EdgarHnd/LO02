@@ -3,49 +3,44 @@ import java.util.Scanner;
 
 public class GameManager {
 
-	public static void main(String[] args) {
+    //Menu selection method
+    public static int menu() {
+
+        int selection;
+        Scanner input = new Scanner(System.in);
+        System.out.println("Choose from these choices");
+        System.out.println("____________________");
+        System.out.println("1 - Start game");
+        System.out.println("2 - Quit");
+        selection = input.nextInt();
+        return selection;
+    }
+
+	public static void main(String[] args) throws NbPlayerException {
 		
-		//Initialiase all game components
-		
+		//Initialise all game components
 		
 		//Main menu
 		System.out.println("Welcome to JestGame !");
-		
-		
-		int userChoice;
+		int userChoice = menu();
 
-        userChoice = menu();
-        
         switch (userChoice) {
         case 1:
         	System.out.println("Open settings");
-        	GameOptions.setup();
+        	try {
+                GameOptions.setup();
+            }
+        	catch (NbPlayerException e){
+                System.out.println(e.getMessage());
+            }
         	break;
         case 2:
         	System.out.println("Quiting..");
         	System.exit(0);
         	break;
-        
+        default:
+            //Gestion d'exception à faire
+            System.out.println("Une exception est levée");
         }
 	}
-	
-		//Menu selection method
-	
-	public static int menu() {
-
-        int selection;
-        Scanner input = new Scanner(System.in);
-
-        
-
-        System.out.println("Choose from these choices");
-        System.out.println("-------------------------\n");
-        System.out.println("1 - Start game");
-        System.out.println("2 - Quit");
-        
-
-        selection = input.nextInt();
-        
-        return selection;    
-    }
 }
