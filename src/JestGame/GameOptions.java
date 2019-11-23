@@ -81,40 +81,37 @@ public class GameOptions {
 		//Menu des options
 	public static int selectionOptionMenu () {
 			Scanner input = new Scanner(System.in);
-			System.out.println("Choose from these choices");
-			System.out.println("____________________");
-			System.out.println("1 - Enter the number of players and their names");
-			System.out.println("2 - Choose a variant");
-			System.out.println("3 - Play !");
+			System.out.println("1 - Choose a variant");
+			System.out.println("2 - Play !");
 			int selection = input.nextInt();
 			return selection;
 	}
 
 	public static void setup () throws NbPlayerException {
-			GameOptions gameOp = new GameOptions();
-			boolean startGame = false;
-			while (!startGame) {
-				int playerChoice = gameOp.selectionOptionMenu();
-				switch (playerChoice) {
-					case 1:
-						nbPlayer = gameOp.setNbPlayer();
-						nbRealPlayer = gameOp.setNbRealPlayer(nbPlayer);
-						nbVirtualPlayer = gameOp.setNbVirtualPlayer(nbPlayer, nbRealPlayer);
-						break;
-					case 2:
-						System.out.println("Choose variant");
-						gameOp.chooseVariant();
-						System.out.println("You will play with the variant : " + variant);
-						break;
-					case 3:
-						startGame = true;
-						System.out.println("Start game...");
-						//gameOp.startGame();
-						break;
-					default:
-						//Gestion d'exceptions à faire
-						break;
+		GameOptions gameOp = new GameOptions();
+		System.out.println("First, enter the number of players !");
+		nbPlayer = gameOp.setNbPlayer();
+		nbRealPlayer = gameOp.setNbRealPlayer(nbPlayer);
+		nbVirtualPlayer = gameOp.setNbVirtualPlayer(nbPlayer, nbRealPlayer);
+		System.out.println("Alright, now you can choose from these choices : ");
 
+		boolean startGame = false;
+		while (!startGame) {
+			int playerChoice = gameOp.selectionOptionMenu();
+			switch (playerChoice) {
+				case 1:
+					System.out.println("Choose variant");
+					gameOp.chooseVariant();
+					System.out.println("You will play with the variant : " + variant);
+					break;
+				case 2:
+					startGame = true;
+					System.out.println("Start game...");
+					//gameOp.startGame();
+					break;
+				default:
+					//Gestion d'exceptions à faire
+					break;
 			}
 		}
 	}

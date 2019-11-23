@@ -20,7 +20,11 @@ public class VirtualPlayer extends Player {
 	void makeOffer() {
 		
 	}
-	
+	@Override
+	void pickOffer(Card crd) {
+
+	}
+
 	void pickOffer() {
 		
 	}

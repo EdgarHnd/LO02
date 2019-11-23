@@ -2,7 +2,6 @@ package JestGame;
 
 import java.util.LinkedList;
 
-
 public class Deck {
 	
 	private LinkedList<Card> cards;
@@ -51,11 +50,10 @@ public class Deck {
 	}
 	
 	  public static void main(String[] args) {
-		  
 		 Deck cardsColl = new  Deck();
 		 System.out.println(cardsColl.cards);
 		 cardsColl.shuffle();
 		 System.out.println(cardsColl.cards);
-			
+
 	}
 }
