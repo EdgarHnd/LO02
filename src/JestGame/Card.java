@@ -7,6 +7,14 @@ public class Card {
 	protected Trophy trophy;
 	protected boolean hidden = true;
 	
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
+
 	public Card(Kind k, Suit s, Trophy t) {
 		this.kind = k;
 		this.suit = s;

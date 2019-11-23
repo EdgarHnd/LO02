@@ -1,7 +1,9 @@
 package JestGame;
 
 public class RoundsManager {
+	
 	protected int roundNb;
+	protected int currentPlayer;
 	
 	public void countPlayerScore() {
 		
