@@ -100,6 +100,19 @@ public class GameOptions {
 			variant = sc.nextInt();
 			return variant;
 	}
+
+	/*public String[] setNamePlayer(int nbPlayer){
+		System.out.println("Please put a name on you, we don't want to call you by a number ;)");
+		String [] playerName = new String[0];
+		for (int j = 0; j < nbRealPlayer; j++){
+			System.out.println("What's your name, player " + j + "?");
+			Scanner sc = new Scanner(System.in);
+			String name = sc.nextLine();
+			playerName[j] = name;
+		}
+		return playerName;
+	}*/
+
 		//Menu des options
 	public static int selectionOptionMenu () {
 			Scanner input = new Scanner(System.in);
@@ -115,8 +128,10 @@ public class GameOptions {
 		nbPlayer = gameOp.setNbPlayer();
 		nbRealPlayer = gameOp.setNbRealPlayer(nbPlayer);
 		nbVirtualPlayer = gameOp.setNbVirtualPlayer(nbPlayer, nbRealPlayer);
-		System.out.println("Alright, now you can choose from these choices : ");
+		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
+		//playerName.toString();
 
+		System.out.println("Alright, now you can choose from these choices : ");
 		boolean startGame = false;
 		while (!startGame) {
 			int playerChoice = GameOptions.selectionOptionMenu();

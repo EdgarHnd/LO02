@@ -1,6 +1,9 @@
 package JestGame;
 
+import java.util.Iterator;
 import java.util.LinkedList;
+
+import static JestGame.GameOptions.nbPlayer;
 
 /**
  * This class is where the Deck for one game is created.
@@ -44,25 +47,23 @@ public class Deck {
 			cards.add(position,cardShuffled);
 		}
 	}
-	
+	//Methode pour l'instant pas utile
 	public Card topCard() {
 		return cards.pop();
 	}
-	
-	
-	public void deal() /*throws setupExeption */{
-		System.out.println("Start dealing cards to the player");
-		for(int i = 0; i < (GameOptions.getNbPlayer() * 2); i++ ) {
-		Player p = null;
-		p.receiveCard(this.topCard());
-		}
-	}
-	
-	  public static void main(String[] args) {
-		 Deck cardsColl = new  Deck();
-		 System.out.println(cardsColl.cards);
-		 cardsColl.shuffle();
-		 System.out.println(cardsColl.cards);
 
+	public void deal(){
+		System.out.println("Start dealing cards to the players");
+
+		if (!cards.isEmpty()){
+			for (int i=0; i < 2*nbPlayer; i++) {
+				//Instruction faussée car on devrait surcharger le constructeur par exemple...
+				Iterator<Player> iterator = new RoundsManager().listPlayers.iterator();
+				while (iterator.hasNext()) {
+					Player p = (Player) iterator.next();
+					p.pickDeckCard(cards.pop());
+				}
+			}
+		}
 	}
 }

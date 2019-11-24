@@ -18,12 +18,10 @@ public class Player {
 	public int getNb() {
 		return nb;
 	}
-
-	
 	//Constructor
-	public Player (String n, int i) {
-		this.name = n;
-		this.nb = i;
+	public Player (String name, int nb) {
+		this.name = name;
+		this.nb = nb;
 	}
 	
 	//Players methods
@@ -40,4 +38,7 @@ public class Player {
 		
 	}
 
+	public void pickDeckCard(Card card){
+		hand.add(card);
+	}
 }

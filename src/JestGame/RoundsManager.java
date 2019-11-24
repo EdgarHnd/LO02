@@ -30,7 +30,6 @@ public class RoundsManager {
 		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
 			this.listPlayers.add(new VirtualPlayer("AI"+ j,j));
 			System.out.println(this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
-			
 		}
 	}
 	
@@ -38,7 +37,6 @@ public class RoundsManager {
 		Deck deck = new Deck();
 		deck.shuffle();
 		deck.deal();
-		
 		//Revoir la syntaxe de tout ça
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			this.listPlayers.get(i).makeOffer();
@@ -47,18 +45,21 @@ public class RoundsManager {
 		for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
 			this.listPlayers.get(j).pickOffer();
 		}
+
+
 		
 		this.roundNb = 1;
 		
 	}
 	
-	//Will be call while the deck as enought cards to deal a new round
+	//Will be call while the deck as enough cards to deal a new round
 	public void nextRound() {
 		if(this.roundNb > 0) {
 			//Revoir la syntaxe de tout ça
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 				this.listPlayers.get(i).makeOffer();
 			}
+
 			//soit un for soit un for each
 			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
 				this.listPlayers.get(j).pickOffer();
