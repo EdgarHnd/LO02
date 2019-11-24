@@ -16,20 +16,17 @@ public class GameManager {
         return selection;
     }
 
-    public boolean executeUserChoice(int userChoice) throws setupException {
+    public void executeUserChoice(int userChoice) throws setupException {
         boolean startGame = false;
         switch (userChoice) {
             case 1:
                 System.out.println("Open settings");
                 try {
                     GameOptions.setup();
+                    startGame = true;
                 }
                 catch (setupException e){
                     System.out.println(e.getMessage());
-                }
-                //Récupérer la variable startGame de la méthode setup() pour déterminer si la partie est commencée
-                if (GameOptions.setup()){
-                    startGame = true;
                 }
                 break;
             case 2:
@@ -40,7 +37,6 @@ public class GameManager {
                 //Gestion d'exception à faire
                 System.out.println("Une exception est levée");
         }
-        return startGame;
     }
 
     public void play(){
@@ -58,8 +54,6 @@ public class GameManager {
 		System.out.println("Welcome to JestGame !");
 		int userChoice = menu();
         game.executeUserChoice(userChoice);
-        if (game.executeUserChoice(userChoice)){
-            game.play();
-        }
+        game.play();
 	}
 }
