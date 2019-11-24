@@ -23,7 +23,7 @@ public class GameOptions {
 	protected static String[] playersNames = {"Edgar","Elina"};
 	
 	//Getters
-	public static int getNbPlayer()/* throws setupExeption */{
+	public static int getNbPlayer(){
 			return nbPlayer;
 	}
 
@@ -43,7 +43,7 @@ public class GameOptions {
 		return variant;
 	}
 
-	public int setNbPlayer() throws setupExeption {
+	public int setNbPlayer() throws setupException {
 			boolean correctChoice = false;
 			while (!correctChoice) {
 				Scanner sc = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class GameOptions {
 					System.out.println(nbPlayer + " players will play the next game. \n");
 				} else {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new setupExeption();
+					throw new setupException();
 				}
 			}
 			return nbPlayer;
@@ -63,7 +63,7 @@ public class GameOptions {
 
 	
 
-	public int setNbRealPlayer( int nbPlayer) throws setupExeption {
+	public int setNbRealPlayer( int nbPlayer) throws setupException {
 			this.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
@@ -73,7 +73,7 @@ public class GameOptions {
 				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new setupExeption();
+					throw new setupException();
 				} else {
 					correctNumber = true;
 					System.out.println(nbRealPlayer + " REAL PLAYER(S)");
@@ -84,7 +84,7 @@ public class GameOptions {
 			return nbRealPlayer;
 	}
 
-	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupExeption {
+	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupException {
 			GameOptions.nbPlayer = nbPlayer;
 			GameOptions.nbRealPlayer = nbRealPlayer;
 			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
@@ -109,7 +109,7 @@ public class GameOptions {
 			return selection;
 	}
 
-	public static boolean setup () throws setupExeption {
+	public static boolean setup () throws setupException {
 		GameOptions gameOp = new GameOptions();
 		System.out.println("First, enter the number of players !");
 		nbPlayer = gameOp.setNbPlayer();
@@ -132,7 +132,7 @@ public class GameOptions {
 					//gameOp.startGame();
 					break;
 				default:
-					throw new setupExeption();
+					throw new setupException();
 					//Gestion d'exceptions à faire
 			}
 		}
