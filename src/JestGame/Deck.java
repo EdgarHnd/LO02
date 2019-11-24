@@ -25,15 +25,16 @@ public class Deck {
 		cards.add(new Card(Kind.Two,Suit.Hearts,Trophy.Joker));
 		cards.add(new Card(Kind.Four,Suit.Diamonds,Trophy.BJnoJoke));
 		cards.add(new Card(Kind.Four,Suit.Hearts,Trophy.Joker));
-		cards.add(new Card(Kind.Tree,Suit.Hearts,Trophy.Joker));
+		cards.add(new Card(Kind.Three,Suit.Hearts,Trophy.Joker));
 		cards.add(new Card(Kind.Ace,Suit.Spades,Trophy.Highest));
 		cards.add(new Card(Kind.Ace,Suit.Clubs,Trophy.Highest));
 		cards.add(new Card(Kind.Ace,Suit.Diamonds,Trophy.Majority));
 		cards.add(new Card(Kind.Two,Suit.Spades,Trophy.Majority));
 		cards.add(new Card(Kind.Two,Suit.Clubs,Trophy.Lowest));
 		cards.add(new Card(Kind.Two,Suit.Diamonds,Trophy.Highest));
-		cards.add(new Card(Kind.Tree,Suit.Spades,Trophy.Majority));
-		cards.add(new Card(Kind.Tree,Suit.Clubs,Trophy.Lowest));
+		cards.add(new Card(Kind.Three,Suit.Spades,Trophy.Majority));
+		cards.add(new Card(Kind.Three,Suit.Clubs,Trophy.Lowest));
+		cards.add(new Card(Kind.Three, Suit.Diamonds, Trophy.Lowest));
 	}
 	
 	public void shuffle() {

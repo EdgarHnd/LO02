@@ -4,7 +4,7 @@ enum Kind {
 	Ace,
 	One,
 	Two,
-	Tree,
+	Three,
 	Four,
 	Joker,
 }

@@ -21,8 +21,12 @@ public class RoundsManager {
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+
+
+		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
 			Player rplayer = new RealPlayer(GameOptions.getPlayersNames()[i]);
+			System.out.println(GameOptions.getPlayersNames()[i]);
+			System.out.println(rplayer.getName());
 			this.listPlayers.add(rplayer);
 		}
 		for(int j = 0; j < GameOptions.getNbVirtualPlayer(); j++) {
