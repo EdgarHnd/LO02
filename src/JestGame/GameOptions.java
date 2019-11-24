@@ -109,7 +109,7 @@ public class GameOptions {
 			return selection;
 	}
 
-	public static boolean setup () throws setupException {
+	public static void setup() throws setupException {
 		GameOptions gameOp = new GameOptions();
 		System.out.println("First, enter the number of players !");
 		nbPlayer = gameOp.setNbPlayer();
@@ -129,13 +129,11 @@ public class GameOptions {
 				case 2:
 					startGame = true;
 					System.out.println("Start game...");
-					//gameOp.startGame();
 					break;
 				default:
 					throw new setupException();
 					//Gestion d'exceptions à faire
 			}
 		}
-		return startGame;
 	}
 }
