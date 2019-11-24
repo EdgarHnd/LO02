@@ -38,7 +38,4 @@ public class Player {
 		
 	}
 
-	public void pickDeckCard(Card card){
-		hand.add(card);
-	}
 }

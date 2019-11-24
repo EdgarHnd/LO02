@@ -24,27 +24,32 @@ public class RoundsManager {
 		this.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
 			this.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
-			System.out.println(this.listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
+			System.out.println("\n"+this.listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
 		}
 		
 		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
 			this.listPlayers.add(new VirtualPlayer("AI"+ j,j));
-			System.out.println(this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
+			System.out.println("\n"+this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
 		}
 	}
 	
 	public void firstRound() {
 		Deck deck = new Deck();
+		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
+		System.out.println("\n Deck shuffled");
+		System.out.println("\n" + deck.getCards());
+		
 		deck.deal();
-		//Revoir la syntaxe de tout ça
+		
+		/*//Revoir la syntaxe de tout ça
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			this.listPlayers.get(i).makeOffer();
 		}
 		//soit un for soit un for each
 		for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
 			this.listPlayers.get(j).pickOffer();
-		}
+		}*/
 
 
 		

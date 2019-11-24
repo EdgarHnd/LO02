@@ -116,8 +116,8 @@ public class GameOptions {
 		//Menu des options
 	public static int selectionOptionMenu () {
 			Scanner input = new Scanner(System.in);
-			System.out.println("1 - Choose a variant");
-			System.out.println("2 - Play !");
+			System.out.println("1 - Play !");
+			System.out.println("2 - Choose a variant");
 			int selection = input.nextInt();
 			return selection;
 	}
@@ -136,14 +136,14 @@ public class GameOptions {
 		while (!startGame) {
 			int playerChoice = GameOptions.selectionOptionMenu();
 			switch (playerChoice) {
-				case 1:
+				case 2:
 					System.out.println("Choose variant");
 					GameOptions.chooseVariant();
 					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
-				case 2:
+				case 1:
 					startGame = true;
-					System.out.println("Start game...");
+					System.out.println("Starting a new game where :");
 					break;
 				default:
 					throw new setupException();
