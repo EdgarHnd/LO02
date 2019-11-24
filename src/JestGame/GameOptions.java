@@ -20,15 +20,15 @@ public class GameOptions {
 	protected static int variant;
 	
 	//Des noms pour tester
-	protected static String[] playersNames = {"Edgar","Elina"};
+	protected static String[] playersNames = {"Edgar","Elina","Patrick","Bernard"};
 	
 	//Getters
 	public static int getNbPlayer(){
 			return nbPlayer;
 	}
 
-	public static String[] getPlayersNames() {
-		return playersNames;
+	public static String getPlayersNames(int i) {
+		return playersNames[i];
 	}
 
 	public static int getNbRealPlayer() {

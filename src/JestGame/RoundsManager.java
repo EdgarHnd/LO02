@@ -21,17 +21,16 @@ public class RoundsManager {
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-
-
+		this.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			Player rplayer = new RealPlayer(GameOptions.getPlayersNames()[i]);
-			System.out.println(GameOptions.getPlayersNames()[i]);
-			System.out.println(rplayer.getName());
-			this.listPlayers.add(rplayer);
+			this.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
+			System.out.println(this.listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
 		}
-		for(int j = 0; j < GameOptions.getNbVirtualPlayer(); j++) {
-			Player vplayer = new VirtualPlayer("AI"+ j);
-			this.listPlayers.add(vplayer);
+		
+		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
+			this.listPlayers.add(new VirtualPlayer("AI"+ j,j));
+			System.out.println(this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
+			
 		}
 	}
 	
@@ -64,7 +63,6 @@ public class RoundsManager {
 			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
 				this.listPlayers.get(j).pickOffer();
 			}
-			
 			this.roundNb ++;
 		}
 	}

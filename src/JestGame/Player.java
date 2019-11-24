@@ -2,24 +2,28 @@ package JestGame;
 
 import java.util.LinkedList;
 
-public abstract class Player {
-	private String name;
-	private LinkedList<Card> hand;
-	private LinkedList<Card> jest;
-	private int finalScore;
-	private int finalBoolean;
-	private boolean hasPlayed;
+public class Player {
+	
+	protected int nb;
+	protected String name;
+	protected LinkedList<Card> hand;
+	protected LinkedList<Card> jest;
+	protected int finalScore;
+	protected int finalBoolean;
+	protected boolean hasPlayed;
 	
 	public String getName() {
 		return this.name;
 	}
-	
-	public void setName(String newName) {
-		this.name = newName;
+	public int getNb() {
+		return nb;
 	}
+
 	
-	public Player (String name) {
-		this.name = name;
+	//Constructor
+	public Player (String n, int i) {
+		this.name = n;
+		this.nb = i;
 	}
 	
 	//Players methods
@@ -28,8 +32,12 @@ public abstract class Player {
 		this.hand.add(c);
 	}
 	
-	abstract void makeOffer();
+	public void makeOffer(){
+		
+	}
 	
-	abstract void pickOffer();
+	public void pickOffer() {
+		
+	}
 
 }
