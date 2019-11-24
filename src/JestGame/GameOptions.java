@@ -18,9 +18,29 @@ public class GameOptions {
 	protected static int nbRealPlayer;
 	protected static int nbVirtualPlayer;
 	protected static int variant;
-
-	public static int getNbPlayer() throws setupExeption {
+	
+	//Des noms pour tester
+	protected static String[] playersNames = {"Edgar","Elina"};
+	
+	//Getters
+	public static int getNbPlayer()/* throws setupExeption */{
 			return nbPlayer;
+	}
+
+	public static String[] getPlayersNames() {
+		return playersNames;
+	}
+
+	public static int getNbRealPlayer() {
+		return nbRealPlayer;
+	}
+
+	public static int getNbVirtualPlayer() {
+		return nbVirtualPlayer;
+	}
+
+	public static int getVariant() {
+		return variant;
 	}
 
 	public int setNbPlayer() throws setupExeption {
@@ -29,7 +49,7 @@ public class GameOptions {
 				Scanner sc = new Scanner(System.in);
 				System.out.println("How many players for your game ? (You have the choice between 3 or 4.)");
 				int nbPlayer = sc.nextInt();
-				this.nbPlayer = nbPlayer;
+				GameOptions.nbPlayer = nbPlayer;
 				if (nbPlayer == 3 || nbPlayer == 4) {
 					correctChoice = true;
 					System.out.println(nbPlayer + " players will play the next game. \n");
@@ -41,6 +61,8 @@ public class GameOptions {
 			return nbPlayer;
 	}
 
+	
+
 	public int setNbRealPlayer( int nbPlayer) throws setupExeption {
 			this.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
@@ -48,7 +70,7 @@ public class GameOptions {
 				Scanner sc = new Scanner(System.in);
 				System.out.println("How many players are real for this game ?");
 				int nbRealPlayer = sc.nextInt();
-				this.nbRealPlayer = nbRealPlayer;
+				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
 					throw new setupExeption();
@@ -63,8 +85,8 @@ public class GameOptions {
 	}
 
 	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupExeption {
-			this.nbPlayer = nbPlayer;
-			this.nbRealPlayer = nbRealPlayer;
+			GameOptions.nbPlayer = nbPlayer;
+			GameOptions.nbRealPlayer = nbRealPlayer;
 			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
 			return nbVirtualPlayer;
 	}
@@ -97,11 +119,11 @@ public class GameOptions {
 
 		boolean startGame = false;
 		while (!startGame) {
-			int playerChoice = gameOp.selectionOptionMenu();
+			int playerChoice = GameOptions.selectionOptionMenu();
 			switch (playerChoice) {
 				case 1:
 					System.out.println("Choose variant");
-					gameOp.chooseVariant();
+					GameOptions.chooseVariant();
 					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
 				case 2:

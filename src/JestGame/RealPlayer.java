@@ -42,7 +42,7 @@ public class RealPlayer extends Player {
 	}
 	
 	@Override
-	void pickOffer(Card crt) {
+	void pickOffer() {
 		System.out.println("Select an opponant card you want to add to your Jest");
 		System.out.println("You can choose between this cards : ");
 		
