@@ -16,7 +16,7 @@ public class GameManager {
         return selection;
     }
 
-    public boolean executeUserChoice(int userChoice) throws setupExeption {
+    public boolean executeUserChoice(int userChoice) throws setupException {
         boolean startGame = false;
         switch (userChoice) {
             case 1:
@@ -24,7 +24,7 @@ public class GameManager {
                 try {
                     GameOptions.setup();
                 }
-                catch (setupExeption e){
+                catch (setupException e){
                     System.out.println(e.getMessage());
                 }
                 //Récupérer la variable startGame de la méthode setup() pour déterminer si la partie est commencée
@@ -47,11 +47,9 @@ public class GameManager {
     	RoundsManager currentGame = new RoundsManager();
     	currentGame.firstRound();
     	currentGame.nextRound();
-    	
-        
     }
 
-	public static void main(String[] args) throws setupExeption {
+	public static void main(String[] args) throws setupException {
 
         GameManager game = new GameManager();
 		//Initialise all game components

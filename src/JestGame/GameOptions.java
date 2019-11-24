@@ -22,40 +22,58 @@ public class GameOptions {
 	//Des noms pour tester
 	protected static String[] playersNames = {"Edgar","Elina"};
 	
-
-	public static int getNbPlayer() throws setupExeption {
+	//Getters
+	public static int getNbPlayer(){
 			return nbPlayer;
 	}
 
-	public int setNbPlayer() throws setupExeption {
+	public static String[] getPlayersNames() {
+		return playersNames;
+	}
+
+	public static int getNbRealPlayer() {
+		return nbRealPlayer;
+	}
+
+	public static int getNbVirtualPlayer() {
+		return nbVirtualPlayer;
+	}
+
+	public static int getVariant() {
+		return variant;
+	}
+
+	public int setNbPlayer() throws setupException {
 			boolean correctChoice = false;
 			while (!correctChoice) {
 				Scanner sc = new Scanner(System.in);
 				System.out.println("How many players for your game ? (You have the choice between 3 or 4.)");
 				int nbPlayer = sc.nextInt();
-				this.nbPlayer = nbPlayer;
+				GameOptions.nbPlayer = nbPlayer;
 				if (nbPlayer == 3 || nbPlayer == 4) {
 					correctChoice = true;
 					System.out.println(nbPlayer + " players will play the next game. \n");
 				} else {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new setupExeption();
+					throw new setupException();
 				}
 			}
 			return nbPlayer;
 	}
 
-	public int setNbRealPlayer( int nbPlayer) throws setupExeption {
+	
+
+	public int setNbRealPlayer( int nbPlayer) throws setupException {
 			this.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
 				Scanner sc = new Scanner(System.in);
 				System.out.println("How many players are real for this game ?");
 				int nbRealPlayer = sc.nextInt();
-				this.nbRealPlayer = nbRealPlayer;
+				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new setupExeption();
+					throw new setupException();
 				} else {
 					correctNumber = true;
 					System.out.println(nbRealPlayer + " REAL PLAYER(S)");
@@ -66,9 +84,9 @@ public class GameOptions {
 			return nbRealPlayer;
 	}
 
-	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupExeption {
-			this.nbPlayer = nbPlayer;
-			this.nbRealPlayer = nbRealPlayer;
+	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupException {
+			GameOptions.nbPlayer = nbPlayer;
+			GameOptions.nbRealPlayer = nbRealPlayer;
 			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
 			return nbVirtualPlayer;
 	}
@@ -91,7 +109,7 @@ public class GameOptions {
 			return selection;
 	}
 
-	public static boolean setup () throws setupExeption {
+	public static boolean setup () throws setupException {
 		GameOptions gameOp = new GameOptions();
 		System.out.println("First, enter the number of players !");
 		nbPlayer = gameOp.setNbPlayer();
@@ -101,11 +119,11 @@ public class GameOptions {
 
 		boolean startGame = false;
 		while (!startGame) {
-			int playerChoice = gameOp.selectionOptionMenu();
+			int playerChoice = GameOptions.selectionOptionMenu();
 			switch (playerChoice) {
 				case 1:
 					System.out.println("Choose variant");
-					gameOp.chooseVariant();
+					GameOptions.chooseVariant();
 					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
 				case 2:
@@ -114,7 +132,7 @@ public class GameOptions {
 					//gameOp.startGame();
 					break;
 				default:
-					throw new setupExeption();
+					throw new setupException();
 					//Gestion d'exceptions à faire
 			}
 		}
