@@ -44,6 +44,10 @@ public class GameManager {
     }
 
     public void play(){
+    	RoundsManager currentGame = new RoundsManager();
+    	currentGame.firstRound();
+    	currentGame.nextRound();
+    	
         
     }
 

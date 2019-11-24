@@ -30,6 +30,6 @@ public abstract class Player {
 	
 	abstract void makeOffer();
 	
-	abstract void pickOffer(Card crd);
+	abstract void pickOffer();
 
 }

@@ -49,7 +49,7 @@ public class Deck {
 	}
 	
 	
-	public void deal() throws setupExeption {
+	public void deal() /*throws setupExeption */{
 		System.out.println("Start dealing cards to the player");
 		for(int i = 0; i < (GameOptions.getNbPlayer() * 2); i++ ) {
 		Player p = null;

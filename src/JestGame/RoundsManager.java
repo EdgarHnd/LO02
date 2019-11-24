@@ -1,7 +1,7 @@
 package JestGame;
 
-import java.util.HashSet;
-	
+import java.util.ArrayList;
+
 /**
  * This class is where a new party is created and managed once the user has entered all the options.
  * The RoundsManager will create the players, instantiate and control the deck actions and
@@ -16,13 +16,13 @@ public class RoundsManager {
 	
 	protected int roundNb = 0;
 	protected int currentPlayer;
-	protected HashSet<Player> listPlayers;
+	protected ArrayList<Player> listPlayers;
 	
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			Player rplayer = new RealPlayer(GameOptions.getPlayerNameList[i]);
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			Player rplayer = new RealPlayer(GameOptions.getPlayersNames()[i]);
 			this.listPlayers.add(rplayer);
 		}
 		for(int j = 0; j < GameOptions.getNbVirtualPlayer(); j++) {
@@ -38,11 +38,11 @@ public class RoundsManager {
 		
 		//Revoir la syntaxe de tout ça
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			this.listPlayers(i).makeOffer;
+			this.listPlayers.get(i).makeOffer();
 		}
 		//soit un for soit un for each
-		for(HashSet<Player> plr : this.listPlayers) {
-			this.listPlayers.pickOffer;
+		for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
+			this.listPlayers.get(j).pickOffer();
 		}
 		
 		this.roundNb = 1;
@@ -54,11 +54,11 @@ public class RoundsManager {
 		if(this.roundNb > 0) {
 			//Revoir la syntaxe de tout ça
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-				this.listPlayers(i).makeOffer;
+				this.listPlayers.get(i).makeOffer();
 			}
 			//soit un for soit un for each
-			for(HashSet<Player> plr : this.listPlayers) {
-				this.listPlayers.pickOffer;
+			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
+				this.listPlayers.get(j).pickOffer();
 			}
 			
 			this.roundNb ++;
