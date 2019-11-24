@@ -44,7 +44,7 @@ public class GameManager {
     }
 
     public void play(){
-        
+
     }
 
 	public static void main(String[] args) throws setupExeption {
