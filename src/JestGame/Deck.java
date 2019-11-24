@@ -2,6 +2,14 @@ package JestGame;
 
 import java.util.LinkedList;
 
+/**
+ * This class is where the Deck for one game is created.
+ * It contains all the method needed to interact with the deck.
+ *
+ * @author Edgar
+ * @version 1.0
+ */
+
 public class Deck {
 	
 	private LinkedList<Card> cards;
