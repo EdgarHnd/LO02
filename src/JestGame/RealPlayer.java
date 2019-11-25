@@ -1,31 +1,18 @@
 package JestGame;
 
-import java.util.LinkedList;
+
 import java.util.Scanner;
 
 public class RealPlayer extends Player {
 
 	
-	protected LinkedList<Card> hand;
-	protected LinkedList<Card> jest;
-	protected int finalScore;
-	protected int finalBoolean;
-	protected boolean hasPlayed;
 	
 	
 		public RealPlayer(String n,int i) {
 		super(n, i);
 		}
 		
-		//Getters and setters
-		public int getNb() {
-			return nb;
-		}
-
-		public String getName() {
-		return name;
-		}
-
+		
 	@Override
 	public void makeOffer() {
 		System.out.println("Carte 1:" + this.hand.get(1));
