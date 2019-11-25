@@ -16,20 +16,28 @@ public class RoundsManager {
 	
 	protected int roundNb = 0;
 	protected int currentPlayer;
-	protected ArrayList<Player> listPlayers;
+	protected static ArrayList<Player> listPlayers;
 	
+	//Getters
+	public int getRoundNb() {
+		return roundNb;
+	}
+
+	public ArrayList<Player> getListPlayers() {
+		return listPlayers;
+	}
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		this.listPlayers = new ArrayList<Player>(4);
+		RoundsManager.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			this.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
-			System.out.println("\n"+this.listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
+			RoundsManager.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
+			System.out.println("\n"+RoundsManager.listPlayers.get(i).getName() + " will play as Player "+ RoundsManager.listPlayers.get(i).getNb());
 		}
 		
 		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
-			this.listPlayers.add(new VirtualPlayer("AI"+ j,j));
-			System.out.println("\n"+this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
+			RoundsManager.listPlayers.add(new VirtualPlayer("AI"+ j,j));
+			System.out.println("\n"+RoundsManager.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ RoundsManager.listPlayers.get(j-1).getNb());
 		}
 	}
 	
@@ -57,17 +65,19 @@ public class RoundsManager {
 		
 	}
 	
+	
+
 	//Will be call while the deck as enough cards to deal a new round
 	public void nextRound() {
 		if(this.roundNb > 0) {
 			//Revoir la syntaxe de tout ça
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-				this.listPlayers.get(i).makeOffer();
+				RoundsManager.listPlayers.get(i).makeOffer();
 			}
 
 			//soit un for soit un for each
 			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
-				this.listPlayers.get(j).pickOffer();
+				RoundsManager.listPlayers.get(j).pickOffer();
 			}
 			this.roundNb ++;
 		}

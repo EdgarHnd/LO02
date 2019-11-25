@@ -59,6 +59,21 @@ public class Deck {
 	public void deal(){
 		System.out.println("\n Start dealing cards to the players");
 		
+		if(this.cards.size() >= 2*GameOptions.nbPlayer) {
+			System.out.println("First Deal");
+			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
+				System.out.println(RoundsManager.listPlayers.get(i).getName()+" recieved "+RoundsManager.listPlayers.get(i).getHand());
+			}
+			System.out.println("Second Deal");
+			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
+				System.out.println(RoundsManager.listPlayers.get(i).getName()+" recieved "+RoundsManager.listPlayers.get(i).getHand());
+			}
+		}
+		else {
+			System.out.println("Not enough cards to deal");
+		}
 		/*
 		if (!getCards().isEmpty()){
 			for (int i=0; i < 2*nbPlayer; i++) {
