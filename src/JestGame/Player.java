@@ -40,7 +40,6 @@ public class Player {
 		this.hand.add(c);
 	}
 	
-	
 	public void makeOffer(){
 		
 	}

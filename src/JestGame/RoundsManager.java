@@ -31,17 +31,18 @@ public class RoundsManager {
 	public RoundsManager() {
 		RoundsManager.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			RoundsManager.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
-			System.out.println("\n"+RoundsManager.listPlayers.get(i).getName() + " will play as Player "+ RoundsManager.listPlayers.get(i).getNb());
+			listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
+			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ listPlayers.get(i).getNb());
 		}
 		
 		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
-			RoundsManager.listPlayers.add(new VirtualPlayer("AI"+ j,j));
-			System.out.println("\n"+RoundsManager.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ RoundsManager.listPlayers.get(j-1).getNb());
+			listPlayers.add(new VirtualPlayer("AI"+ j,j));
+			System.out.println("\n"+listPlayers.get(j-1).getName() + " will play as AIPlayer "+ listPlayers.get(j-1).getNb());
 		}
 	}
 	
 	public void firstRound() {
+		this.roundNb = 1;
 		Deck deck = new Deck();
 		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
@@ -49,23 +50,17 @@ public class RoundsManager {
 		System.out.println("\n" + deck.getCards());
 		
 		deck.deal();
-		
-		/*//Revoir la syntaxe de tout ça
+		System.out.println("\n________________");
+		//Revoir la syntaxe de tout ça
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			System.out.println("It's " + listPlayers.get(i).getName() + "'s turn ! ");
 			this.listPlayers.get(i).makeOffer();
 		}
 		//soit un for soit un for each
 		for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
 			this.listPlayers.get(j).pickOffer();
-		}*/
-
-
-		
-		this.roundNb = 1;
-		
+		}
 	}
-	
-	
 
 	//Will be call while the deck as enough cards to deal a new round
 	public void nextRound() {

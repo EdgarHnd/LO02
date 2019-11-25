@@ -51,43 +51,28 @@ public class Deck {
 			getCards().add(position,cardShuffled);
 		}
 	}
-	//Methode pour l'instant pas utile
+
 	public Card topCard() {
 		return getCards().pop();
 	}
 
 	public void deal(){
-		System.out.println("\n Start dealing cards to the players");
+		System.out.println("\nStart dealing cards to the players");
 		
 		if(this.cards.size() >= 2*GameOptions.nbPlayer) {
 			System.out.println("First Deal");
 			for(int i = 0; i < GameOptions.nbPlayer;i++) {
 				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
-				System.out.println(RoundsManager.listPlayers.get(i).getName()+" recieved "+RoundsManager.listPlayers.get(i).getHand());
+				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
 			}
-			System.out.println("Second Deal");
+			System.out.println("\nSecond Deal");
 			for(int i = 0; i < GameOptions.nbPlayer;i++) {
 				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
-				System.out.println(RoundsManager.listPlayers.get(i).getName()+" recieved "+RoundsManager.listPlayers.get(i).getHand());
+				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
 			}
 		}
 		else {
 			System.out.println("Not enough cards to deal");
 		}
-		/*
-		if (!getCards().isEmpty()){
-			for (int i=0; i < 2*nbPlayer; i++) {
-				//Instruction faussée car on devrait surcharger le constructeur par exemple...
-				Iterator<Player> iterator = new RoundsManager().listPlayers.iterator();
-				while (iterator.hasNext()) {
-					Player p = (Player) iterator.next();
-					p.receiveCard(this.topCard());
-				}
-			}
-		}*/
-		
 	}
-
-
-	
 }
