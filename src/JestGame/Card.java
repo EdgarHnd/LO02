@@ -22,7 +22,7 @@ public class Card {
 	}
 	
 	public String toString() {
-		return this.kind.toString() + " " +this.suit.toString() + " " + this.trophy.toString();
+		return this.kind.toString() + " " +this.suit.toString() + " " + this.trophy.toString() + " " + this.hidden;
 	}
 	
 }
