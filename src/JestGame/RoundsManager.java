@@ -80,20 +80,17 @@ public class RoundsManager {
 	//return the player with the best offer
 	public Player checkBestOffer() {
 		Player bestOfferPlayer = RoundsManager.listPlayers.get(0);
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			for(int j = 0; j < 2; j++) {
-				if(RoundsManager.listPlayers.get(i).hand.get(j).isHidden() == false) {
-					
-					if(RoundsManager.listPlayers.get(i).hand.get(j).cardValue() > bestOfferPlayer.hand.get(j).cardValue()) {
-						bestOfferPlayer = RoundsManager.listPlayers.get(i);				
-					}
-					else if(RoundsManager.listPlayers.get(i).hand.get(j).cardValue() == bestOfferPlayer.hand.get(j).cardValue()) {
-						if(RoundsManager.listPlayers.get(i).hand.get(j).cardTiesValue() > bestOfferPlayer.hand.get(j).cardTiesValue()) {
-							bestOfferPlayer = RoundsManager.listPlayers.get(i);				
-						}
-					}
+		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
+					if(RoundsManager.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
+						bestOfferPlayer = RoundsManager.listPlayers.get(i);					
 				}
-			}
+		}
+		for(int h = 1; h < GameOptions.getNbPlayer(); h++) {
+					if(RoundsManager.listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
+						if(RoundsManager.listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
+							bestOfferPlayer = RoundsManager.listPlayers.get(h);				
+						}
+					}	
 		}
 		System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
 		return bestOfferPlayer;
