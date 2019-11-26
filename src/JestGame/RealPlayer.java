@@ -20,7 +20,7 @@ public class RealPlayer extends Player {
 		if (select.nextLine().equals("X")){
 			System.out.println("Carte 1:" + this.hand.get(0));
 			System.out.println("Carte 2:" + this.hand.get(1));
-			System.out.println("Select your offer ! (1 or 2) ");
+			System.out.println("Select your offer (1 or 2) ");
 			Scanner sc2 = new Scanner(System.in);
 			int selection = sc2.nextInt();
 			if(selection == 1) {

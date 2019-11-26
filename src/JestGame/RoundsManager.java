@@ -46,20 +46,19 @@ public class RoundsManager {
 		Deck deck = new Deck();
 		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
-		System.out.println("\n Deck shuffled");
+		System.out.println("\nDeck shuffled");
 		System.out.println("\n" + deck.getCards());
 		
 		deck.deal();
 		System.out.println("\n________________");
+		
 		//Revoir la syntaxe de tout ça
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			System.out.println("It's " + listPlayers.get(i).getName() + "'s turn ! ");
-			this.listPlayers.get(i).makeOffer();
+			System.out.println("It's " + listPlayers.get(i).getName() + "'s turn ");
+			RoundsManager.listPlayers.get(i).makeOffer();
 		}
-		//soit un for soit un for each
-		for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
-			this.listPlayers.get(j).pickOffer();
-		}
+		this.checkBestOffer().pickOffer();
+		
 	}
 
 	//Will be call while the deck as enough cards to deal a new round
@@ -78,9 +77,26 @@ public class RoundsManager {
 		}
 	}
 	
-	//change the players order in the list based on their offer strengh
-	public void checkBestOffer() {
-		
+	//return the player with the best offer
+	public Player checkBestOffer() {
+		Player bestOfferPlayer = RoundsManager.listPlayers.get(0);
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			for(int j = 0; j < 2; j++) {
+				if(RoundsManager.listPlayers.get(i).hand.get(j).isHidden() == false) {
+					
+					if(RoundsManager.listPlayers.get(i).hand.get(j).cardValue() > bestOfferPlayer.hand.get(j).cardValue()) {
+						bestOfferPlayer = RoundsManager.listPlayers.get(i);				
+					}
+					else if(RoundsManager.listPlayers.get(i).hand.get(j).cardValue() == bestOfferPlayer.hand.get(j).cardValue()) {
+						if(RoundsManager.listPlayers.get(i).hand.get(j).cardTiesValue() > bestOfferPlayer.hand.get(j).cardTiesValue()) {
+							bestOfferPlayer = RoundsManager.listPlayers.get(i);				
+						}
+					}
+				}
+			}
+		}
+		System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
+		return bestOfferPlayer;
 	}
 	
 	

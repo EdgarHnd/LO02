@@ -1,9 +1,7 @@
 package JestGame;
 
-import java.util.Iterator;
-import java.util.LinkedList;
 
-import static JestGame.GameOptions.nbPlayer;
+import java.util.LinkedList;
 
 /**
  * This class is where the Deck for one game is created.
