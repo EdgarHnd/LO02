@@ -42,14 +42,14 @@ public abstract class Player {
 
 	public Card offeredCard() {
 		Card oCard = null;
-		for(int j = 0; j < 2; j++) {
-			if(this.hand.get(j).isHidden() == false) {
-				oCard = this.hand.get(j);
+			for(int j = 0; j < 2; j++) {
+				if(this.hand.get(j).isHidden() == false) {
+					oCard = this.hand.get(j);
+				}
 			}
-		}
 		return oCard;
 	}
-	
+
 	public void makeOffer(){
 		
 	}
