@@ -1,8 +1,6 @@
 package jestGame.Model;
 
 
-import javafx.beans.InvalidationListener;
-
 import java.util.Scanner;
 
 public class RealPlayer extends Player {
@@ -42,17 +40,6 @@ public class RealPlayer extends Player {
 	public void pickOffer() {
 		System.out.println("Select an opponant card you want to add to your Jest");
 		System.out.println("You can choose between this cards : ");
-
 		
-	}
-
-	@Override
-	public void addListener(InvalidationListener listener) {
-
-	}
-
-	@Override
-	public void removeListener(InvalidationListener listener) {
-
 	}
 }
