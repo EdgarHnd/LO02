@@ -3,7 +3,7 @@ package jestGame;
 import jestGame.Model.GameManager;
 import jestGame.Model.setupException;
 
-public class main {
+public class Main {
 
     public static void main(String[] args) throws setupException {
         GameManager game = new GameManager();
