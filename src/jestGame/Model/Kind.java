@@ -1,4 +1,4 @@
-package JestGame;
+package jestGame.Model;
 
 enum Kind {
 	Ace,

@@ -1,4 +1,4 @@
-package JestGame;
+package jestGame.Model;
 
 public enum Trophy {
 	Highest,

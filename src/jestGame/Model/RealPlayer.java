@@ -1,5 +1,7 @@
-package JestGame;
+package jestGame.Model;
 
+
+import javafx.beans.InvalidationListener;
 
 import java.util.Scanner;
 
@@ -44,4 +46,13 @@ public class RealPlayer extends Player {
 		
 	}
 
+	@Override
+	public void addListener(InvalidationListener listener) {
+
+	}
+
+	@Override
+	public void removeListener(InvalidationListener listener) {
+
+	}
 }
