@@ -1,5 +1,6 @@
 package jestGame.Model;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -11,11 +12,14 @@ import java.util.LinkedList;
  */
 
 public class Deck {
-	
+
 	private LinkedList<Card> cards;
-	
-	public Deck() {
-		
+	private int nbPlayer;
+
+	public Deck(int nbPlayer) {
+
+		this.nbPlayer = nbPlayer;
+
 		cards = new LinkedList<Card>();
 		
 		getCards().add(new Card(Kind.Joker,Suit.None,Trophy.None));
@@ -42,11 +46,7 @@ public class Deck {
 	}
 	
 	public void shuffle() {
-		for (int i = 0; i < getCards().size(); i++) {
-			int position = (int) Math.round((getCards().size() - 1)* Math.random());
-			Card cardShuffled = getCards().pop();
-			getCards().add(position,cardShuffled);
-		}
+		Collections.shuffle(cards);
 	}
 
 	public Card topCard() {
@@ -55,15 +55,14 @@ public class Deck {
 
 	public void deal(){
 		System.out.println("\nStart dealing cards to the players");
-		GameOptions gameOp = new GameOptions();
-		if(this.cards.size() >= 2* gameOp.getNbPlayer()) {
+		if(this.cards.size() >= 2* nbPlayer) {
 			System.out.println("First Deal");
-			for(int i = 0; i < gameOp.getNbPlayer();i++) {
+			for(int i = 0; i < nbPlayer;i++) {
 				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
 				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond Deal");
-			for(int i = 0; i < gameOp.getNbPlayer();i++) {
+			for(int i = 0; i < nbPlayer;i++) {
 				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
 				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
 			}

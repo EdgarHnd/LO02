@@ -29,9 +29,12 @@ public class GameManager {
         }
     }
 
-    public void play(){
-    	RoundsManager currentGame = new RoundsManager(int nbPlayer, int nbRealPlayer, int nbVirtualPlayer);
-    	currentGame.firstRound();
+    public void play() throws setupException{
+        GameOptions gameOp = new GameOptions();
+        gameOp.setup();
+
+        RoundsManager currentGame = new RoundsManager(gameOp.getNbPlayer(), gameOp.getNbRealPlayer(), gameOp.getNbVirtualPlayer());
+        currentGame.firstRound();
     	//currentGame.nextRound();
     }
 

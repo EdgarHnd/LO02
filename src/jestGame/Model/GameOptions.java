@@ -127,11 +127,11 @@ public class GameOptions {
 		System.out.println("Alright, now you can choose from these choices : ");
 		boolean startGame = false;
 		while (!startGame) {
-			int playerChoice = GameOptions.selectionOptionMenu();
+			int playerChoice = selectionOptionMenu();
 			switch (playerChoice) {
 				case 2:
 					System.out.println("Choose variant");
-					GameOptions.chooseVariant();
+					chooseVariant();
 					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
 				case 1:
