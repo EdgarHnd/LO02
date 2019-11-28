@@ -12,16 +12,26 @@ public class Player {
 	protected int finalBoolean;
 	protected boolean hasPlayed;
 	
+	//Getters
 	public String getName() {
 		return this.name;
 	}
 	public int getNb() {
 		return nb;
 	}
+	public LinkedList<Card> getHand() {
+		return hand;
+	}
+	
 	//Constructor
 	public Player (String name, int nb) {
 		this.name = name;
 		this.nb = nb;
+		
+		this.hand = new LinkedList<Card>();
+		this.jest = new LinkedList<Card>();
+		this.finalScore = 0;
+		
 	}
 	
 	//Players methods
@@ -29,7 +39,15 @@ public class Player {
 	public void receiveCard(Card c) {
 		this.hand.add(c);
 	}
-	
+	public Card offeredCard() {
+		Card oCard = null;
+			for(int j = 0; j < 2; j++) {
+				if(this.hand.get(j).isHidden() == false) {
+					oCard = this.hand.get(j);
+				}
+			}
+		return oCard;
+	}
 	public void makeOffer(){
 		
 	}
