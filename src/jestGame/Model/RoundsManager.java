@@ -16,11 +16,11 @@ public class RoundsManager {
 
 	private int nbPlayer;
 	private int nbRealPlayer;
-	private int nbVirtualPlayer;
+	private int nbVirtualPLayer;
 	protected int roundNb = 0;
 	protected int currentPlayer;
-	protected static ArrayList<Player> listPlayers = new ArrayList<>(4);
-
+	protected static ArrayList<Player> listPlayers;
+	
 	//Getters
 	public int getRoundNb() {
 		return roundNb;
@@ -34,13 +34,15 @@ public class RoundsManager {
 	public RoundsManager(int nbPlayer, int nbRealPlayer, int nbVirtualPlayer) {
 		this.nbPlayer = nbPlayer;
 		this.nbRealPlayer = nbRealPlayer;
-		this.nbVirtualPlayer = nbVirtualPlayer;
+		this.nbVirtualPLayer = nbVirtualPlayer;
 
+		listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < nbRealPlayer; i++) {
 			listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
 			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ listPlayers.get(i).getNb());
 		}
-		for(int j = nbRealPlayer+1; j < nbPlayer+1; j++) {
+		
+		for(int j = nbRealPlayer+1; j <nbPlayer+1; j++) {
 			listPlayers.add(new VirtualPlayer("AI"+ j,j));
 			System.out.println("\n"+listPlayers.get(j-1).getName() + " will play as AIPlayer "+ listPlayers.get(j-1).getNb());
 		}
@@ -48,7 +50,7 @@ public class RoundsManager {
 	
 	public void firstRound() {
 		this.roundNb = 1;
-		Deck deck = new Deck(nbPlayer);
+		Deck deck = new Deck();
 		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
 		System.out.println("\nDeck shuffled");
@@ -65,7 +67,7 @@ public class RoundsManager {
 		this.checkBestOffer().pickOffer();
 	}
 
-	//Will be called when the deck as enough cards to deal a new round
+	//Will be call while the deck as enough cards to deal a new round
 	public void nextRound() {
 		if(this.roundNb > 0) {
 			//Revoir la syntaxe de tout ça
@@ -74,7 +76,7 @@ public class RoundsManager {
 			}
 
 			//soit un for soit un for each
-			for(int j = 0; j < nbPlayer; j++) {
+			for(int j = 0; j <nbPlayer; j++) {
 				listPlayers.get(j).pickOffer();
 			}
 			this.roundNb ++;
@@ -85,17 +87,16 @@ public class RoundsManager {
 	public Player checkBestOffer() {
 		Player bestOfferPlayer = listPlayers.get(0);
 		for(int i = 1; i < nbPlayer; i++) {
-			//Il y a un problème avec la list de joueurs...
-			if(listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
-				bestOfferPlayer = listPlayers.get(i);
-			}
+					if(listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
+						bestOfferPlayer = listPlayers.get(i);
+				}
 		}
 		for(int h = 1; h < nbPlayer; h++) {
-			if(listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
-				if(listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
-					bestOfferPlayer = listPlayers.get(h);
-				}
-			}
+					if(listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
+						if(listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
+							bestOfferPlayer = listPlayers.get(h);
+						}
+					}	
 		}
 		System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
 		return bestOfferPlayer;

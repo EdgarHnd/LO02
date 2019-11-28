@@ -16,7 +16,8 @@ public class GameManager {
     public void executeUserChoice(int userChoice) throws setupException {
         switch (userChoice) {
             case 1:
-               this.play();
+                System.out.println("Open settings");
+                    this.play();
                 break;
             case 2:
                 System.out.println("Quiting..");
@@ -28,12 +29,10 @@ public class GameManager {
         }
     }
 
-    public void play() throws setupException{
-        GameOptions gameOp = new GameOptions();
-        gameOp.setup();
-
-    	RoundsManager currentGame = new RoundsManager(gameOp.getNbPlayer(), gameOp.getNbRealPlayer(), gameOp.getNbVirtualPlayer());
+    public void play(){
+    	RoundsManager currentGame = new RoundsManager(int nbPlayer, int nbRealPlayer, int nbVirtualPlayer);
     	currentGame.firstRound();
     	//currentGame.nextRound();
     }
+
 }

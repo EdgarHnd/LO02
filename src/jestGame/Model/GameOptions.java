@@ -13,7 +13,6 @@ import jestGame.UserInput;
  */
 public class GameOptions {
 
-	//variables pouvant être utiles
 	private int nbPlayer;
 	private int nbRealPlayer;
 	private int nbVirtualPlayer;
@@ -128,11 +127,11 @@ public class GameOptions {
 		System.out.println("Alright, now you can choose from these choices : ");
 		boolean startGame = false;
 		while (!startGame) {
-			int playerChoice = selectionOptionMenu();
+			int playerChoice = GameOptions.selectionOptionMenu();
 			switch (playerChoice) {
 				case 2:
 					System.out.println("Choose variant");
-					chooseVariant();
+					GameOptions.chooseVariant();
 					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
 				case 1:
