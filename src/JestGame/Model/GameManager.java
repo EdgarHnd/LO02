@@ -17,8 +17,7 @@ public class GameManager {
         switch (userChoice) {
             case 1:
                 System.out.println("Open settings");
-                    GameOptions gameOp = new GameOptions();
-                    gameOp.setup();
+                    this.play();
                 break;
             case 2:
                 System.out.println("Quiting..");
@@ -31,7 +30,7 @@ public class GameManager {
     }
 
     public void play(){
-    	RoundsManager currentGame = new RoundsManager();
+    	RoundsManager currentGame = new RoundsManager(int nbPlayer, int nbRealPlayer, int nbVirtualPlayer);
     	currentGame.firstRound();
     	//currentGame.nextRound();
     }

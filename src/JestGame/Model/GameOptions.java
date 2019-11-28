@@ -13,21 +13,20 @@ import jestGame.UserInput;
  */
 public class GameOptions {
 
-	//variables pouvant être utiles
 	private int nbPlayer;
 	private int nbRealPlayer;
 	private int nbVirtualPlayer;
 	private static int variant;
 	
 	//Des noms pour tester
-	private String[] playersNames = {"Edgar","Elina","Patrick","Bernard"};
+	private static String[] playersNames = {"Edgar","Elina","Patrick","Bernard"};
 	
 	//Getters
 	public int getNbPlayer(){
 			return nbPlayer;
 	}
 
-	public String getPlayersNames(int i) {
+	public static String getPlayersNames(int i) {
 		return playersNames[i];
 	}
 
