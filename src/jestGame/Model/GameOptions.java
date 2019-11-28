@@ -20,14 +20,14 @@ public class GameOptions {
 	private static int variant;
 	
 	//Des noms pour tester
-	private String[] playersNames = {"Edgar","Elina","Patrick","Bernard"};
+	private static String[] playersNames = {"Edgar","Elina","Patrick","Bernard"};
 	
 	//Getters
 	public int getNbPlayer(){
 			return nbPlayer;
 	}
 
-	public String getPlayersNames(int i) {
+	public static String getPlayersNames(int i) {
 		return playersNames[i];
 	}
 
@@ -128,11 +128,11 @@ public class GameOptions {
 		System.out.println("Alright, now you can choose from these choices : ");
 		boolean startGame = false;
 		while (!startGame) {
-			int playerChoice = GameOptions.selectionOptionMenu();
+			int playerChoice = selectionOptionMenu();
 			switch (playerChoice) {
 				case 2:
 					System.out.println("Choose variant");
-					GameOptions.chooseVariant();
+					chooseVariant();
 					System.out.println("You will play with the variant : " + variant + "\n");
 					break;
 				case 1:

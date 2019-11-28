@@ -2,7 +2,7 @@ package jestGame.Model;
 
 import java.util.LinkedList;
 
-public abstract class Player {
+public class Player {
 	
 	protected int nb;
 	protected String name;

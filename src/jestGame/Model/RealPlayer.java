@@ -1,7 +1,7 @@
 package jestGame.Model;
 
 
-import java.util.Scanner;
+import jestGame.UserInput;
 
 public class RealPlayer extends Player {
 	
@@ -15,14 +15,12 @@ public class RealPlayer extends Player {
 		System.out.println("Are you ready to make your offer ?");
 		System.out.println("Keep your distance from other players to not let them know your cards.");
 		System.out.println("[Press X to continue]");
-		Scanner select = new Scanner(System.in);
 
-		if (select.nextLine().equals("X")){
+		if (UserInput.getInstance().nextString().equals("X")){
 			System.out.println("Carte 1:" + this.hand.get(0));
 			System.out.println("Carte 2:" + this.hand.get(1));
 			System.out.println("Select your offer (1 or 2) ");
-			Scanner sc2 = new Scanner(System.in);
-			int selection = sc2.nextInt();
+			int selection = UserInput.getInstance().nextInt();
 			if(selection == 1) {
 				this.hand.get(0).hidden = false;
 				System.out.println(this.hand.get(0) + " card selected");
