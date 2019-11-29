@@ -8,7 +8,7 @@ import java.util.Scanner;
 	    private static ConsoleUserInput instance = null;
 	    private Scanner entree;
 
-	    private ConsoleUserInput(){
+	    public ConsoleUserInput(){
 	        entree = new Scanner(System.in);
 	    }
 

@@ -1,5 +1,11 @@
 package fr.utt.jestcardgame.view;
 
-public interface GameView {
+import fr.utt.jestcardgame.visitor.Visitor;
 
+public abstract class GameView implements Visitor{
+
+	/*public abstract void display();
+	
+	public abstract void update(String str);*/
+	
 }

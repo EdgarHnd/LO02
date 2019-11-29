@@ -1,9 +1,7 @@
 package fr.utt.jestcardgame.model;
 
-import java.util.Scanner;
 
-
-import fr.utt.jestcardgame.view.setupException;
+import fr.utt.jestcardgame.controler.setupException;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
 
 
@@ -51,9 +49,10 @@ public class GameOptions {
 	public int setNbPlayer() throws setupException {
 			boolean correctChoice = false;
 			while (!correctChoice) {
-				Scanner sc = new Scanner(System.in);
+				ConsoleUserInput input = new ConsoleUserInput();
+				//Scanner sc = new Scanner(System.in);
 				System.out.println("How many players for your game ? (You have the choice between 3 or 4.)");
-				int nbPlayer = sc.nextInt();
+				int nbPlayer = input.nextInt();
 				GameOptions.nbPlayer = nbPlayer;
 				if (nbPlayer == 3 || nbPlayer == 4) {
 					correctChoice = true;
@@ -69,12 +68,13 @@ public class GameOptions {
 	
 
 	public int setNbRealPlayer( int nbPlayer) throws setupException {
-			this.nbPlayer = nbPlayer;
+			GameOptions.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
-				Scanner sc = new Scanner(System.in);
+				ConsoleUserInput input = new ConsoleUserInput();
+				//Scanner sc = new Scanner(System.in);
 				System.out.println("How many players are real for this game ?");
-				int nbRealPlayer = sc.nextInt();
+				int nbRealPlayer = input.nextInt();
 				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
@@ -101,8 +101,9 @@ public class GameOptions {
 			System.out.println("1- Variant 1");
 			System.out.println("2- Variant 2");
 			System.out.println("3- Variant 3");
-			Scanner sc = new Scanner(System.in);
-			variant = sc.nextInt();
+			ConsoleUserInput input = new ConsoleUserInput();
+			//Scanner sc = new Scanner(System.in);
+			variant = input.nextInt();
 			return variant;
 	}
 
@@ -120,7 +121,8 @@ public class GameOptions {
 
 		//Menu des options
 	public static int selectionOptionMenu () {
-			Scanner input = new Scanner(System.in);
+			ConsoleUserInput input = new ConsoleUserInput();
+			//Scanner input = new Scanner(System.in);
 			System.out.println("1 - Play !");
 			System.out.println("2 - Choose a variant");
 			int selection = input.nextInt();
