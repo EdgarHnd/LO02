@@ -1,6 +1,7 @@
-package JestGame;
+package fr.utt.jestcardgame.model;
 
-
+import fr.utt.jestcardgame.view.setupException;
+import fr.utt.jestcardgame.view.ConsoleUserInput;
 import java.util.Scanner;
 
 public class RealPlayer extends Player {

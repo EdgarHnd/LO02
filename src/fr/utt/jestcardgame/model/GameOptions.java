@@ -1,6 +1,11 @@
-package JestGame;
+package fr.utt.jestcardgame.model;
 
 import java.util.Scanner;
+
+
+import fr.utt.jestcardgame.view.setupException;
+import fr.utt.jestcardgame.view.ConsoleUserInput;
+
 
 /**
  * Class which allows the user to setup different parameters of the game, such as :

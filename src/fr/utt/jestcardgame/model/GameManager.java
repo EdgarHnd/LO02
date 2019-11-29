@@ -1,5 +1,7 @@
-package JestGame;
+package fr.utt.jestcardgame.model;
 import java.util.Scanner;
+
+import fr.utt.jestcardgame.view.setupException;
 
 public class GameManager {
 

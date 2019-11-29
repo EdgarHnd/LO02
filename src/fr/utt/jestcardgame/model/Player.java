@@ -1,8 +1,8 @@
-package JestGame;
+package fr.utt.jestcardgame.model;
 
 import java.util.LinkedList;
 
-public class Player {
+abstract class Player {
 	
 	protected int nb;
 	protected String name;
@@ -48,12 +48,8 @@ public class Player {
 			}
 		return oCard;
 	}
-	public void makeOffer(){
-		
-	}
+	abstract void makeOffer();
 	
-	public void pickOffer() {
-		
-	}
+	abstract void pickOffer();
 
 }

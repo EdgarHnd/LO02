@@ -1,4 +1,4 @@
-package JestGame;
+package fr.utt.jestcardgame.model;
 
 public class Card {	
 	

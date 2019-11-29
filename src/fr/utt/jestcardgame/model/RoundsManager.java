@@ -1,4 +1,4 @@
-package JestGame;
+package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 
