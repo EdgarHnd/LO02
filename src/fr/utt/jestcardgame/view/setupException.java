@@ -1,4 +1,4 @@
-package fr.utt.jestcardgame.controler;
+package fr.utt.jestcardgame.view;
 
 
 public class setupException extends Throwable {

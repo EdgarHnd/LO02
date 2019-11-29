@@ -2,7 +2,7 @@ package fr.utt.jestcardgame.model;
 
 import java.util.LinkedList;
 
-abstract class Player {
+public abstract class Player {
 	
 	protected int nb;
 	protected String name;

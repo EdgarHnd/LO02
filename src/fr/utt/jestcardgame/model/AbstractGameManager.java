@@ -2,7 +2,7 @@ package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 
-import fr.utt.jestcardgame.controler.setupException;
+import fr.utt.jestcardgame.view.setupException;
 import fr.utt.jestcardgame.visitor.Visitable;
 import fr.utt.jestcardgame.visitor.Visitor;
 

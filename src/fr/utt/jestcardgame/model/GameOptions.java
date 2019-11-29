@@ -1,8 +1,10 @@
 package fr.utt.jestcardgame.model;
 
 
-import fr.utt.jestcardgame.controler.setupException;
+import fr.utt.jestcardgame.view.ConsoleGameView;
+import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
+import fr.utt.jestcardgame.view.setupException;
 
 
 /**
@@ -14,7 +16,7 @@ import fr.utt.jestcardgame.view.ConsoleUserInput;
  * @author Elina
  * @version 1.0
  */
-public class GameOptions {
+public abstract class GameOptions {
 
 	//variables pouvant être utiles
 	protected static int nbPlayer;
@@ -46,17 +48,15 @@ public class GameOptions {
 		return variant;
 	}
 
-	public int setNbPlayer() throws setupException {
+	public static int setNbPlayer() throws setupException {
 			boolean correctChoice = false;
 			while (!correctChoice) {
 				ConsoleUserInput input = new ConsoleUserInput();
-				//Scanner sc = new Scanner(System.in);
-				System.out.println("How many players for your game ? (You have the choice between 3 or 4.)");
 				int nbPlayer = input.nextInt();
 				GameOptions.nbPlayer = nbPlayer;
 				if (nbPlayer == 3 || nbPlayer == 4) {
 					correctChoice = true;
-					System.out.println(nbPlayer + " players will play the next game. \n");
+					ConsoleGameView.display(ConsoleOutput.PlayerNb);
 				} else {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
 					throw new setupException();
@@ -67,13 +67,12 @@ public class GameOptions {
 
 	
 
-	public int setNbRealPlayer( int nbPlayer) throws setupException {
+	public static int setNbRealPlayer( int nbPlayer) throws setupException {
 			GameOptions.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
 				ConsoleUserInput input = new ConsoleUserInput();
-				//Scanner sc = new Scanner(System.in);
-				System.out.println("How many players are real for this game ?");
+				ConsoleGameView.display(ConsoleOutput.RealPlayer);
 				int nbRealPlayer = input.nextInt();
 				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
@@ -81,15 +80,12 @@ public class GameOptions {
 					throw new setupException();
 				} else {
 					correctNumber = true;
-					System.out.println(nbRealPlayer + " REAL PLAYER(S)");
-					int nbVirtualPlayer = nbPlayer - nbRealPlayer;
-					System.out.println(nbVirtualPlayer + " VIRTUAL PLAYER(S)");
 				}
 			}
 			return nbRealPlayer;
 	}
 
-	public int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupException {
+	public static int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupException {
 			GameOptions.nbPlayer = nbPlayer;
 			GameOptions.nbRealPlayer = nbRealPlayer;
 			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
@@ -97,10 +93,7 @@ public class GameOptions {
 	}
 
 	public static int chooseVariant () {
-			System.out.println("We have different variants for your game. Make your choice ! :)");
-			System.out.println("1- Variant 1");
-			System.out.println("2- Variant 2");
-			System.out.println("3- Variant 3");
+			ConsoleGameView.display(ConsoleOutput.Variant);
 			ConsoleUserInput input = new ConsoleUserInput();
 			//Scanner sc = new Scanner(System.in);
 			variant = input.nextInt();
@@ -121,36 +114,34 @@ public class GameOptions {
 
 		//Menu des options
 	public static int selectionOptionMenu () {
+			ConsoleGameView.display(ConsoleOutput.PlayVar);
 			ConsoleUserInput input = new ConsoleUserInput();
-			//Scanner input = new Scanner(System.in);
-			System.out.println("1 - Play !");
-			System.out.println("2 - Choose a variant");
-			int selection = input.nextInt();
-			return selection;
+			return input.nextInt();
 	}
 
 	public static void setup() throws setupException {
-		GameOptions gameOp = new GameOptions();
-		System.out.println("First, enter the number of players !");
-		nbPlayer = gameOp.setNbPlayer();
-		nbRealPlayer = gameOp.setNbRealPlayer(nbPlayer);
-		nbVirtualPlayer = gameOp.setNbVirtualPlayer(nbPlayer, nbRealPlayer);
+		
+		ConsoleGameView.display(ConsoleOutput.OptionMenu);
+
+		nbPlayer = GameOptions.setNbPlayer();
+		nbRealPlayer = GameOptions.setNbRealPlayer(nbPlayer);
+		nbVirtualPlayer = GameOptions.setNbVirtualPlayer(nbPlayer, nbRealPlayer);
 		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
 		//playerName.toString();
 
-		System.out.println("Alright, now you can choose from these choices : ");
+		
 		boolean startGame = false;
 		while (!startGame) {
 			int playerChoice = GameOptions.selectionOptionMenu();
 			switch (playerChoice) {
 				case 2:
-					System.out.println("Choose variant");
+					
 					GameOptions.chooseVariant();
-					System.out.println("You will play with the variant : " + variant + "\n");
+					ConsoleGameView.display(ConsoleOutput.SelectVar);
 					break;
 				case 1:
 					startGame = true;
-					System.out.println("Starting a new game where :");
+					ConsoleGameView.display(ConsoleOutput.NewGame);
 					break;
 				default:
 					throw new setupException();

@@ -3,6 +3,9 @@ package fr.utt.jestcardgame.model;
 
 import java.util.LinkedList;
 
+import fr.utt.jestcardgame.view.ConsoleGameView;
+import fr.utt.jestcardgame.view.ConsoleOutput;
+
 /**
  * This class is where the Deck for one game is created.
  * It contains all the method needed to interact with the deck.
@@ -55,7 +58,7 @@ public class Deck {
 	}
 
 	public void deal(){
-		System.out.println("\nStart dealing cards to the players");
+		ConsoleGameView.display(ConsoleOutput.Dealing);
 		
 		if(this.cards.size() >= 2*GameOptions.nbPlayer) {
 			System.out.println("First Deal");
@@ -70,7 +73,7 @@ public class Deck {
 			}
 		}
 		else {
-			System.out.println("Not enough cards to deal");
+			ConsoleGameView.display(ConsoleOutput.NoMoreCard);
 		}
 	}
 }
