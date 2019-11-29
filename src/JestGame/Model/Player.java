@@ -1,8 +1,8 @@
-package JestGame;
+package jestGame.Model;
 
 import java.util.LinkedList;
 
-public class Player {
+public abstract class Player {
 	
 	protected int nb;
 	protected String name;
@@ -39,6 +39,7 @@ public class Player {
 	public void receiveCard(Card c) {
 		this.hand.add(c);
 	}
+
 	public Card offeredCard() {
 		Card oCard = null;
 			for(int j = 0; j < 2; j++) {
@@ -48,6 +49,7 @@ public class Player {
 			}
 		return oCard;
 	}
+
 	public void makeOffer(){
 		
 	}

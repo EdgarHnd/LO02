@@ -1,4 +1,4 @@
-package JestGame;
+package jestGame.Model;
 
 public class VirtualPlayer extends Player {
 
@@ -16,6 +16,5 @@ public class VirtualPlayer extends Player {
 	public void pickOffer() {
 
 	}
-
 
 }

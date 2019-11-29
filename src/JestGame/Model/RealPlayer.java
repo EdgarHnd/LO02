@@ -1,4 +1,4 @@
-package JestGame;
+package jestGame.Model;
 
 
 import java.util.Scanner;
@@ -42,5 +42,4 @@ public class RealPlayer extends Player {
 		System.out.println("You can choose between this cards : ");
 		
 	}
-
 }

@@ -1,5 +1,4 @@
-package JestGame;
-
+package jestGame.Model;
 
 import java.util.LinkedList;
 
@@ -56,15 +55,15 @@ public class Deck {
 
 	public void deal(){
 		System.out.println("\nStart dealing cards to the players");
-		
-		if(this.cards.size() >= 2*GameOptions.nbPlayer) {
+		GameOptions gameOp = new GameOptions();
+		if(this.cards.size() >= 2* gameOp.getNbPlayer()) {
 			System.out.println("First Deal");
-			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+			for(int i = 0; i < gameOp.getNbPlayer();i++) {
 				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
 				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond Deal");
-			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+			for(int i = 0; i < gameOp.getNbPlayer();i++) {
 				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
 				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
 			}
