@@ -39,7 +39,10 @@ public class RealPlayer extends Player {
 	
 	@Override
 	public void pickOffer() {
-		ConsoleGameView.display(ConsoleOutput.Picking);
+		//ConsoleGameView.display(ConsoleOutput.Picking);
+		System.out.println("Select an opponant card you want to add to your Jest");
+		System.out.println("You can choose between this cards : ");
+		
 		
 	}
 

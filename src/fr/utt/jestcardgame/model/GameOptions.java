@@ -72,7 +72,8 @@ public abstract class GameOptions {
 			boolean correctNumber = false;
 			while (!correctNumber) {
 				ConsoleUserInput input = new ConsoleUserInput();
-				ConsoleGameView.display(ConsoleOutput.RealPlayer);
+				ConsoleGameView.display(ConsoleOutput.RealPlayer);	
+				
 				int nbRealPlayer = input.nextInt();
 				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {

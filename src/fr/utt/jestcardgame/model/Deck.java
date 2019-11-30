@@ -18,6 +18,16 @@ import java.util.LinkedList;
 public class Deck {
 	
 	private LinkedList<Card> cards;
+	private static Deck dk= null;
+	
+	public static Deck getInstance(){
+		
+		if(dk == null){
+			dk = new Deck();
+		}
+		
+		return dk;
+	}
 	
 	public Deck() {
 		
@@ -60,13 +70,13 @@ public class Deck {
 		if(this.cards.size() >= 2*GameOptions.nbPlayer) {
 			System.out.println("First Deal");
 			for(int i = 0; i < GameOptions.nbPlayer;i++) {
-				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
-				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
+				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCard());
+				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond Deal");
 			for(int i = 0; i < GameOptions.nbPlayer;i++) {
-				RoundsManager.listPlayers.get(i).receiveCard(this.topCard());
-				System.out.println(RoundsManager.listPlayers.get(i).getName()+" received "+RoundsManager.listPlayers.get(i).getHand());
+				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCard());
+				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 		}
 		else {

@@ -1,16 +1,27 @@
 package fr.utt.jestcardgame.model;
 
 
+import java.util.ArrayList;
+
 import fr.utt.jestcardgame.view.*;
 
 
 public class GameManager extends AbstractGameManager{
 	
 
-    
+	private static GameManager gm= null;
+	
+	public static GameManager getInstance(){
+		
+		if(gm == null){
+			gm = new GameManager();
+		}
+		
+		return gm;
+	}
 	@Override
     public void play(){
-    	RoundsManager currentGame = new RoundsManager();
+		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
     	//currentGame.nextRound();
     	//currentGame.giveTrophy();
