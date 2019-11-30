@@ -80,19 +80,21 @@ public class RoundsManager {
 
 	//Will be call while the deck as enough cards to deal a new round
 	public void nextRound() {
-		if(this.roundNb > 0) {
-			//Revoir la syntaxe de tout ça
-			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-				this.listPlayers.get(i).makeOffer();
+		while (Deck.getInstance() != null) {
+			if (this.roundNb > 0) {
+				//Revoir la syntaxe de tout ça
+				for (int i = 0; i < GameOptions.getNbPlayer(); i++) {
+					this.listPlayers.get(i).makeOffer();
 
+				}
+
+				//soit un for soit un for each
+				for (int j = 0; j < GameOptions.getNbPlayer(); j++) {
+
+					this.listPlayers.get(j).pickOffer();
+				}
+				this.roundNb++;
 			}
-
-			//soit un for soit un for each
-			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
-
-				this.listPlayers.get(j).pickOffer();
-			}
-			this.roundNb ++;
 		}
 	}
 	

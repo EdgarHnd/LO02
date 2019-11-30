@@ -4,6 +4,7 @@ public class OffensiveStrategy implements ChooseStrategy {
 
     private int bestCardValue;
     private int index;
+    private int bestCardValueToPick;
 
     @Override
     public void makeOfferStrategy(Player player) {
@@ -20,7 +21,7 @@ public class OffensiveStrategy implements ChooseStrategy {
 
     @Override
     public void pickOfferStrategy(Player player){
-
+        //bestCardValue = OfferedCards.get(O);
     }
 
 }
