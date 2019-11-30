@@ -3,7 +3,6 @@ package fr.utt.jestcardgame.model;
 import fr.utt.jestcardgame.view.ConsoleGameView;
 import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
-import fr.utt.jestcardgame.view.setupException;
 
 
 public class RealPlayer extends Player {
@@ -40,7 +39,9 @@ public class RealPlayer extends Player {
 	@Override
 	public void pickOffer() {
 		ConsoleGameView.display(ConsoleOutput.Picking);
-		
+		//for (int i = 0; i < RoundsManager.listPlayers.size(); i ++){
+
+		//}
 	}
 
 }
