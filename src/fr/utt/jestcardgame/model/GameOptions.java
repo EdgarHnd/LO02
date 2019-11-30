@@ -86,8 +86,8 @@ public abstract class GameOptions {
 	}
 
 	public static int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupException {
-			GameOptions.nbPlayer = nbPlayer;
-			GameOptions.nbRealPlayer = nbRealPlayer;
+			nbPlayer = nbPlayer;
+			nbRealPlayer = nbRealPlayer;
 			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
 			return nbVirtualPlayer;
 	}
@@ -123,16 +123,16 @@ public abstract class GameOptions {
 		
 		ConsoleGameView.display(ConsoleOutput.OptionMenu);
 
-		nbPlayer = GameOptions.setNbPlayer();
-		nbRealPlayer = GameOptions.setNbRealPlayer(nbPlayer);
-		nbVirtualPlayer = GameOptions.setNbVirtualPlayer(nbPlayer, nbRealPlayer);
+		nbPlayer = setNbPlayer();
+		nbRealPlayer = setNbRealPlayer(nbPlayer);
+		nbVirtualPlayer = setNbVirtualPlayer(nbPlayer, nbRealPlayer);
 		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
 		//playerName.toString();
 
 		
 		boolean startGame = false;
 		while (!startGame) {
-			int playerChoice = GameOptions.selectionOptionMenu();
+			int playerChoice = selectionOptionMenu();
 			switch (playerChoice) {
 				case 2:
 					

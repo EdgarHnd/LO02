@@ -1,8 +1,8 @@
 package fr.utt.jestcardgame;
 
-import fr.utt.jestcardgame.controler.*;
-import fr.utt.jestcardgame.model.*;
-import fr.utt.jestcardgame.view.*;
+import fr.utt.jestcardgame.model.AbstractGameManager;
+import fr.utt.jestcardgame.model.GameManager;
+import fr.utt.jestcardgame.view.setupException;
 
 public class Main {
 
@@ -19,8 +19,8 @@ public class Main {
 	    	
 	    	//Our view can now visit the game model in order to update
 	    	//gm.addVisitor(cv);
-	    	
-	    
+
+
 	    	//cv.display();
 	    	gm.mainMenu();
 	    	

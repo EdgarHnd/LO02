@@ -55,9 +55,9 @@ public class RoundsManager {
 		//Revoir la syntaxe de tout ça
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			System.out.println("It's " + listPlayers.get(i).getName() + "'s turn ");
-			RoundsManager.listPlayers.get(i).makeOffer();
+			listPlayers.get(i).makeOffer();
 		}
-		this.checkBestOffer().pickOffer();
+		//this.checkBestOffer().pickOffer();
 		
 	}
 
@@ -66,12 +66,12 @@ public class RoundsManager {
 		if(this.roundNb > 0) {
 			//Revoir la syntaxe de tout ça
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-				RoundsManager.listPlayers.get(i).makeOffer();
+				listPlayers.get(i).makeOffer();
 			}
 
 			//soit un for soit un for each
 			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
-				RoundsManager.listPlayers.get(j).pickOffer();
+				listPlayers.get(j).pickOffer();
 			}
 			this.roundNb ++;
 		}
@@ -79,16 +79,16 @@ public class RoundsManager {
 	
 	//return the player with the best offer
 	public Player checkBestOffer() {
-		Player bestOfferPlayer = RoundsManager.listPlayers.get(0);
+		Player bestOfferPlayer = listPlayers.get(0);
 		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
-					if(RoundsManager.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
-						bestOfferPlayer = RoundsManager.listPlayers.get(i);					
+					if(listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
+						bestOfferPlayer = listPlayers.get(i);
 				}
 		}
 		for(int h = 1; h < GameOptions.getNbPlayer(); h++) {
-					if(RoundsManager.listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
-						if(RoundsManager.listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
-							bestOfferPlayer = RoundsManager.listPlayers.get(h);				
+					if(listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
+						if(listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
+							bestOfferPlayer = listPlayers.get(h);
 						}
 					}	
 		}
