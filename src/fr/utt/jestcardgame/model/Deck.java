@@ -1,10 +1,11 @@
 package fr.utt.jestcardgame.model;
 
 
-import java.util.LinkedList;
-
 import fr.utt.jestcardgame.view.ConsoleGameView;
 import fr.utt.jestcardgame.view.ConsoleOutput;
+
+import java.util.Collections;
+import java.util.LinkedList;
 
 /**
  * This class is where the Deck for one game is created.
@@ -46,11 +47,7 @@ public class Deck {
 	}
 	
 	public void shuffle() {
-		for (int i = 0; i < getCards().size(); i++) {
-			int position = (int) Math.round((getCards().size() - 1)* Math.random());
-			Card cardShuffled = getCards().pop();
-			getCards().add(position,cardShuffled);
-		}
+		Collections.shuffle(cards);
 	}
 
 	public Card topCard() {
