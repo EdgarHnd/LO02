@@ -33,7 +33,6 @@ public class GameManager extends AbstractGameManager{
                 break;
             default:
                 //Gestion d'exception à faire
-                System.out.println("Une exception est levée");
         }
     }
     

@@ -57,7 +57,7 @@ public class RoundsManager {
 			System.out.println("It's " + listPlayers.get(i).getName() + "'s turn ");
 			listPlayers.get(i).makeOffer();
 		}
-		//this.checkBestOffer().pickOffer();
+		this.checkBestOffer().pickOffer();
 		
 	}
 
