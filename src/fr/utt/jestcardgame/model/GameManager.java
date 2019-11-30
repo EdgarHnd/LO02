@@ -1,16 +1,27 @@
 package fr.utt.jestcardgame.model;
 
 
-import fr.utt.jestcardgame.view.*;
+import fr.utt.jestcardgame.view.ConsoleGameView;
+import fr.utt.jestcardgame.view.ConsoleOutput;
+import fr.utt.jestcardgame.view.ConsoleUserInput;
+import fr.utt.jestcardgame.view.setupException;
 
 
 public class GameManager extends AbstractGameManager{
-	
 
-    
+	private static GameManager gm= null;
+	
+	public static GameManager getInstance(){
+		
+		if(gm == null){
+			gm = new GameManager();
+		}
+		
+		return gm;
+	}
 	@Override
     public void play(){
-    	RoundsManager currentGame = new RoundsManager();
+		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
     	//currentGame.nextRound();
     	//currentGame.giveTrophy();
@@ -35,9 +46,7 @@ public class GameManager extends AbstractGameManager{
                 //Gestion d'exception à faire
         }
     }
-    
-    
-    
+
     	public void mainMenu() throws setupException {
 		//Main menu
 		ConsoleGameView.display(ConsoleOutput.MainMenu);
@@ -50,8 +59,4 @@ public class GameManager extends AbstractGameManager{
         play();
         
 	}
-
-	
-
-	
 }

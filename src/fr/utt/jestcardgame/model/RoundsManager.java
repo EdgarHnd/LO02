@@ -2,6 +2,10 @@ package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 
+
+
+
+
 /**
  * This class is where a new party is created and managed once the user has entered all the options.
  * The RoundsManager will create the players, instantiate and control the deck actions and
@@ -14,9 +18,19 @@ import java.util.ArrayList;
 
 public class RoundsManager {
 	
+	private static RoundsManager rm= null;
 	protected int roundNb = 0;
 	protected int currentPlayer;
-	protected static ArrayList<Player> listPlayers;
+	protected ArrayList<Player> listPlayers;
+	
+	public static RoundsManager getInstance(){
+		
+		if(rm == null){
+			rm = new RoundsManager();
+		}
+		
+		return rm;
+	}
 	
 	//Getters
 	public int getRoundNb() {
@@ -24,20 +38,21 @@ public class RoundsManager {
 	}
 
 	public ArrayList<Player> getListPlayers() {
-		return listPlayers;
+		return this.listPlayers;
 	}
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		RoundsManager.listPlayers = new ArrayList<Player>(4);
+		System.out.println("\nNew Game Created");
+		this.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
-			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ listPlayers.get(i).getNb());
+			this.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
+			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
 		}
 		
 		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
-			listPlayers.add(new VirtualPlayer("AI"+ j,j));
-			System.out.println("\n"+listPlayers.get(j-1).getName() + " will play as AIPlayer "+ listPlayers.get(j-1).getNb());
+			this.listPlayers.add(new VirtualPlayer("AI"+ j,j));
+			System.out.println("\n"+this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
 		}
 	}
 	
@@ -52,11 +67,13 @@ public class RoundsManager {
 		deck.deal();
 		System.out.println("\n________________");
 		
-		//Revoir la syntaxe de tout ça
+		
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			System.out.println("It's " + listPlayers.get(i).getName() + "'s turn ");
-			listPlayers.get(i).makeOffer();
+
+			System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
+			this.listPlayers.get(i).makeOffer();
 		}
+		
 		this.checkBestOffer().pickOffer();
 		
 	}
@@ -66,12 +83,14 @@ public class RoundsManager {
 		if(this.roundNb > 0) {
 			//Revoir la syntaxe de tout ça
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-				listPlayers.get(i).makeOffer();
+				this.listPlayers.get(i).makeOffer();
+
 			}
 
 			//soit un for soit un for each
 			for(int j = 0; j < GameOptions.getNbPlayer(); j++) {
-				listPlayers.get(j).pickOffer();
+
+				this.listPlayers.get(j).pickOffer();
 			}
 			this.roundNb ++;
 		}
@@ -79,16 +98,17 @@ public class RoundsManager {
 	
 	//return the player with the best offer
 	public Player checkBestOffer() {
-		Player bestOfferPlayer = listPlayers.get(0);
+
+		Player bestOfferPlayer = this.listPlayers.get(0);
 		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
-					if(listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
-						bestOfferPlayer = listPlayers.get(i);
+					if(this.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
+						bestOfferPlayer =this.listPlayers.get(i);					
 				}
 		}
 		for(int h = 1; h < GameOptions.getNbPlayer(); h++) {
-					if(listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
-						if(listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
-							bestOfferPlayer = listPlayers.get(h);
+					if(this.listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
+						if(this.listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
+							bestOfferPlayer = this.listPlayers.get(h);				
 						}
 					}	
 		}

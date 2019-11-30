@@ -11,7 +11,6 @@ public class RealPlayer extends Player {
 		super(name, nb);
 		}
 		
-		
 	@Override
 	public void makeOffer() {
 		ConsoleGameView.display(ConsoleOutput.ReadyToOffer);
@@ -43,5 +42,4 @@ public class RealPlayer extends Player {
 
 		//}
 	}
-
 }

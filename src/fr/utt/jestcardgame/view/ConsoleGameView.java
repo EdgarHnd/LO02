@@ -2,6 +2,7 @@
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.model.GameOptions;
+import fr.utt.jestcardgame.model.RoundsManager;
 
 public abstract class ConsoleGameView {
 	
@@ -45,7 +46,7 @@ public abstract class ConsoleGameView {
 			System.out.println("Starting a new game where :");
 			break;
 		case BestOffer:
-		//	System.out.println("\nThe player with the best offer is : " + RoundsManager.checkBestOffer().getName());
+			System.out.println("\nThe player with the best offer is : " + RoundsManager.getInstance().checkBestOffer().getName());
 			break;
 		case Dealing:
 			System.out.println("\nStart dealing cards to the players");
