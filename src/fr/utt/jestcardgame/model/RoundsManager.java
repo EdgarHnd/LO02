@@ -58,23 +58,33 @@ public class RoundsManager {
 	
 	public void firstRound() {
 		this.roundNb = 1;
-		Deck deck = new Deck();
+		Deck deck = Deck.getInstance();
+		GameBoard gameboard = GameBoard.getInstance();
+		
 		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
 		System.out.println("\nDeck shuffled");
 		System.out.println("\n" + deck.getCards());
 		
 		deck.deal();
+		deck.dealTrophys();
 		System.out.println("\n________________");
 		
-		
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-
 			System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
 			this.listPlayers.get(i).makeOffer();
 		}
 		
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			
+		}
+		
+		//Store the offers in the gameboard
+		gameboard.gatherOffers();
+		//This is the player with the best offer
 		this.checkBestOffer().pickOffer();
+		//Show him the offers available
+		
 		
 	}
 

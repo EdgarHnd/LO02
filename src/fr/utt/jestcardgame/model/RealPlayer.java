@@ -38,8 +38,6 @@ public class RealPlayer extends Player {
 	@Override
 	public void pickOffer() {
 		ConsoleGameView.display(ConsoleOutput.Picking);
-		//for (int i = 0; i < RoundsManager.listPlayers.size(); i ++){
-
-		//}
+		GameBoard.getInstance().showOffers();
 	}
 }

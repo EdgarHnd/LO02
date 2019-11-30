@@ -86,10 +86,8 @@ public abstract class GameOptions {
 			return nbRealPlayer;
 	}
 
-	public static int setNbVirtualPlayer(int nbPlayer, int nbRealPlayer) throws setupException {
-			nbPlayer = nbPlayer;
-			nbRealPlayer = nbRealPlayer;
-			int nbVirtualPlayer = nbPlayer - nbRealPlayer;
+	public static int setNbVirtualPlayer() throws setupException {
+			int nbVirtualPlayer = GameOptions.nbPlayer - GameOptions.nbRealPlayer;
 			return nbVirtualPlayer;
 	}
 
@@ -126,7 +124,7 @@ public abstract class GameOptions {
 
 		nbPlayer = setNbPlayer();
 		nbRealPlayer = setNbRealPlayer(nbPlayer);
-		nbVirtualPlayer = setNbVirtualPlayer(nbPlayer, nbRealPlayer);
+		nbVirtualPlayer = setNbVirtualPlayer();
 		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
 		//playerName.toString();
 

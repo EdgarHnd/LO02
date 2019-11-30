@@ -48,6 +48,15 @@ public abstract class Player {
 			}
 		return oCard;
 	}
+	public Card hiddenCard() {
+		Card oCard = null;
+			for(int j = 0; j < 2; j++) {
+				if(this.hand.get(j).isHidden()) {
+					oCard = this.hand.get(j);
+				}
+			}
+		return oCard;
+	}
 	abstract void makeOffer();
 	
 	abstract void pickOffer();
