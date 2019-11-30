@@ -14,7 +14,7 @@ public class DefensiveStrategy implements ChooseStrategy {
 				index = i;
 			}
 		}
-		System.out.println(player.hand.get(index) + "is the weakest card to offer");
+		System.out.println(player.hand.get(index) + " card selected");
 		player.hand.get(index).hidden = false;
 	}
 

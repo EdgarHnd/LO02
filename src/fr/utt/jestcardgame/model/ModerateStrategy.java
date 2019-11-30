@@ -9,7 +9,8 @@ public class ModerateStrategy implements ChooseStrategy {
         Random rand = new Random();
         int randomNb = rand.nextInt(player.hand.size()) + 1;
         System.out.println(randomNb);
-        player.hand.get(randomNb).hidden = false;
+        System.out.println(player.hand.get(randomNb-1) + " card selected");
+        player.hand.get(randomNb-1).hidden = false;
     }
 
     @Override
