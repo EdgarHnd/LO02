@@ -2,6 +2,7 @@
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.model.GameOptions;
+import fr.utt.jestcardgame.model.RoundsManager;
 
 public abstract class ConsoleGameView {
 	
