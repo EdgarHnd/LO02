@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class GameBoard {
 	
-	private ArrayList<Card> offers;
-	private ArrayList<Card> jests;
+//	private ArrayList<Card> offers;
+//	private ArrayList<Card> jests;
 	private ArrayList<Card> trophys;
 	private static GameBoard gb= null;
 	
@@ -19,27 +19,28 @@ public class GameBoard {
 	}
 	
 	public GameBoard() {
-		offers = new ArrayList<Card>(8);
-		jests = new ArrayList<Card>(40);
+//		offers = new ArrayList<Card>(8);
+//		jests = new ArrayList<Card>(40);
 		trophys = new ArrayList<Card>(2);
 	}
-
-	public ArrayList<Card> getOffers() {
-		return offers;
-	}
-
+	
 	public ArrayList<Card> getTrophys() {
 		return trophys;
 	}
 
+/*	public ArrayList<Card> getOffers() {
+		return offers;
+	}
+
+	
 	public ArrayList<Card> getJests() {
 		return jests;
 	}
 	
 	public void gatherOffers() {
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			this.offers.add(RoundsManager.getInstance().listPlayers.get(i).hand.get(0));
-			this.offers.add(RoundsManager.getInstance().listPlayers.get(i).hand.get(1));
+			this.offers.add(RoundsManager.getInstance().listPlayers.get(i).offeredCard());
+			this.offers.add(RoundsManager.getInstance().listPlayers.get(i).hiddenCard());
 		}
 	}
 	public void showOffers() {
@@ -62,5 +63,5 @@ public class GameBoard {
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" has nothing to offer");
 			}
 		}
-	}
+	}*/
 }

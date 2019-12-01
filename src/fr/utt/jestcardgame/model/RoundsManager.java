@@ -59,7 +59,6 @@ public class RoundsManager {
 	public void firstRound() {
 		this.roundNb = 1;
 		Deck deck = Deck.getInstance();
-		GameBoard gameboard = GameBoard.getInstance();
 		
 		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
@@ -79,9 +78,8 @@ public class RoundsManager {
 			
 		}
 		
-		//Store the offers in the gameboard
-		gameboard.gatherOffers();
 		//This is the player with the best offer
+		this.showAllOffers();
 		this.checkBestOffer().pickOffer();
 		//Show him the offers available
 		
@@ -125,7 +123,40 @@ public class RoundsManager {
 					}	
 		}
 		System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
+		bestOfferPlayer.setIsPicking(true);
 		return bestOfferPlayer;
+	}
+	
+	public void showAllOffers() {
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			if((this.listPlayers.get(i).hiddenCard()!=null && 
+					this.listPlayers.get(i).offeredCard()!=null)){
+				System.out.println(this.listPlayers.get(i).getName()+" offer : "+this.listPlayers.get(i).offeredCard()+this.listPlayers.get(i).getOffer().get(0)
+				+" and a hidden card");
+			}
+			else if((this.listPlayers.get(i).hiddenCard()==null && 
+					this.listPlayers.get(i).offeredCard()!=null)) {
+				System.out.println(this.listPlayers.get(i).getName()+" offer : "+ 
+						this.listPlayers.get(i).offeredCard());
+			}
+			else if((this.listPlayers.get(i).hiddenCard()!=null && 
+					this.listPlayers.get(i).offeredCard()==null)) {
+				System.out.println(this.listPlayers.get(i).getName()+" offer : a hidden card");
+			}
+			else {
+				System.out.println(this.listPlayers.get(i).getName()+" has nothing left to offer");
+			}
+		}
+	}
+	
+	public void showValidOffers() {
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			if((this.listPlayers.get(i).completeOffer() && this.listPlayers.get(i).isPicking == false)){
+				
+				System.out.println(this.listPlayers.get(i).getNb()+" : "+this.listPlayers.get(i).getName()+" offer : "+ 
+				this.listPlayers.get(i).offeredCard() + " and a hidden card");
+			}
+		}
 	}
 	
 	

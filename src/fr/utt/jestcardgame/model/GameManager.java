@@ -49,12 +49,8 @@ public class GameManager extends AbstractGameManager{
 
     	public void mainMenu() throws setupException {
 		//Main menu
-		ConsoleGameView.display(ConsoleOutput.MainMenu);
-
-	    ConsoleUserInput input = new ConsoleUserInput();
-	    
-        executeUserChoice(input.nextInt());
-        
+		ConsoleGameView.display(ConsoleOutput.MainMenu);	    
+        executeUserChoice(ConsoleUserInput.getInstance().nextInt());
         //Start a game
         play();
         

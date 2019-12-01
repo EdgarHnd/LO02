@@ -51,8 +51,7 @@ public abstract class GameOptions {
 	public static int setNbPlayer() throws setupException {
 			boolean correctChoice = false;
 			while (!correctChoice) {
-				ConsoleUserInput input = new ConsoleUserInput();
-				int nbPlayer = input.nextInt();
+				int nbPlayer = ConsoleUserInput.getInstance().nextInt();
 				GameOptions.nbPlayer = nbPlayer;
 				if (nbPlayer == 3 || nbPlayer == 4) {
 					correctChoice = true;
@@ -71,10 +70,10 @@ public abstract class GameOptions {
 			GameOptions.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
-				ConsoleUserInput input = new ConsoleUserInput();
+				
 				ConsoleGameView.display(ConsoleOutput.RealPlayer);	
 				
-				int nbRealPlayer = input.nextInt();
+				int nbRealPlayer = ConsoleUserInput.getInstance().nextInt();
 				GameOptions.nbRealPlayer = nbRealPlayer;
 				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
@@ -114,8 +113,7 @@ public abstract class GameOptions {
 		//Menu des options
 	public static int selectionOptionMenu () {
 			ConsoleGameView.display(ConsoleOutput.PlayVar);
-			ConsoleUserInput input = new ConsoleUserInput();
-			return input.nextInt();
+			return ConsoleUserInput.getInstance().nextInt();
 	}
 
 	public static void setup() throws setupException {

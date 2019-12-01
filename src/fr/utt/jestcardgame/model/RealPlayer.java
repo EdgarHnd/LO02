@@ -15,7 +15,7 @@ public class RealPlayer extends Player {
 	public void makeOffer() {
 		ConsoleGameView.display(ConsoleOutput.ReadyToOffer);
 		
-		ConsoleUserInput input = new ConsoleUserInput();
+		ConsoleUserInput input = ConsoleUserInput.getInstance();
 		if (input.nextString().equals("X")){
 			System.out.println("Carte 1:" + this.hand.get(0));
 			System.out.println("Carte 2:" + this.hand.get(1));
@@ -33,11 +33,30 @@ public class RealPlayer extends Player {
 		} else {
 			//Gestion d'exception à faire
 		}
+		this.newOffer();
 	}
 	
 	@Override
 	public void pickOffer() {
 		ConsoleGameView.display(ConsoleOutput.Picking);
-		GameBoard.getInstance().showOffers();
+	//	GameBoard.getInstance().showOffers();
+	//	this.jest.add(GameBoard.getInstance().getOffers().get(ConsoleUserInput.getInstance().nextInt()-1));
+		RoundsManager.getInstance().showValidOffers();
+		
+		Player playerSelect = RoundsManager.getInstance().listPlayers.get(ConsoleUserInput.getInstance().nextInt()-1);
+		
+		System.out.println("Now select the card you want to pick (1/2):");
+		
+		int cardSelect = ConsoleUserInput.getInstance().nextInt();
+		
+		if(cardSelect == 1) {
+			this.jest.add(playerSelect.getOffer().pollFirst());
+		}
+		else if(cardSelect == 2){
+		this.jest.add(playerSelect.getOffer().pollLast());
+		}
+		
+		System.out.println("Your Jest is now : "+this.jest.toString());
+		this.hasPlayed = true;
 	}
 }

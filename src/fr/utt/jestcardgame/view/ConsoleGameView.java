@@ -1,12 +1,12 @@
 
 package fr.utt.jestcardgame.view;
 
+
 import fr.utt.jestcardgame.model.GameOptions;
 import fr.utt.jestcardgame.model.RoundsManager;
 
 public abstract class ConsoleGameView {
-	
-	
+
 	
 	public static void display(ConsoleOutput co) {
 		switch(co) {
@@ -68,7 +68,7 @@ public abstract class ConsoleGameView {
 		//	System.out.println(this.hand.get(0) + " card selected");
 			break;
 		case Picking:
-			System.out.println("Select an opponent card you want to add to your Jest");
+			System.out.println("Select the opponent you want to pick a card from");
 			System.out.println("You can choose between this cards : ");
 			break;
 		default:System.out.println("Nothing to display");
