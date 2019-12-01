@@ -43,7 +43,7 @@ public class RoundsManager {
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		System.out.println("\nNew Game Created");
+		
 		this.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
 			this.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
@@ -74,14 +74,14 @@ public class RoundsManager {
 			this.listPlayers.get(i).makeOffer();
 		}
 		
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			
-		}
-		
 		//This is the player with the best offer
 		this.showAllOffers();
 		this.checkBestOffer().pickOffer();
-		//Show him the offers available
+		
+		
+		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
+			this.nextPlayer().pickOffer();
+		}
 		
 		
 	}
@@ -108,30 +108,50 @@ public class RoundsManager {
 	
 	//return the player with the best offer
 	public Player checkBestOffer() {
-
-		Player bestOfferPlayer = this.listPlayers.get(0);
-		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
-					if(this.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue()) {
+		//just a default value
+		Player bestOfferPlayer = new RealPlayer("default",10);
+		bestOfferPlayer.hand.add(new Card(Kind.Joker,Suit.None,Trophy.None));
+		bestOfferPlayer.hand.add(new Card(Kind.Joker,Suit.None,Trophy.None));
+		bestOfferPlayer.hand.get(0).setHidden(false);
+		
+		
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+					if(this.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue() 
+							&& this.listPlayers.get(i).hasPlayed == false) {
 						bestOfferPlayer =this.listPlayers.get(i);					
 				}
 		}
-		for(int h = 1; h < GameOptions.getNbPlayer(); h++) {
-					if(this.listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()) {
+		for(int h = 0; h < GameOptions.getNbPlayer(); h++) {
+					if(this.listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()
+							&& this.listPlayers.get(h).hasPlayed == false) {
 						if(this.listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
 							bestOfferPlayer = this.listPlayers.get(h);				
 						}
 					}	
 		}
-		System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
-		bestOfferPlayer.setIsPicking(true);
+		if(bestOfferPlayer.getName()!="default") {
+			System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
+			bestOfferPlayer.setIsPicking(true);
+		}
 		return bestOfferPlayer;
+	}
+	
+	public Player nextPlayer() {
+		Player nextToPlay = null;
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			if(this.listPlayers.get(i).isNext) {
+				nextToPlay =this.listPlayers.get(i);					
+			}
+		}
+		nextToPlay.isNext = false;
+		return nextToPlay;
 	}
 	
 	public void showAllOffers() {
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			if((this.listPlayers.get(i).hiddenCard()!=null && 
 					this.listPlayers.get(i).offeredCard()!=null)){
-				System.out.println(this.listPlayers.get(i).getName()+" offer : "+this.listPlayers.get(i).offeredCard()+this.listPlayers.get(i).getOffer().get(0)
+				System.out.println(this.listPlayers.get(i).getName()+" offer : "+ this.listPlayers.get(i).getOffer().get(0)
 				+" and a hidden card");
 			}
 			else if((this.listPlayers.get(i).hiddenCard()==null && 
@@ -153,7 +173,7 @@ public class RoundsManager {
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			if((this.listPlayers.get(i).completeOffer() && this.listPlayers.get(i).isPicking == false)){
 				
-				System.out.println(this.listPlayers.get(i).getNb()+" : "+this.listPlayers.get(i).getName()+" offer : "+ 
+				System.out.println("("+this.listPlayers.get(i).getNb()+") : "+this.listPlayers.get(i).getName()+" offer : "+ 
 				this.listPlayers.get(i).offeredCard() + " and a hidden card");
 			}
 		}

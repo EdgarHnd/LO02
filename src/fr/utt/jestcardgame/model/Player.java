@@ -13,6 +13,7 @@ public abstract class Player {
 	protected int finalBoolean;
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
+	protected boolean isNext = false;
 	
 	public boolean getHasPlayed() {
 		return hasPlayed;

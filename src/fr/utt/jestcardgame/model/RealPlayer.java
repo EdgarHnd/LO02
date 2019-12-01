@@ -38,12 +38,15 @@ public class RealPlayer extends Player {
 	
 	@Override
 	public void pickOffer() {
-		ConsoleGameView.display(ConsoleOutput.Picking);
-	//	GameBoard.getInstance().showOffers();
-	//	this.jest.add(GameBoard.getInstance().getOffers().get(ConsoleUserInput.getInstance().nextInt()-1));
+	
+		System.out.println("\nIt's "+this.name+"'s turn to pick a card");
+		
 		RoundsManager.getInstance().showValidOffers();
 		
+		ConsoleGameView.display(ConsoleOutput.Picking);
+		
 		Player playerSelect = RoundsManager.getInstance().listPlayers.get(ConsoleUserInput.getInstance().nextInt()-1);
+		
 		
 		System.out.println("Now select the card you want to pick (1/2):");
 		
@@ -58,5 +61,27 @@ public class RealPlayer extends Player {
 		
 		System.out.println("Your Jest is now : "+this.jest.toString());
 		this.hasPlayed = true;
+		this.isPicking = false;
+		
+		//Set the next player
+		if(playerSelect.getHasPlayed()==false) {
+			playerSelect.isNext = true;
+		}
+		else {
+			//if the player selected already played compare the remaining player's offers
+			Player nextPlayer = RoundsManager.getInstance().checkBestOffer();
+			nextPlayer.isNext = true;
+			//check the number of player remaining
+			int playerNotPlayed = 0;
+			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+				if(RoundsManager.getInstance().listPlayers.get(i).hasPlayed == false){
+				playerNotPlayed ++ ;
+				}
+			}
+			if(playerNotPlayed == 1) {
+				//if only one player remain allow him to pick his own cards
+				nextPlayer.setIsPicking(false);
+			}
+		}
 	}
 }

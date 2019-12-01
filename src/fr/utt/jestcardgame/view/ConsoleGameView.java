@@ -69,7 +69,6 @@ public abstract class ConsoleGameView {
 			break;
 		case Picking:
 			System.out.println("Select the opponent you want to pick a card from");
-			System.out.println("You can choose between this cards : ");
 			break;
 		default:System.out.println("Nothing to display");
 		}
