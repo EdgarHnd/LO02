@@ -1,8 +1,12 @@
 package fr.utt.jestcardgame.model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-public abstract class Player {
+import fr.utt.jestcardgame.visitor.Visitable;
+import fr.utt.jestcardgame.visitor.Visitor;
+
+public class Player implements Visitable{
 	
 	protected int nb;
 	protected String name;
@@ -14,6 +18,7 @@ public abstract class Player {
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
+	private ArrayList<Visitor> listVisitor = new ArrayList<Visitor>(); 
 	
 	public boolean getHasPlayed() {
 		return hasPlayed;
@@ -87,8 +92,31 @@ public abstract class Player {
 		}
 		return false;
 	}
-	abstract void makeOffer();
+	public void makeOffer() {
+		
+	}
 	
-	abstract void pickOffer();
+	public void pickOffer() {
+		
+	}
+	
+	@Override
+	public void addVisitor(Visitor vis) {
+		// TODO Auto-generated method stub
+		this.listVisitor.add(vis);
+	}
+
+	@Override
+	public void removeVisitor() {
+		// TODO Auto-generated method stub
+		this.listVisitor = new ArrayList<Visitor>(); 
+	}
+
+	@Override
+	public void notifyVisitor(String str) {
+		// TODO Auto-generated method stub
+		 for(Visitor vis : listVisitor)
+		      vis.update(str);
+	}
 
 }

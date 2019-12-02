@@ -2,6 +2,8 @@ package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 
+import fr.utt.jestcardgame.visitor.Visitor;
+
 
 
 
@@ -16,7 +18,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-public class RoundsManager {
+public class RoundsManager implements Visitor {
 	
 	private static RoundsManager rm= null;
 	protected int roundNb = 0;
@@ -202,6 +204,12 @@ public class RoundsManager {
 	}
 
 	public void printFinalRanking() {
+		
+	}
+
+	@Override
+	public void update(String str) {
+		// TODO Auto-generated method stub
 		
 	}
 }

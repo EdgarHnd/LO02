@@ -2,7 +2,9 @@ package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 
-public class GameBoard {
+import fr.utt.jestcardgame.visitor.Visitor;
+
+public class GameBoard implements Visitor {
 	
 	private ArrayList<Card> trophys;
 	private static GameBoard gb= null;
@@ -22,5 +24,11 @@ public class GameBoard {
 	
 	public ArrayList<Card> getTrophys() {
 		return trophys;
+	}
+
+	@Override
+	public void update(String str) {
+		// TODO Auto-generated method stub
+		
 	}
 }
