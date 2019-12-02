@@ -1,8 +1,8 @@
 package fr.utt.jestcardgame.model;
 
-import java.util.ArrayList;
-
 import fr.utt.jestcardgame.visitor.Visitor;
+
+import java.util.ArrayList;
 
 
 
