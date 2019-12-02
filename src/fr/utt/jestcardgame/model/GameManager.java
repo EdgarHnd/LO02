@@ -24,9 +24,8 @@ public class GameManager extends AbstractGameManager{
 		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
     	currentGame.nextRounds();
-    	//currentGame.giveTrophy();
+    	currentGame.giveTrophy();
     	//currentGame.finalScore();
-    	//currentGame.showRanking();
     }    
 
     public void executeUserChoice(int userChoice) throws setupException {
