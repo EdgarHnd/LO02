@@ -85,7 +85,7 @@ public class RoundsManager {
 		
 		
 		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
-			if(this.turnOver==false) {
+			if(!this.turnOver) {
 			this.nextPlayer().pickOffer();
 			}
 		}
@@ -146,7 +146,7 @@ public class RoundsManager {
 						}
 					}	
 		}
-		if(bestOfferPlayer.getName()!="default") {
+		if(bestOfferPlayer.getName()!="Default") {
 			System.out.println("\nThe player with the best offer is : " + bestOfferPlayer.getName());
 			bestOfferPlayer.setIsPicking(true);
 		}
