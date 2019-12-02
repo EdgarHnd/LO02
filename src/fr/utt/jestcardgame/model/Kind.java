@@ -7,4 +7,5 @@ enum Kind {
 	Three,
 	Four,
 	Joker,
+	Default,
 }

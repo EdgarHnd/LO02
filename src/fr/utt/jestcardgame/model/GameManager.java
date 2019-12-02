@@ -23,7 +23,7 @@ public class GameManager extends AbstractGameManager{
     public void play(){
 		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
-    	//currentGame.nextRound();
+    	currentGame.nextRounds();
     	//currentGame.giveTrophy();
     	//currentGame.finalScore();
     	//currentGame.showRanking();

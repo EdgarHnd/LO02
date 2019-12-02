@@ -68,9 +68,7 @@ public class RealPlayer extends Player {
 			playerSelect.isNext = true;
 		}
 		else {
-			//if the player selected already played compare the remaining player's offers
-			Player nextPlayer = RoundsManager.getInstance().checkBestOffer();
-			nextPlayer.isNext = true;
+			
 			//check the number of player remaining
 			int playerNotPlayed = 0;
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -78,9 +76,19 @@ public class RealPlayer extends Player {
 				playerNotPlayed ++ ;
 				}
 			}
-			if(playerNotPlayed == 1) {
-				//if only one player remain allow him to pick his own cards
-				nextPlayer.setIsPicking(false);
+			if(playerNotPlayed >= 1) {
+				//if the player selected already played compare the remaining player's offers
+				Player nextPlayer = RoundsManager.getInstance().checkBestOffer();
+				nextPlayer.isNext = true;
+				if(playerNotPlayed == 1) {
+					//if only one player remain allow him to pick his own cards
+					nextPlayer.setIsPicking(false);
+				}
+			}
+			
+			else if(playerNotPlayed == 0) {
+				//No more remaining player and the turn
+				RoundsManager.getInstance().setTurnOver(true);
 			}
 		}
 	}

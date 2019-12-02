@@ -43,7 +43,9 @@ public class Card {
 		case Joker:
 			value = 0;
 			 break;
-		
+		case Default:
+			value = -1;
+			break;
 		}
 		return value;
 	}
