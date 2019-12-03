@@ -15,7 +15,7 @@ public class Player implements Visitable{
 	protected LinkedList<Card> jest;
 	protected int finalScore;
 	protected int finalBoolean;
-	protected int jestValue;
+	protected int jestValue = 0;
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
@@ -104,11 +104,122 @@ public class Player implements Visitable{
 	//----------------------------------------------------
 	//Calculating player score
 	
-	public void jestValue() {
+	public void calculateJestValue() {
+		this.addBlack();
+		this.blackBonus();
+		this.addHeart();
+		this.removeDiamonds();
+		this.addJoker();
+	}
+	
+	public void resetJest() {
+		this.jestValue = 0;
+	}
+	
+	public void addBlack() {
 		for(int i=0; i<this.jest.size();i++) {
-			
+			if(this.jest.get(i).suit == Suit.Clubs || this.jest.get(i).suit == Suit.Spades) {
+				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
+					this.jestValue += 5;
+				}
+				else {
+				this.jestValue += this.jest.get(i).cardValue();
+				}
+			}
 		}
 	}
+	
+	public void blackBonus() {
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit == Suit.Clubs) {
+				
+				for(int j=0; j<this.jest.size();j++) {
+					if(this.jest.get(j).suit == Suit.Spades) {
+						
+						if(this.jest.get(i).kind == this.jest.get(j).kind) {
+							this.jestValue += 1;
+						}
+					}
+				}
+			}
+			else if(this.jest.get(i).suit == Suit.Spades) {
+				
+				for(int j=0; j<this.jest.size();j++) {
+					if(this.jest.get(j).suit == Suit.Clubs) {
+						
+						if(this.jest.get(i).kind == this.jest.get(j).kind) {
+							this.jestValue += 1;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public void removeDiamonds() {
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit == Suit.Diamonds) {
+				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
+					this.jestValue -= 5;
+				}
+				else {
+				this.jestValue -= this.jest.get(i).cardValue();
+				}
+			}
+		}
+	}
+	
+	public void addHeart() {
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit == Suit.Hearts && this.hasJoker()) {
+				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
+					this.jestValue -= 5;
+				}
+				else {
+				this.jestValue -= this.jest.get(i).cardValue();
+				}
+			}
+			else if(this.jest.get(i).suit == Suit.Hearts && this.hasJoker() && this.hasAllHeart()) {
+				if(this.jest.get(i).kind == Kind.Ace && this.hasSuit(this.jest.get(i).suit) == false) {
+					this.jestValue += 5;
+				}
+				else {
+				this.jestValue += this.jest.get(i).cardValue();
+				}
+			}
+		}
+	}
+	
+	public void addJoker() {
+		if(this.hasJoker() && this.hasSuit(Suit.Hearts)==false) {
+			this.jestValue += 4;
+		}
+	}
+	
+	public boolean hasAllHeart() {
+		int count = 0;
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit == Suit.Hearts) {
+				count ++;
+			}
+		}
+		if(count == 4) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isAlone(Kind k,Suit s) {
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).kind != k) {
+				if(this.jest.get(i).suit == s) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	
 	//Trophys conditions
 	public boolean hasJoker() {
@@ -122,7 +233,7 @@ public class Player implements Visitable{
 	
 	public boolean hasSuit(Suit s) {
 		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit.compareTo(s)==0) {
+			if(this.jest.get(i).suit == s) {
 				return true;
 			}
 		}
@@ -132,7 +243,7 @@ public class Player implements Visitable{
 	public int majority(Kind k) {
 		int nbKind = 0;
 		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).kind.compareTo(k)==0) {
+			if(this.jest.get(i).kind == k) {
 				nbKind ++;
 			}
 		}
@@ -142,7 +253,7 @@ public class Player implements Visitable{
 	public int tieMajority(Kind k) {
 		int high = 0;
 		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).kind.compareTo(k)==0) {
+			if(this.jest.get(i).kind == k) {
 				if(this.jest.get(i).cardTiesValue() > high) {
 					high = this.jest.get(i).cardTiesValue();
 					}
@@ -155,7 +266,7 @@ public class Player implements Visitable{
 		int high = 0;
 		Card c;
 		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit.compareTo(s)==0) {
+			if(this.jest.get(i).suit == s) {
 				c = this.jest.get(i);
 				if(c.cardValue() > high) {
 					high = c.cardValue();
@@ -169,7 +280,7 @@ public class Player implements Visitable{
 		int low = 0;
 		Card c;
 		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit.compareTo(s)==0) {
+			if(this.jest.get(i).suit == s) {
 				c = this.jest.get(i);
 				if(c.cardValue() < low) {
 					low = c.cardValue();

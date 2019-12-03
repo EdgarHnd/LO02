@@ -88,9 +88,16 @@ public class Deck {
 	}
 	public void dealTrophys(){
 		System.out.println("Dealing trophys");
-		GameBoard.getInstance().getTrophys().add(this.topCard());
-		GameBoard.getInstance().getTrophys().add(this.topCard());
-		System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0)+" and "+GameBoard.getInstance().getTrophys().get(1));
+		if(GameOptions.nbPlayer == 3) {
+			GameBoard.getInstance().getTrophys().add(this.topCard());
+			GameBoard.getInstance().getTrophys().add(this.topCard());
+			System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0)
+					+" and "+GameBoard.getInstance().getTrophys().get(1));
+		}
+		else {
+			GameBoard.getInstance().getTrophys().add(this.topCard());
+			System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0));
+		}
 	}
 	
 	public void gather(){
