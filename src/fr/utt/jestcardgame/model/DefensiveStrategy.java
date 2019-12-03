@@ -7,7 +7,7 @@ public class DefensiveStrategy implements ChooseStrategy {
 
 	@Override
 	public void makeOfferStrategy(Player player) {
-		weakestCardValue = 0;
+		weakestCardValue = 5;
 		for (int i = 0; i < player.hand.size(); i++){
 			if (player.hand.get(i).cardValue() <= weakestCardValue){
 				weakestCardValue = player.hand.get(i).cardValue();
@@ -82,7 +82,7 @@ public class DefensiveStrategy implements ChooseStrategy {
 	}
 
 	public void addTheBestCardToMyJest(Player me){
-		int bestCardValueToPick = 0;
+		int bestCardValueToPick = 5;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
 			int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
 			Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
