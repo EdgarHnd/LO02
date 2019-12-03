@@ -125,6 +125,25 @@ public class RoundsManager implements Visitor {
 	
 	public void giveTrophy() {
 		System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys());
+		GameBoard.getInstance().giveTrophys();
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			this.listPlayers.get(i).resetJest();
+			this.listPlayers.get(i).calculateJestValue();
+			System.out.println(this.listPlayers.get(i).getName()+" Final Jest is : "+this.listPlayers.get(i).jest.toString()
+					+" with a value of : "+this.listPlayers.get(i).jestValue);
+			}
+	}
+	
+	public void finalScore() {
+		int bestJest = 0;
+		Player finalWinner = null;
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			if(this.listPlayers.get(i).jestValue > bestJest) {
+				bestJest = this.listPlayers.get(i).jestValue;
+				finalWinner = this.listPlayers.get(i);
+			}
+		}
+		System.out.println(finalWinner.getName()+" win this game with a Jest value of : "+finalWinner.jestValue);
 	}
 	
 	//return the player with the best offer
