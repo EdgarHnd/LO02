@@ -44,15 +44,13 @@ public class OffensiveStrategy implements ChooseStrategy {
         }
         Card cardSelected = RoundsManager.getInstance().listPlayers.get(index).offeredCard();
         player.jest.add(cardSelected);
-        RoundsManager.getInstance().listPlayers.get(index).offer.remove(cardSelected);
-
         System.out.println("This is the card selected by the AI : " + cardSelected);
         Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
+        playerSelected.offer.remove(cardSelected);
 
         System.out.println("The AI's Jest is now : "+ player.jest.toString());
         player.hasPlayed = true;
         player.isPicking = false;
-
         //Set the next player
         setNextPlayer(playerSelected);
     }
