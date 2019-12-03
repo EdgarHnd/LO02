@@ -4,17 +4,14 @@ import java.util.Random;
 
 public class VirtualPlayer extends Player {
 
-	
+	Random rand = new Random();
+	int randomNb = rand.nextInt(3) + 1;
 	
 	public VirtualPlayer(String name, int i) {
 		super(name,i);
 	}
 
 	public void makeOffer() {
-
-		Random rand = new Random();
-		int randomNb = rand.nextInt(3) + 1;
-		System.out.println(randomNb);
 		switch (randomNb){
 			case 1 :
 				DefensiveStrategy defensiveStrategy = new DefensiveStrategy();
@@ -34,8 +31,6 @@ public class VirtualPlayer extends Player {
 	}		
 	
 	public void pickOffer() {
-		Random rand = new Random();
-		int randomNb = rand.nextInt(3) + 1;
 		switch (randomNb){
 			case 1 :
 				DefensiveStrategy defensiveStrategy = new DefensiveStrategy();

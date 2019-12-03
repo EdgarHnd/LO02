@@ -8,9 +8,9 @@ public class DefensiveStrategy implements ChooseStrategy {
 
 	@Override
 	public void makeOfferStrategy(Player player) {
-		weakestCardValue = player.hand.get(0).cardValue();
+		weakestCardValue = 0;
 		for (int i = 0; i < player.hand.size(); i++){
-			if (player.hand.get(i).cardValue() < weakestCardValue){
+			if (player.hand.get(i).cardValue() <= weakestCardValue){
 				weakestCardValue = player.hand.get(i).cardValue();
 				index = i;
 			}
@@ -30,18 +30,23 @@ public class DefensiveStrategy implements ChooseStrategy {
 	@Override
 	public void pickOfferStrategy(Player player){
 		System.out.println("\nIt's "+ player.name +"'s turn to pick a card");
+		System.out.println("DEFENSIVE STRATEGY");
 
-		weakestCardValueToPick = RoundsManager.getInstance().listPlayers.get(0).offeredCard().cardValue();
+		weakestCardValueToPick = 0;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
-			if (RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue() < weakestCardValueToPick) {
+			int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue();
+			Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offeredCard();
+
+			if (cardValueIndex <= weakestCardValueToPick && cardIndex != player.offeredCard()) {
 				weakestCardValueToPick = RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue();
 				index = i;
 			}
 		}
 		Card cardSelected = RoundsManager.getInstance().listPlayers.get(index).offeredCard();
 		player.jest.add(cardSelected);
-		System.out.println(cardSelected + "YES");
+		RoundsManager.getInstance().listPlayers.get(index).offer.remove(cardSelected);
 
+		System.out.println("This is the card selected by the AI : " + cardSelected);
 		Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
 
 		System.out.println("The AI's Jest is now : "+ player.jest.toString());

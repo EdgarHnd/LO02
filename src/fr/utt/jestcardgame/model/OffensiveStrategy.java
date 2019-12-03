@@ -8,7 +8,7 @@ public class OffensiveStrategy implements ChooseStrategy {
 
     @Override
     public void makeOfferStrategy(Player player) {
-        bestCardValue = player.hand.get(0).cardValue();
+        bestCardValue = 0;
         for (int i = 0; i < player.hand.size(); i++){
             if (player.hand.get(i).cardValue() > bestCardValue){
                 bestCardValue = player.hand.get(i).cardValue();
@@ -30,18 +30,23 @@ public class OffensiveStrategy implements ChooseStrategy {
     @Override
     public void pickOfferStrategy(Player player){
         System.out.println("\nIt's "+ player.name +"'s turn to pick a card");
+        System.out.println("OFFENSIVE STRATEGY");
 
-        bestCardValueToPick = RoundsManager.getInstance().listPlayers.get(0).offeredCard().cardValue();
+        bestCardValueToPick = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
-            if (RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue() > bestCardValueToPick) {
+            int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue();
+            Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offeredCard();
+
+            if (cardValueIndex > bestCardValueToPick && cardIndex != player.offeredCard()) {
                 bestCardValueToPick = RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue();
                 index = i;
             }
         }
         Card cardSelected = RoundsManager.getInstance().listPlayers.get(index).offeredCard();
-        System.out.println(cardSelected + "YES");
         player.jest.add(cardSelected);
+        RoundsManager.getInstance().listPlayers.get(index).offer.remove(cardSelected);
 
+        System.out.println("This is the card selected by the AI : " + cardSelected);
         Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
 
         System.out.println("The AI's Jest is now : "+ player.jest.toString());
