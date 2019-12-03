@@ -5,7 +5,7 @@ import java.util.Random;
 public class VirtualPlayer extends Player {
 
 	Random rand = new Random();
-	int randomNb = rand.nextInt(3) + 1;
+	int randomNb = rand.nextInt(2) + 1;
 	
 	public VirtualPlayer(String name, int i) {
 		super(name,i);
@@ -21,10 +21,6 @@ public class VirtualPlayer extends Player {
 				OffensiveStrategy offensiveStrategy = new OffensiveStrategy();
 				offensiveStrategy.makeOfferStrategy(this);
 				break;
-			case 3 :
-				ModerateStrategy moderateStrategy = new ModerateStrategy();
-				moderateStrategy.makeOfferStrategy(this);
-				break;
 			default :
 				break;
 		}
@@ -39,10 +35,6 @@ public class VirtualPlayer extends Player {
 			case 2 :
 				OffensiveStrategy offensiveStrategy = new OffensiveStrategy();
 				offensiveStrategy.pickOfferStrategy(this);
-				break;
-			case 3 :
-				ModerateStrategy moderateStrategy = new ModerateStrategy();
-				moderateStrategy.pickOfferStrategy(this);
 				break;
 			default:
 				break;

@@ -37,14 +37,14 @@ public class ModerateStrategy implements ChooseStrategy {
             System.out.println("Numéro joueur : " + randomNb);
             System.out.println("Numéro carte : " + randomNb2);
 
-            cardSelected = RoundsManager.getInstance().listPlayers.get(randomNb).offer.get(randomNb2);
+            playerSelected = RoundsManager.getInstance().listPlayers.get(randomNb);
+            cardSelected = playerSelected.offer.get(randomNb2);
 
             //if this cardSelected is different from the AI's offer, then we continue
             if (cardSelected != player.hiddenCard() && cardSelected != player.offeredCard()) {
                 player.jest.add(cardSelected);
 
                 System.out.println("This is the card selected by the AI : " + cardSelected);
-                playerSelected = RoundsManager.getInstance().listPlayers.get(randomNb);
                 playerSelected.offer.remove(cardSelected);
 
                 isCorrectCard = true;
