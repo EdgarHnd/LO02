@@ -4,7 +4,6 @@ public class DefensiveStrategy implements ChooseStrategy {
 
 	private int weakestCardValue;
 	private int index;
-	private int weakestCardValueToPick;
 
 	@Override
 	public void makeOfferStrategy(Player player) {
@@ -32,27 +31,78 @@ public class DefensiveStrategy implements ChooseStrategy {
 		System.out.println("\nIt's "+ player.name +"'s turn to pick a card");
 		System.out.println("DEFENSIVE STRATEGY");
 
-		weakestCardValueToPick = 0;
-		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
-			int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue();
-			Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offeredCard();
+		int nbCompleteOffers = countNbCompleteOffers(player);
+		switch (nbCompleteOffers){
+			case 0 :
+				addMyOwnOfferToMyJest(player);
+				break;
+			case 1 :
+				addTheOnlyCardAvailableToMyJest(player);
+				break;
+			default:
+				addTheBestCardToMyJest(player);
+		}
+	}
+	public int countNbCompleteOffers(Player me){
+		int nbCompleteOffers = 0;
+		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
+			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+				nbCompleteOffers ++;
+			}
+		}
+		return nbCompleteOffers;
+	}
 
-			if (cardValueIndex <= weakestCardValueToPick && cardIndex != player.offeredCard()) {
-				weakestCardValueToPick = RoundsManager.getInstance().listPlayers.get(i).offeredCard().cardValue();
+	public void addMyOwnOfferToMyJest(Player me){
+		me.jest.add(me.offer.get(0));
+		me.offer.remove(0);
+		System.out.println("The AI's Jest is now : " + me.jest.toString());
+
+		me.hasPlayed = true;
+		me.isPicking = false;
+		//Set the next player
+		setNextPlayer(me);
+	}
+
+	public void addTheOnlyCardAvailableToMyJest(Player me){
+		int index = 0;
+		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
+			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+				Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
+				me.jest.add(cardSelected);
 				index = i;
 			}
 		}
-		Card cardSelected = RoundsManager.getInstance().listPlayers.get(index).offeredCard();
-		player.jest.add(cardSelected);
-		RoundsManager.getInstance().listPlayers.get(index).offer.remove(cardSelected);
+		Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
+		System.out.println("The AI's Jest is now : " + me.jest.toString());
+		me.hasPlayed = true;
+		me.isPicking = false;
+		//Set the next player
+		setNextPlayer(playerSelected);
+	}
 
-		System.out.println("This is the card selected by the AI : " + cardSelected);
+	public void addTheBestCardToMyJest(Player me){
+		int bestCardValueToPick = 0;
+		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
+			int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
+			Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
+
+			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer()) {
+				if (cardValueIndex < bestCardValueToPick && cardIndex != me.offer.get(0)) {
+					bestCardValueToPick = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
+					index = i;
+				}
+			}
+		}
+		Card cardSelected = RoundsManager.getInstance().listPlayers.get(index).offer.get(0);
 		Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
 
-		System.out.println("The AI's Jest is now : "+ player.jest.toString());
-		player.hasPlayed = true;
-		player.isPicking = false;
+		me.jest.add(cardSelected);
+		playerSelected.offer.remove(cardSelected);
+		System.out.println("The AI's Jest is now : " + me.jest.toString());
 
+		me.hasPlayed = true;
+		me.isPicking = false;
 		//Set the next player
 		setNextPlayer(playerSelected);
 	}

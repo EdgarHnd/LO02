@@ -1,10 +1,10 @@
 package fr.utt.jestcardgame.model;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
 import fr.utt.jestcardgame.visitor.Visitable;
 import fr.utt.jestcardgame.visitor.Visitor;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Player implements Visitable{
 	
