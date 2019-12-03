@@ -15,6 +15,7 @@ public class Player implements Visitable{
 	protected LinkedList<Card> jest;
 	protected int finalScore;
 	protected int finalBoolean;
+	protected int jestValue;
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
@@ -100,6 +101,108 @@ public class Player implements Visitable{
 		
 	}
 	
+	//----------------------------------------------------
+	//Calculating player score
+	
+	public void jestValue() {
+		for(int i=0; i<this.jest.size();i++) {
+			
+		}
+	}
+	
+	//Trophys conditions
+	public boolean hasJoker() {
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).kind == Kind.Joker) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean hasSuit(Suit s) {
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit.compareTo(s)==0) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int majority(Kind k) {
+		int nbKind = 0;
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).kind.compareTo(k)==0) {
+				nbKind ++;
+			}
+		}
+		return nbKind;
+	}
+	
+	public int tieMajority(Kind k) {
+		int high = 0;
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).kind.compareTo(k)==0) {
+				if(this.jest.get(i).cardTiesValue() > high) {
+					high = this.jest.get(i).cardTiesValue();
+					}
+			}
+		}
+		return high;
+	}
+	
+	public int highestSuit(Suit s) {
+		int high = 0;
+		Card c;
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit.compareTo(s)==0) {
+				c = this.jest.get(i);
+				if(c.cardValue() > high) {
+					high = c.cardValue();
+				}
+			}
+		}
+		return high;
+	}
+	
+	public int lowestSuit(Suit s) {
+		int low = 0;
+		Card c;
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).suit.compareTo(s)==0) {
+				c = this.jest.get(i);
+				if(c.cardValue() < low) {
+					low = c.cardValue();
+				}
+			}
+		}
+		return low;
+	}
+	
+	public int highestFaceValue() {
+		int high = 0;
+		for(int i=0; i<this.jest.size();i++) {
+				if(this.jest.get(i).cardValue() > high) {
+					high = this.jest.get(i).cardValue();
+				}
+			}
+		return high;
+	}
+	
+	public int highestFaceTiesValue() {
+		int high = 0;
+		for(int i=0; i<this.jest.size();i++) {
+			if(this.jest.get(i).cardValue() == this.highestFaceValue()) {
+				if(this.jest.get(i).cardTiesValue() > high) {
+					high = this.jest.get(i).cardTiesValue();
+				}
+			}
+		}
+		return high;
+	}
+	
+	//----------------------------------------------------
+	//Maybe add the visitor later 
 	@Override
 	public void addVisitor(Visitor vis) {
 		// TODO Auto-generated method stub

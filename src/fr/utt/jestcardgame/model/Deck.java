@@ -34,7 +34,7 @@ public class Deck {
 		
 		cards = new LinkedList<Card>();
 		
-		getCards().add(new Card(Kind.Joker,Suit.None,Trophy.None));
+		getCards().add(new Card(Kind.Joker,Suit.None,Trophy.BestJest));
 		getCards().add(new Card(Kind.Ace,Suit.Hearts,Trophy.Joker));
 		getCards().add(new Card(Kind.Four,Suit.Spades,Trophy.LowestClub));
 		getCards().add(new Card(Kind.Four,Suit.Clubs,Trophy.LowestSpade));
