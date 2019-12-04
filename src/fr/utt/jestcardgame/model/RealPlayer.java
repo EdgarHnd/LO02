@@ -48,7 +48,7 @@ public class RealPlayer extends Player {
 		Player playerSelect = RoundsManager.getInstance().listPlayers.get(ConsoleUserInput.getInstance().nextInt()-1);
 		
 		
-		System.out.println("Now select the card you want to pick (1/2):");
+		System.out.println("Now select the card you want to pick (1) The visible card / (2) The hidden card :");
 		
 		int cardSelect = ConsoleUserInput.getInstance().nextInt();
 		
