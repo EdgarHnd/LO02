@@ -54,22 +54,24 @@ public class DefensiveStrategy implements ChooseStrategy {
 	}
 
 	public void addMyOwnOfferToMyJest(Player me){
-		me.jest.add(me.offer.get(0));
-		me.offer.remove(0);
+		me.jest.add(me.offer.pollFirst());
 		System.out.println("The AI's Jest is now : " + me.jest.toString());
 
 		me.hasPlayed = true;
 		me.isPicking = false;
 		//Set the next player
-		setNextPlayer(me);
+		RoundsManager.getInstance().setTurnOver(true);
 	}
 
 	public void addTheOnlyCardAvailableToMyJest(Player me){
 		int index = 0;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
 			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
-				Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
+				me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
+				/*
+				 Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0); //problem
 				me.jest.add(cardSelected);
+				*/
 				index = i;
 			}
 		}
@@ -107,10 +109,9 @@ public class DefensiveStrategy implements ChooseStrategy {
 				}
 			}
 		}*/
-        Card cardSelected = playerSelected.offer.get(0);
+        Card cardSelected = playerSelected.offer.pollFirst();
 
         me.jest.add(cardSelected);
-		playerSelected.offer.remove(cardSelected);
 		System.out.println("The AI's Jest is now : " + me.jest.toString());
 
 		me.hasPlayed = true;

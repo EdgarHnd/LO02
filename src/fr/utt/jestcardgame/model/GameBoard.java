@@ -29,7 +29,7 @@ public class GameBoard implements Visitor {
 	//Give the trophys to the players
 	public void giveTrophys() {
 		for(int j=0; j < this.trophys.size(); j++) {
-			Player winner = null;
+			Player winner = new RealPlayer("Default2",11);;
 			int maj = 0;
 			switch(this.trophys.get(j).trophy) {	
 			case BJnoJoke:
