@@ -1,9 +1,12 @@
 package fr.utt.jestcardgame.model;
 
+import java.util.Iterator;
+
 public class OffensiveStrategy implements ChooseStrategy {
 
     private int bestCardValue;
     private int index;
+    private Player playerSelected;
 
     @Override
     public void makeOfferStrategy(Player player) {
@@ -32,15 +35,12 @@ public class OffensiveStrategy implements ChooseStrategy {
         System.out.println("OFFENSIVE STRATEGY");
 
         int nbCompleteOffers = countNbCompleteOffers(player);
-        switch (nbCompleteOffers){
-            case 0 :
-                addMyOwnOfferToMyJest(player);
-                break;
-            case 1 :
-                addTheOnlyCardAvailableToMyJest(player);
-                break;
-            default:
-                addTheBestCardToMyJest(player);
+        if (nbCompleteOffers ==0) {
+            addMyOwnOfferToMyJest(player);
+        } else if (nbCompleteOffers == 1) {
+            addTheOnlyCardAvailableToMyJest(player);
+        } else if (nbCompleteOffers > 1 && nbCompleteOffers < RoundsManager.getInstance().listPlayers.size() +1){
+            addTheBestCardToMyJest(player);
         }
     }
 
@@ -114,7 +114,20 @@ public class OffensiveStrategy implements ChooseStrategy {
 
     public void addTheBestCardToMyJest(Player me){
         int bestCardValueToPick = 0;
-        for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
+        Iterator itr = RoundsManager.getInstance().listPlayers.iterator();
+        while (itr.hasNext()){
+            Player element = (Player) itr.next();
+            int cardValueIndex = element.offer.get(0).cardValue();
+            Card cardIndex = element.offer.get(0);
+
+            if (element.completeOffer()) {
+                if (cardValueIndex > bestCardValueToPick && cardIndex != me.offer.get(0)) {
+                    bestCardValueToPick = element.offer.get(0).cardValue();
+                    playerSelected = element;
+                }
+            }
+        }
+        /*for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
             int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
             Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
 
@@ -124,9 +137,8 @@ public class OffensiveStrategy implements ChooseStrategy {
                     index = i;
                 }
             }
-        }
-        Card cardSelected = RoundsManager.getInstance().listPlayers.get(index).offer.get(0);
-        Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
+        }*/
+        Card cardSelected = playerSelected.offer.get(0);
 
         me.jest.add(cardSelected);
         playerSelected.offer.remove(cardSelected);
