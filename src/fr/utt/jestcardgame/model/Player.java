@@ -118,7 +118,10 @@ public class Player implements Visitable{
 	
 	public void addBlack() {
 		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == Suit.Clubs || this.jest.get(i).suit == Suit.Spades) {
+			if (this.jest.get(i) == null){
+				System.out.println("Null value");
+			}
+			else if (this.jest.get(i).suit == Suit.Clubs || this.jest.get(i).suit == Suit.Spades) {
 				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
 					this.jestValue += 5;
 				}

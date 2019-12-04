@@ -1,8 +1,8 @@
 package fr.utt.jestcardgame.model;
 
-import java.util.ArrayList;
-
 import fr.utt.jestcardgame.visitor.Visitor;
+
+import java.util.ArrayList;
 
 public class GameBoard implements Visitor {
 	
@@ -29,14 +29,16 @@ public class GameBoard implements Visitor {
 	//Give the trophys to the players
 	public void giveTrophys() {
 		for(int j=0; j < this.trophys.size(); j++) {
-			Player winner = null;
+			Player winner = new Player("Dummy", -1);
 			int maj = 0;
 			switch(this.trophys.get(j).trophy) {	
 			case BJnoJoke:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 					int jest = 0;
-					if(RoundsManager.getInstance().listPlayers.get(i).jestValue > jest && 
-							RoundsManager.getInstance().listPlayers.get(i).hasJoker() == false) {
+					if(
+							RoundsManager.getInstance().listPlayers.get(i).jestValue > jest &&
+							RoundsManager.getInstance().listPlayers.get(i).hasJoker() == false
+					) {
 						jest = RoundsManager.getInstance().listPlayers.get(i).jestValue;
 						winner = RoundsManager.getInstance().listPlayers.get(i);
 					}

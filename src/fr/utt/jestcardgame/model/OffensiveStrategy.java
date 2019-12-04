@@ -85,14 +85,12 @@ public class OffensiveStrategy implements ChooseStrategy {
     }
 
     public void addMyOwnOfferToMyJest(Player me){
-        me.jest.add(me.offer.get(0));
-        me.offer.remove(0);
+        me.jest.add(me.offer.pollFirst());
         System.out.println("The AI's Jest is now : " + me.jest.toString());
 
         me.hasPlayed = true;
         me.isPicking = false;
-        //Set the next player
-        setNextPlayer(me);
+        RoundsManager.getInstance().setTurnOver(true);
     }
 
     public void addTheOnlyCardAvailableToMyJest(Player me){
@@ -138,10 +136,7 @@ public class OffensiveStrategy implements ChooseStrategy {
                 }
             }
         }*/
-        Card cardSelected = playerSelected.offer.get(0);
-
-        me.jest.add(cardSelected);
-        playerSelected.offer.remove(cardSelected);
+        me.jest.add(playerSelected.getOffer().pollFirst());
         System.out.println("The AI's Jest is now : " + me.jest.toString());
 
         me.hasPlayed = true;

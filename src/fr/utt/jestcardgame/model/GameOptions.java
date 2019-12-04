@@ -6,6 +6,8 @@ import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
 import fr.utt.jestcardgame.view.setupException;
 
+import java.util.InputMismatchException;
+
 
 /**
  * Class which allows the user to setup different parameters of the game, such as :
@@ -48,44 +50,48 @@ public abstract class GameOptions {
 		return variant;
 	}
 
-	public static int setNbPlayer() throws setupException {
-			boolean correctChoice = false;
-			while (!correctChoice) {
-				int nbPlayer = ConsoleUserInput.getInstance().nextInt();
-				GameOptions.nbPlayer = nbPlayer;
-				if (nbPlayer == 3 || nbPlayer == 4) {
-					correctChoice = true;
-					ConsoleGameView.display(ConsoleOutput.PlayerNb);
-				} else {
-					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new setupException();
-				}
+	public static int setNbPlayer() {
+		boolean correctNumber = false;
+		while (!correctNumber){
+			ConsoleGameView.display(ConsoleOutput.settingNbPlayer);
+			int nbPlayer = ConsoleUserInput.getInstance().nextInt();
+			GameOptions.nbPlayer = nbPlayer;
+			try {
+				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(3, 4, nbPlayer);
+				correctNumber = true;
+			} catch (setupException e){
+				e.getMessage();
+				System.out.println("Please choose wisely between 3 and 4 !");
 			}
-			return nbPlayer;
+		}
+		return nbPlayer;
 	}
-
-	
 
 	public static int setNbRealPlayer( int nbPlayer) throws setupException {
 			GameOptions.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
 				
-				ConsoleGameView.display(ConsoleOutput.RealPlayer);	
-				
-				int nbRealPlayer = ConsoleUserInput.getInstance().nextInt();
-				GameOptions.nbRealPlayer = nbRealPlayer;
-				if (nbRealPlayer > nbPlayer) {
-					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
-					throw new setupException();
-				} else {
+				ConsoleGameView.display(ConsoleOutput.RealPlayer);
+
+				try {
+					int nbRealPlayer = ConsoleUserInput.getInstance().nextInt();
+					GameOptions.nbRealPlayer = nbRealPlayer;
+					ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(0, nbPlayer, nbRealPlayer);
 					correctNumber = true;
+				} catch (setupException e){
+					e.getMessage();
+					System.out.println("The number of Real Player cannot be superior to the number of players.");
+				} catch (InputMismatchException e){
+					System.out.println("You have to put a number.");
+					//@TODO manage a new input from the user
+					System.exit(0);
 				}
 			}
 			return nbRealPlayer;
 	}
 
-	public static int setNbVirtualPlayer() throws setupException {
+	public static int setNbVirtualPlayer() {
 			int nbVirtualPlayer = GameOptions.nbPlayer - GameOptions.nbRealPlayer;
 			return nbVirtualPlayer;
 	}
@@ -93,7 +99,6 @@ public abstract class GameOptions {
 	public static int chooseVariant () {
 			ConsoleGameView.display(ConsoleOutput.Variant);
 			ConsoleUserInput input = new ConsoleUserInput();
-			//Scanner sc = new Scanner(System.in);
 			variant = input.nextInt();
 			return variant;
 	}
@@ -117,8 +122,6 @@ public abstract class GameOptions {
 	}
 
 	public static void setup() throws setupException {
-		
-		ConsoleGameView.display(ConsoleOutput.OptionMenu);
 
 		nbPlayer = setNbPlayer();
 		nbRealPlayer = setNbRealPlayer(nbPlayer);
@@ -132,8 +135,7 @@ public abstract class GameOptions {
 			int playerChoice = selectionOptionMenu();
 			switch (playerChoice) {
 				case 2:
-					
-					GameOptions.chooseVariant();
+					chooseVariant();
 					ConsoleGameView.display(ConsoleOutput.SelectVar);
 					break;
 				case 1:
@@ -141,7 +143,7 @@ public abstract class GameOptions {
 					ConsoleGameView.display(ConsoleOutput.NewGame);
 					break;
 				default:
-					throw new setupException();
+					//throw new setupException();
 					//Gestion d'exceptions à faire
 			}
 		}

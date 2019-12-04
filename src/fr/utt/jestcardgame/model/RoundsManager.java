@@ -96,7 +96,7 @@ public class RoundsManager implements Visitor {
 
 	//Will be call while the deck as enough cards to deal a new round
 	public void nextRounds() {
-		while (Deck.getInstance().getCards().size() >= this.listPlayers.size()*2){
+		while (Deck.getInstance().getCards().size() >= this.listPlayers.size()){
 			System.out.println("\n" + Deck.getInstance().getCards());
 			Deck.getInstance().gather();
 			Deck.getInstance().dealStack();

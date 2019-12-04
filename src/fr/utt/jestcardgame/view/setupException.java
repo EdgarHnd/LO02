@@ -1,8 +1,8 @@
 package fr.utt.jestcardgame.view;
 
 
-public class setupException extends Throwable {
-    public setupException(){
-        System.out.println("Your input is not correct !");
+public class setupException extends Exception {
+    public setupException(String error){
+        super(error);
     }
 }

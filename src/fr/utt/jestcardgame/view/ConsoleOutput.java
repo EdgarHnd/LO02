@@ -3,7 +3,7 @@ package fr.utt.jestcardgame.view;
 public enum ConsoleOutput {
 	
 	MainMenu,
-	OptionMenu,
+	settingNbPlayer,
 	PlayerNb,
 	RealPlayer,
 	PlayVar,
