@@ -54,14 +54,18 @@ public abstract class GameOptions {
 		boolean correctNumber = false;
 		while (!correctNumber){
 			ConsoleGameView.display(ConsoleOutput.settingNbPlayer);
-			int nbPlayer = ConsoleUserInput.getInstance().nextInt();
-			GameOptions.nbPlayer = nbPlayer;
 			try {
+				int nbPlayer = ConsoleUserInput.getInstance().nextInt();
+				GameOptions.nbPlayer = nbPlayer;
 				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(3, 4, nbPlayer);
 				correctNumber = true;
 			} catch (setupException e){
 				e.getMessage();
 				System.out.println("Please choose wisely between 3 and 4 !");
+			} catch (InputMismatchException e) {
+				System.out.println("You have to put a number.");
+				//@TODO manage a new input from the user
+				System.exit(0);
 			}
 		}
 		return nbPlayer;
@@ -97,10 +101,24 @@ public abstract class GameOptions {
 	}
 
 	public static int chooseVariant () {
+		boolean correctNumber = false;
+		while (!correctNumber){
 			ConsoleGameView.display(ConsoleOutput.Variant);
-			ConsoleUserInput input = new ConsoleUserInput();
-			variant = input.nextInt();
-			return variant;
+			try {
+				int nbVariant = ConsoleUserInput.getInstance().nextInt();
+				variant = nbVariant;
+				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(1, 3, nbVariant);
+				correctNumber = true;
+			} catch (setupException e){
+				e.getMessage();
+				System.out.println("Please choose wisely between 1 and 3 !");
+			} catch (InputMismatchException e) {
+				System.out.println("You have to put a number.");
+				//@TODO manage a new input from the user
+				System.exit(0);
+			}
+		}
+		return variant;
 	}
 
 	/*public String[] setNamePlayer(int nbPlayer){
@@ -129,7 +147,6 @@ public abstract class GameOptions {
 		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
 		//playerName.toString();
 
-		
 		boolean startGame = false;
 		while (!startGame) {
 			int playerChoice = selectionOptionMenu();
@@ -143,8 +160,7 @@ public abstract class GameOptions {
 					ConsoleGameView.display(ConsoleOutput.NewGame);
 					break;
 				default:
-					//throw new setupException();
-					//Gestion d'exceptions à faire
+					System.out.println("Your value is not correct.");
 			}
 		}
 	}

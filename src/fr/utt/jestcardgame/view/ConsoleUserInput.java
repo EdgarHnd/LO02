@@ -4,10 +4,8 @@ import java.util.Scanner;
 
 	public class ConsoleUserInput {
 
-
 	    private static ConsoleUserInput instance = null;
 	    private Scanner entree;
-		private int input;
 
 		public ConsoleUserInput(){
 	        entree = new Scanner(System.in);

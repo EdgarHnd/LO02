@@ -3,6 +3,9 @@ package fr.utt.jestcardgame.model;
 import fr.utt.jestcardgame.view.ConsoleGameView;
 import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
+import fr.utt.jestcardgame.view.setupException;
+
+import java.util.InputMismatchException;
 
 
 public class RealPlayer extends Player {
@@ -20,8 +23,10 @@ public class RealPlayer extends Player {
 			System.out.println("Carte 1:" + this.hand.get(0));
 			System.out.println("Carte 2:" + this.hand.get(1));
 			System.out.println("Select your offer (1 or 2) ");
-		
+
 			int selection = input.nextInt();
+
+
 			if(selection == 1) {
 				this.hand.get(0).hidden = false;
 				System.out.println(this.hand.get(0) + " card selected");
@@ -46,17 +51,28 @@ public class RealPlayer extends Player {
 		ConsoleGameView.display(ConsoleOutput.Picking);
 		
 		Player playerSelect = RoundsManager.getInstance().listPlayers.get(ConsoleUserInput.getInstance().nextInt()-1);
-		
-		
-		System.out.println("Now select the card you want to pick (1) The visible card / (2) The hidden card :");
-		
-		int cardSelect = ConsoleUserInput.getInstance().nextInt();
-		
-		if(cardSelect == 1) {
-			this.jest.add(playerSelect.getOffer().pollFirst());
-		}
-		else if(cardSelect == 2){
-		this.jest.add(playerSelect.getOffer().pollLast());
+
+		boolean correctNumber = false;
+		while (!correctNumber){
+			System.out.println("Please select the card you want to pick (1) The visible card / (2) The hidden card :");
+			try {
+				int cardSelect = ConsoleUserInput.getInstance().nextInt();
+				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(1, 2, cardSelect);
+				correctNumber = true;
+				if(cardSelect == 1) {
+					this.jest.add(playerSelect.getOffer().pollFirst());
+				}
+				else if(cardSelect == 2){
+					this.jest.add(playerSelect.getOffer().pollLast());
+				}
+			} catch (setupException e){
+				e.getMessage();
+				System.out.println("Please choose wisely between 1 and 2 !");
+			} catch (InputMismatchException e) {
+				System.out.println("You have to put a number.");
+				//@TODO manage a new input from the user
+				System.exit(0);
+			}
 		}
 		
 		System.out.println("Your Jest is now : "+this.jest.toString());
