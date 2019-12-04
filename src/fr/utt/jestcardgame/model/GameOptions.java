@@ -75,7 +75,7 @@ public abstract class GameOptions {
 				
 				int nbRealPlayer = ConsoleUserInput.getInstance().nextInt();
 				GameOptions.nbRealPlayer = nbRealPlayer;
-				if (nbRealPlayer == 0 || nbRealPlayer > nbPlayer) {
+				if (nbRealPlayer > nbPlayer) {
 					//Gestion d'exception à appronfondir : faire en sorte que l'utilisateur recommence, au lieu d'exit le programme
 					throw new setupException();
 				} else {
