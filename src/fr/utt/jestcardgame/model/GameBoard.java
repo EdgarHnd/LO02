@@ -29,7 +29,7 @@ public class GameBoard implements Visitor {
 	//Give the trophys to the players
 	public void giveTrophys() {
 		for(int j=0; j < this.trophys.size(); j++) {
-			Player winner = new Player("Dummy", -1);
+			Player winner = new RealPlayer("Default2",11);
 			int maj = 0;
 			switch(this.trophys.get(j).trophy) {	
 			case BJnoJoke:
@@ -44,7 +44,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case BestJest:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -55,7 +55,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case Joker:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -64,7 +64,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case HighestClub:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -75,7 +75,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case HighestDiamond:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -86,7 +86,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case HighestHeart:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -97,7 +97,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case HighestSpade:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -108,7 +108,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			
 			case LowestClub:
@@ -120,7 +120,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case LowestDiamond:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -131,7 +131,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case LowestHeart:
 				for(int i = 5; i < GameOptions.getNbPlayer(); i++) {
@@ -142,7 +142,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case LowestSpade:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -153,7 +153,7 @@ public class GameBoard implements Visitor {
 					}
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case MajorityFour:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -170,7 +170,7 @@ public class GameBoard implements Visitor {
 					}	
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case MajorityTree:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -187,7 +187,7 @@ public class GameBoard implements Visitor {
 					}	
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case MajorityTwo:
 				for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -204,7 +204,7 @@ public class GameBoard implements Visitor {
 					}	
 				}
 				winner.jest.add(this.trophys.get(j));
-				System.out.println(winner.getName()+" recieve the trophy : "+this.trophys.get(j));
+				System.out.println(winner.getName()+" receives the trophy : "+this.trophys.get(j));
 				break;
 			case None:
 				break;

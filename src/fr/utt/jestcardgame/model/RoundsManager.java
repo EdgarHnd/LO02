@@ -97,7 +97,7 @@ public class RoundsManager implements Visitor {
 	//Will be call while the deck as enough cards to deal a new round
 	public void nextRounds() {
 		while (Deck.getInstance().getCards().size() >= this.listPlayers.size()){
-			System.out.println("\n" + Deck.getInstance().getCards());
+			System.out.println("\nThe deck still has :" + Deck.getInstance().getCards());
 			Deck.getInstance().gather();
 			Deck.getInstance().dealStack();
 			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -105,13 +105,16 @@ public class RoundsManager implements Visitor {
 				this.listPlayers.get(i).makeOffer();
 			}
 			
+			this.turnOver = false;
 			//This is the player with the best offer
 			this.showAllOffers();
 			this.checkBestOffer().pickOffer();
 			
 			
 			for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
+				if(this.turnOver == false) {
 				this.nextPlayer().pickOffer();
+				}
 			}
 		}
 		System.out.println("No more cards, time to show your JESTS !");

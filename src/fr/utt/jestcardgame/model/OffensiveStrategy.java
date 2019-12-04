@@ -90,6 +90,7 @@ public class OffensiveStrategy implements ChooseStrategy {
 
         me.hasPlayed = true;
         me.isPicking = false;
+        //Set the next player
         RoundsManager.getInstance().setTurnOver(true);
     }
 
@@ -97,8 +98,7 @@ public class OffensiveStrategy implements ChooseStrategy {
         int index = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
             if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
-                Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
-                me.jest.add(cardSelected);
+                me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
                 index = i;
             }
         }
@@ -136,7 +136,9 @@ public class OffensiveStrategy implements ChooseStrategy {
                 }
             }
         }*/
-        me.jest.add(playerSelected.getOffer().pollFirst());
+        Card cardSelected = playerSelected.offer.pollFirst();
+
+        me.jest.add(cardSelected);
         System.out.println("The AI's Jest is now : " + me.jest.toString());
 
         me.hasPlayed = true;

@@ -66,8 +66,11 @@ public class DefensiveStrategy implements ChooseStrategy {
 		int index = 0;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
 			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
-				Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
+				me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
+				/*
+				 Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0); //problem
 				me.jest.add(cardSelected);
+				*/
 				index = i;
 			}
 		}
@@ -105,7 +108,11 @@ public class DefensiveStrategy implements ChooseStrategy {
 				}
 			}
 		}*/
-		me.jest.add(playerSelected.getOffer().pollFirst());
+
+        Card cardSelected = playerSelected.offer.pollFirst();
+
+        me.jest.add(cardSelected);
+
 		System.out.println("The AI's Jest is now : " + me.jest.toString());
 
 		me.hasPlayed = true;

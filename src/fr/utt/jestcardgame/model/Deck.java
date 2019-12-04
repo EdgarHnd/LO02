@@ -112,6 +112,7 @@ public class Deck {
 		this.topCards.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
 		}
 		Collections.shuffle(this.topCards);
+		System.out.println("The stack is now : "+this.topCards);
 	}
 	
 	public void dealStack(){
@@ -121,11 +122,13 @@ public class Deck {
 		if(this.topCards.size() >= 2*GameOptions.nbPlayer) {
 			System.out.println("First StackDeal");
 			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+				this.topCards.getFirst().setHidden(true);
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCards.pop());
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond StackDeal");
 			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+				this.topCards.getFirst().setHidden(true);
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCards.pop());
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
