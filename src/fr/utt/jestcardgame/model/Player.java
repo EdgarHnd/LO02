@@ -3,23 +3,23 @@ package fr.utt.jestcardgame.model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import fr.utt.jestcardgame.observer.Observable;
-import fr.utt.jestcardgame.observer.Observer;
+import fr.utt.jestcardgame.visitor.Visitable;
+import fr.utt.jestcardgame.visitor.Visitor;
 
-public class Player implements Observable{
+public class Player implements Visitable{
 	
 	protected int nb;
 	protected String name;
 	protected LinkedList<Card> hand;
 	protected LinkedList<Card> offer;
-	protected LinkedList<Card> jest;
+	protected Jest jest;
 	protected int finalScore;
 	protected int finalBoolean;
 	protected int jestValue = 0;
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
-	private ArrayList<Observer> listVisitor = new ArrayList<Observer>(); 
+	private ArrayList<Visitor> listVisitor = new ArrayList<Visitor>(); 
 	
 	public boolean getHasPlayed() {
 		return hasPlayed;
@@ -52,7 +52,7 @@ public class Player implements Observable{
 		this.nb = nb;
 		
 		this.hand = new LinkedList<Card>();
-		this.jest = new LinkedList<Card>();
+		this.jest = new Jest();
 		this.offer = new LinkedList<Card>();
 		this.finalScore = 0;
 		
@@ -103,7 +103,7 @@ public class Player implements Observable{
 	
 	//----------------------------------------------------
 	//Calculating player score
-	
+	/*
 	public void calculateJestValue() {
 		this.addBlack();
 		this.blackBonus();
@@ -314,26 +314,13 @@ public class Player implements Observable{
 		}
 		return high;
 	}
+	*/
 	
-	//----------------------------------------------------
-	//Maybe add the visitor later 
 	@Override
-	public void addObserver(Observer vis) {
+	public void acceptVisitor(Visitor v) {
+		this.listVisitor.add(v);
 		// TODO Auto-generated method stub
-		this.listVisitor.add(vis);
-	}
-
-	@Override
-	public void removeObserver() {
-		// TODO Auto-generated method stub
-		this.listVisitor = new ArrayList<Observer>(); 
-	}
-
-	@Override
-	public void notifyObserver(String str) {
-		// TODO Auto-generated method stub
-		 for(Observer vis : listVisitor)
-		      vis.update(str);
+		
 	}
 
 }
