@@ -134,7 +134,6 @@ public class Deck {
 			}
 		}
 		else {
-	
 			ConsoleGameView.display(ConsoleOutput.NoMoreCard);
 		}
 	}

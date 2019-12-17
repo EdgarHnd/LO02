@@ -2,27 +2,27 @@ package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 
+import fr.utt.jestcardgame.observer.Observable;
+import fr.utt.jestcardgame.observer.Observer;
 import fr.utt.jestcardgame.view.setupException;
-import fr.utt.jestcardgame.visitor.Visitable;
-import fr.utt.jestcardgame.visitor.Visitor;
 
-public abstract class AbstractGameManager implements Visitable{
+public abstract class AbstractGameManager implements Observable{
 	
-	 private ArrayList<Visitor> listVisitor = new ArrayList<Visitor>();   
+	 private ArrayList<Observer> listObserver = new ArrayList<Observer>();   
 	 
 	 //Implementing visitor patern
-	  public void addVisitor(Visitor vis) {
-	    this.listVisitor.add(vis);
+	  public void addObserver(Observer vis) {
+	    this.listObserver.add(vis);
 	  }
 
-	  public void notifyVisitor(String str) {
+	  public void notifyObserver(String str) {
 	    
-		  for(Visitor obs : listVisitor)
+		  for(Observer obs : listObserver)
 	      obs.update(str);
 	  }
 
-	  public void removeVisitor() {
-	    listVisitor = new ArrayList<Visitor>();
+	  public void removeObserver() {
+	    listObserver = new ArrayList<Observer>();
 	  }  
 	
 	public abstract void mainMenu() throws setupException;

@@ -1,8 +1,8 @@
 package fr.utt.jestcardgame.model;
 
-import fr.utt.jestcardgame.visitor.Visitor;
-
 import java.util.ArrayList;
+
+import fr.utt.jestcardgame.observer.Observer;
 
 
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-public class RoundsManager implements Visitor {
+public class RoundsManager implements Observer {
 	
 	private static RoundsManager rm= null;
 	protected int roundNb = 0;

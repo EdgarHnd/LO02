@@ -1,12 +1,12 @@
 package fr.utt.jestcardgame.model;
 
-import fr.utt.jestcardgame.visitor.Visitable;
-import fr.utt.jestcardgame.visitor.Visitor;
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Player implements Visitable{
+import fr.utt.jestcardgame.observer.Observable;
+import fr.utt.jestcardgame.observer.Observer;
+
+public class Player implements Observable{
 	
 	protected int nb;
 	protected String name;
@@ -19,7 +19,7 @@ public class Player implements Visitable{
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
-	private ArrayList<Visitor> listVisitor = new ArrayList<Visitor>(); 
+	private ArrayList<Observer> listVisitor = new ArrayList<Observer>(); 
 	
 	public boolean getHasPlayed() {
 		return hasPlayed;
@@ -318,21 +318,21 @@ public class Player implements Visitable{
 	//----------------------------------------------------
 	//Maybe add the visitor later 
 	@Override
-	public void addVisitor(Visitor vis) {
+	public void addObserver(Observer vis) {
 		// TODO Auto-generated method stub
 		this.listVisitor.add(vis);
 	}
 
 	@Override
-	public void removeVisitor() {
+	public void removeObserver() {
 		// TODO Auto-generated method stub
-		this.listVisitor = new ArrayList<Visitor>(); 
+		this.listVisitor = new ArrayList<Observer>(); 
 	}
 
 	@Override
-	public void notifyVisitor(String str) {
+	public void notifyObserver(String str) {
 		// TODO Auto-generated method stub
-		 for(Visitor vis : listVisitor)
+		 for(Observer vis : listVisitor)
 		      vis.update(str);
 	}
 

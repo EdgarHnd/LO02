@@ -1,10 +1,10 @@
 package fr.utt.jestcardgame.model;
 
-import fr.utt.jestcardgame.visitor.Visitor;
-
 import java.util.ArrayList;
 
-public class GameBoard implements Visitor {
+import fr.utt.jestcardgame.observer.Observer;
+
+public class GameBoard implements Observer {
 	
 	private ArrayList<Card> trophys;
 	private static GameBoard gb= null;
