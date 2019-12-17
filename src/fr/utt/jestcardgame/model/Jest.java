@@ -4,26 +4,26 @@ import java.util.LinkedList;
 
 public class Jest {
 	
-	private LinkedList<Card> jest;
+	private LinkedList<Card> jestCards;
 	
 	public Jest() {
-		this.jest = new LinkedList<Card>();
+		this.jestCards = new LinkedList<Card>();
 	}
 	
 	//Getter/Setters
-	public LinkedList<Card> getJest() {
-		return jest;
+	public LinkedList<Card> getJestCards() {
+		return jestCards;
 	}
 
 	public void addToJest(Card c) {
-		this.jest.add(c);
+		this.jestCards.add(c);
 	}
 
 	//Booleans to analyse the player jest
-	public boolean hasAllHeart() {
+	public boolean hasAllSuit(Suit s) {
 		int count = 0;
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == Suit.Hearts) {
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).suit == s) {
 				count ++;
 			}
 		}
@@ -34,9 +34,9 @@ public class Jest {
 	}
 	
 	public boolean isAlone(Kind k,Suit s) {
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).kind != k) {
-				if(this.jest.get(i).suit == s) {
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).kind != k) {
+				if(this.jestCards.get(i).suit == s) {
 					return false;
 				}
 			}
@@ -47,8 +47,8 @@ public class Jest {
 	
 	//Trophys conditions
 	public boolean hasJoker() {
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).kind == Kind.Joker) {
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).kind == Kind.Joker) {
 				return true;
 			}
 		}
@@ -56,8 +56,8 @@ public class Jest {
 	}
 	
 	public boolean hasSuit(Suit s) {
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == s) {
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).suit == s) {
 				return true;
 			}
 		}
@@ -66,8 +66,8 @@ public class Jest {
 	
 	public int majority(Kind k) {
 		int nbKind = 0;
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).kind == k) {
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).kind == k) {
 				nbKind ++;
 			}
 		}
@@ -76,10 +76,10 @@ public class Jest {
 	
 	public int tieMajority(Kind k) {
 		int high = 0;
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).kind == k) {
-				if(this.jest.get(i).cardTiesValue() > high) {
-					high = this.jest.get(i).cardTiesValue();
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).kind == k) {
+				if(this.jestCards.get(i).cardTiesValue() > high) {
+					high = this.jestCards.get(i).cardTiesValue();
 					}
 			}
 		}
@@ -89,9 +89,9 @@ public class Jest {
 	public int highestSuit(Suit s) {
 		int high = 0;
 		Card c;
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == s) {
-				c = this.jest.get(i);
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).suit == s) {
+				c = this.jestCards.get(i);
 				if(c.cardValue() > high) {
 					high = c.cardValue();
 				}
@@ -103,9 +103,9 @@ public class Jest {
 	public int lowestSuit(Suit s) {
 		int low = 0;
 		Card c;
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == s) {
-				c = this.jest.get(i);
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).suit == s) {
+				c = this.jestCards.get(i);
 				if(c.cardValue() < low) {
 					low = c.cardValue();
 				}
@@ -116,9 +116,9 @@ public class Jest {
 	
 	public int highestFaceValue() {
 		int high = 0;
-		for(int i=0; i<this.jest.size();i++) {
-				if(this.jest.get(i).cardValue() > high) {
-					high = this.jest.get(i).cardValue();
+		for(int i=0; i<this.jestCards.size();i++) {
+				if(this.jestCards.get(i).cardValue() > high) {
+					high = this.jestCards.get(i).cardValue();
 				}
 			}
 		return high;
@@ -126,10 +126,10 @@ public class Jest {
 	
 	public int highestFaceTiesValue() {
 		int high = 0;
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).cardValue() == this.highestFaceValue()) {
-				if(this.jest.get(i).cardTiesValue() > high) {
-					high = this.jest.get(i).cardTiesValue();
+		for(int i=0; i<this.jestCards.size();i++) {
+			if(this.jestCards.get(i).cardValue() == this.highestFaceValue()) {
+				if(this.jestCards.get(i).cardTiesValue() > high) {
+					high = this.jestCards.get(i).cardTiesValue();
 				}
 			}
 		}

@@ -3,11 +3,14 @@ package fr.utt.jestcardgame.model;
 import java.util.ArrayList;
 
 import fr.utt.jestcardgame.observer.Observer;
+import fr.utt.jestcardgame.visitor.Visitor;
 
-public class GameBoard implements Observer {
+public class GameBoard implements Visitor {
 	
-	private ArrayList<Card> trophys;
 	private static GameBoard gb= null;
+	private ArrayList<Card> trophys;
+	private ArrayList<Player> listPlayer;
+	
 	
 	public static GameBoard getInstance(){
 		
@@ -20,6 +23,7 @@ public class GameBoard implements Observer {
 	
 	public GameBoard() {
 		trophys = new ArrayList<Card>(2);
+		listPlayer = new ArrayList<Player>(4);
 	}
 	
 	public ArrayList<Card> getTrophys() {
@@ -213,11 +217,12 @@ public class GameBoard implements Observer {
 			}
 		}
 	}
-	
-	
+
 	@Override
-	public void update(String str) {
-		// TODO Auto-generated method stub
+	public void visit(Player p) {
+		this.listPlayer.add(p);
 		
 	}
+	
+	
 }

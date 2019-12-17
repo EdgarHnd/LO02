@@ -13,9 +13,8 @@ public class Player implements Visitable{
 	protected LinkedList<Card> hand;
 	protected LinkedList<Card> offer;
 	protected Jest jest;
-	protected int finalScore;
 	protected int finalBoolean;
-	protected int jestValue = 0;
+	protected int score;
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
@@ -54,7 +53,7 @@ public class Player implements Visitable{
 		this.hand = new LinkedList<Card>();
 		this.jest = new Jest();
 		this.offer = new LinkedList<Card>();
-		this.finalScore = 0;
+		this.score = 0;
 		
 	}
 	
@@ -101,103 +100,8 @@ public class Player implements Visitable{
 		
 	}
 	
-	//----------------------------------------------------
-	//Calculating player score
 	/*
-	public void calculateJestValue() {
-		this.addBlack();
-		this.blackBonus();
-		this.addHeart();
-		this.removeDiamonds();
-		this.addJoker();
-	}
 	
-	public void resetJest() {
-		this.jestValue = 0;
-	}
-	
-	public void addBlack() {
-		for(int i=0; i<this.jest.size();i++) {
-			if (this.jest.get(i) == null){
-				System.out.println("Null value");
-			}
-			else if (this.jest.get(i).suit == Suit.Clubs || this.jest.get(i).suit == Suit.Spades) {
-				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
-					this.jestValue += 5;
-				}
-				else {
-				this.jestValue += this.jest.get(i).cardValue();
-				}
-			}
-		}
-	}
-	
-	public void blackBonus() {
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == Suit.Clubs) {
-				
-				for(int j=0; j<this.jest.size();j++) {
-					if(this.jest.get(j).suit == Suit.Spades) {
-						
-						if(this.jest.get(i).kind == this.jest.get(j).kind) {
-							this.jestValue += 1;
-						}
-					}
-				}
-			}
-			else if(this.jest.get(i).suit == Suit.Spades) {
-				
-				for(int j=0; j<this.jest.size();j++) {
-					if(this.jest.get(j).suit == Suit.Clubs) {
-						
-						if(this.jest.get(i).kind == this.jest.get(j).kind) {
-							this.jestValue += 1;
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	public void removeDiamonds() {
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == Suit.Diamonds) {
-				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
-					this.jestValue -= 5;
-				}
-				else {
-				this.jestValue -= this.jest.get(i).cardValue();
-				}
-			}
-		}
-	}
-	
-	public void addHeart() {
-		for(int i=0; i<this.jest.size();i++) {
-			if(this.jest.get(i).suit == Suit.Hearts && this.hasJoker()) {
-				if(this.jest.get(i).kind == Kind.Ace && this.isAlone(Kind.Ace, this.jest.get(i).suit)) {
-					this.jestValue -= 5;
-				}
-				else {
-				this.jestValue -= this.jest.get(i).cardValue();
-				}
-			}
-			else if(this.jest.get(i).suit == Suit.Hearts && this.hasJoker() && this.hasAllHeart()) {
-				if(this.jest.get(i).kind == Kind.Ace && this.hasSuit(this.jest.get(i).suit) == false) {
-					this.jestValue += 5;
-				}
-				else {
-				this.jestValue += this.jest.get(i).cardValue();
-				}
-			}
-		}
-	}
-	
-	public void addJoker() {
-		if(this.hasJoker() && this.hasSuit(Suit.Hearts)==false) {
-			this.jestValue += 4;
-		}
-	}
 	
 	public boolean hasAllHeart() {
 		int count = 0;
@@ -319,8 +223,17 @@ public class Player implements Visitable{
 	@Override
 	public void acceptVisitor(Visitor v) {
 		this.listVisitor.add(v);
-		// TODO Auto-generated method stub
+
 		
+	}
+	public int getScore() {
+		return score;
+	}
+	public void setScore(int finalScore) {
+		this.score = finalScore;
+	}
+	public Jest getJest() {
+		return jest;
 	}
 
 }
