@@ -34,23 +34,23 @@ public class Deck {
 		
 		cards = new LinkedList<Card>();
 		
-		getCards().add(new Card(Kind.Joker,Suit.None,Trophy.BestJest));
-		getCards().add(new Card(Kind.Ace,Suit.Hearts,Trophy.Joker));
-		getCards().add(new Card(Kind.Four,Suit.Spades,Trophy.LowestClub));
-		getCards().add(new Card(Kind.Four,Suit.Clubs,Trophy.LowestSpade));
-		getCards().add(new Card(Kind.Two,Suit.Hearts,Trophy.Joker));
-		getCards().add(new Card(Kind.Four,Suit.Diamonds,Trophy.BJnoJoke));
-		getCards().add(new Card(Kind.Four,Suit.Hearts,Trophy.Joker));
-		getCards().add(new Card(Kind.Three,Suit.Hearts,Trophy.Joker));
-		getCards().add(new Card(Kind.Ace,Suit.Spades,Trophy.HighestClub));
-		getCards().add(new Card(Kind.Ace,Suit.Clubs,Trophy.HighestSpade));
-		getCards().add(new Card(Kind.Ace,Suit.Diamonds,Trophy.MajorityFour));
-		getCards().add(new Card(Kind.Two,Suit.Spades,Trophy.MajorityTree));
-		getCards().add(new Card(Kind.Two,Suit.Clubs,Trophy.LowestHeart));
-		getCards().add(new Card(Kind.Two,Suit.Diamonds,Trophy.HighestDiamond));
-		getCards().add(new Card(Kind.Three,Suit.Spades,Trophy.MajorityTwo));
-		getCards().add(new Card(Kind.Three,Suit.Clubs,Trophy.HighestHeart));
-		getCards().add(new Card(Kind.Three, Suit.Diamonds, Trophy.LowestDiamond));
+		getCards().add(new Card(Kind.Joker,Suit.None,Trophys.BestJest));
+		getCards().add(new Card(Kind.Ace,Suit.Hearts,Trophys.Joker));
+		getCards().add(new Card(Kind.Four,Suit.Spades,Trophys.LowestClub));
+		getCards().add(new Card(Kind.Four,Suit.Clubs,Trophys.LowestSpade));
+		getCards().add(new Card(Kind.Two,Suit.Hearts,Trophys.Joker));
+		getCards().add(new Card(Kind.Four,Suit.Diamonds,Trophys.BJnoJoke));
+		getCards().add(new Card(Kind.Four,Suit.Hearts,Trophys.Joker));
+		getCards().add(new Card(Kind.Three,Suit.Hearts,Trophys.Joker));
+		getCards().add(new Card(Kind.Ace,Suit.Spades,Trophys.HighestClub));
+		getCards().add(new Card(Kind.Ace,Suit.Clubs,Trophys.HighestSpade));
+		getCards().add(new Card(Kind.Ace,Suit.Diamonds,Trophys.MajorityFour));
+		getCards().add(new Card(Kind.Two,Suit.Spades,Trophys.MajorityTree));
+		getCards().add(new Card(Kind.Two,Suit.Clubs,Trophys.LowestHeart));
+		getCards().add(new Card(Kind.Two,Suit.Diamonds,Trophys.HighestDiamond));
+		getCards().add(new Card(Kind.Three,Suit.Spades,Trophys.MajorityTwo));
+		getCards().add(new Card(Kind.Three,Suit.Clubs,Trophys.HighestHeart));
+		getCards().add(new Card(Kind.Three, Suit.Diamonds, Trophys.LowestDiamond));
 		
 		topCards = new LinkedList<Card>();
 	}
@@ -134,7 +134,6 @@ public class Deck {
 			}
 		}
 		else {
-	
 			ConsoleGameView.display(ConsoleOutput.NoMoreCard);
 		}
 	}

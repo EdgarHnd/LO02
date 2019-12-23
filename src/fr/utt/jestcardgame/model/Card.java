@@ -4,7 +4,7 @@ public class Card {
 	
 	protected Kind kind;
 	protected Suit suit;
-	protected Trophy trophy;
+	protected Trophys trophy;
 	protected boolean hidden = true;
 	
 	
@@ -16,7 +16,7 @@ public class Card {
 		this.hidden = hidden;
 	}
 
-	public Card(Kind k, Suit s, Trophy t) {
+	public Card(Kind k, Suit s, Trophys t) {
 		this.kind = k;
 		this.suit = s;
 		this.trophy = t;

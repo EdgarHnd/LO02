@@ -1,9 +1,8 @@
 package fr.utt.jestcardgame.model;
 
-import fr.utt.jestcardgame.visitor.Visitor;
-
 import java.util.ArrayList;
 import java.util.Random;
+import fr.utt.jestcardgame.observer.Observer;
 
 /**
  * This class is where a new party is created and managed once the user has entered all the options.
@@ -15,7 +14,7 @@ import java.util.Random;
  * @version 1.0
  */
 
-public class RoundsManager implements Visitor {
+public class RoundsManager implements Observer {
 	
 	private static RoundsManager rm= null;
 	protected int roundNb = 0;
@@ -47,7 +46,7 @@ public class RoundsManager implements Visitor {
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		this.listPlayers = new ArrayList<Player>(4);
+		this.listPlayers = new ArrayList<>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
 			this.listPlayers.add(i, new Player(GameOptions.getPlayersNames(i),i+1, new RealPlayerStrategy()));
 			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
@@ -134,7 +133,7 @@ public class RoundsManager implements Visitor {
 			this.listPlayers.get(i).calculateJestValue();
 			System.out.println(this.listPlayers.get(i).getName()+" Jest is : "+this.listPlayers.get(i).jest.toString()
 					+" with a value of : "+this.listPlayers.get(i).jestValue);
-			}
+		}
 	}
 	
 	public void giveTrophy() {
@@ -164,8 +163,8 @@ public class RoundsManager implements Visitor {
 	public Player checkBestOffer() {
 		//just a default value
 		Player bestOfferPlayer = new Player("Default",10, new RealPlayerStrategy());
-		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophy.None));
-		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophy.None));
+		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None));
+		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None));
 		bestOfferPlayer.hand.get(0).setHidden(false);
 		
 		

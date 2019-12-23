@@ -1,9 +1,7 @@
 package fr.utt.jestcardgame.visitor;
 
+import fr.utt.jestcardgame.model.Player;
 
 public interface Visitor {
-	
-		public void update(String str);
-
-
+	public void visit(Player p);
 }
