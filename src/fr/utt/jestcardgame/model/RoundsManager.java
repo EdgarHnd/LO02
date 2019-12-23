@@ -129,7 +129,7 @@ public class RoundsManager implements Observer {
 		}
 		System.out.println("No more cards, time to show your JESTS !");
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			this.listPlayers.get(i).jest.add(this.listPlayers.get(i).getOffer().pollFirst());
+			this.listPlayers.get(i).jest.addToJest(this.listPlayers.get(i).getOffer().pollFirst());
 			this.listPlayers.get(i).calculateJestValue();
 			System.out.println(this.listPlayers.get(i).getName()+" Jest is : "+this.listPlayers.get(i).jest.toString()
 					+" with a value of : "+this.listPlayers.get(i).jestValue);

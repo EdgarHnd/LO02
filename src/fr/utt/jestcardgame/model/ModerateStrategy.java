@@ -48,7 +48,7 @@ public class ModerateStrategy implements ChooseStrategy {
     }
 
     public void addMyOwnOfferToMyJest(Player me){
-        me.jest.add(me.offer.pollFirst());
+        me.jest.addToJest(me.offer.pollFirst());
         System.out.println("The AI's Jest is now : " + me.jest.toString());
 
         me.hasPlayed = true;
@@ -60,7 +60,7 @@ public class ModerateStrategy implements ChooseStrategy {
         int index = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
             if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
-                me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
+                me.jest.addToJest(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
                 index = i;
             }
         }
@@ -86,7 +86,7 @@ public class ModerateStrategy implements ChooseStrategy {
         }
 
         Card cardSelected = playerSelected.offer.get(randomNb2);
-        me.jest.add(cardSelected);
+        me.jest.addToJest(cardSelected);
 
         System.out.println("The AI's Jest is now : " + me.jest.toString());
         me.hasPlayed = true;
