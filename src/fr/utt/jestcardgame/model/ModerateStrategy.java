@@ -23,38 +23,74 @@ public class ModerateStrategy implements ChooseStrategy {
      */
     @Override
     public void pickOfferStrategy(Player player){
-
         System.out.println("\nIt's "+ player.name +"'s turn to pick a card");
         System.out.println("MODERATE STRATEGY");
-        //Card Selected by default
-        Card cardSelected = null;
-        isCorrectCard = false;
-        while (!isCorrectCard) {
-            //Pick a random card from the game board : cardSelected
-            Random rand = new Random();
-            int randomNb = rand.nextInt(RoundsManager.getInstance().listPlayers.size()) + 1;
-            int randomNb2 = rand.nextInt(2);
-            System.out.println("Numéro joueur : " + randomNb);
-            System.out.println("Numéro carte : " + randomNb2);
 
-            playerSelected = RoundsManager.getInstance().listPlayers.get(randomNb);
-            cardSelected = playerSelected.offer.get(randomNb2);
+        int nbCompleteOffers = countNbCompleteOffers(player);
+        System.out.println("NOMBRE OFFRES COMPLETES " + nbCompleteOffers );
+        if (nbCompleteOffers == 0) {
+            addMyOwnOfferToMyJest(player);
+        } else if (nbCompleteOffers == 1) {
+            addTheOnlyCardAvailableToMyJest(player);
+        } else if (nbCompleteOffers > 1 && nbCompleteOffers < RoundsManager.getInstance().listPlayers.size() +1){
+            addRandomCardToMyJest(player);
+        }
+    }
 
-            //if this cardSelected is different from the AI's offer, then we continue
-            if (cardSelected != player.hiddenCard() && cardSelected != player.offeredCard()) {
-                player.jest.add(cardSelected);
-
-                System.out.println("This is the card selected by the AI : " + cardSelected);
-                playerSelected.offer.remove(cardSelected);
-
-                isCorrectCard = true;
+    public int countNbCompleteOffers(Player me){
+        int nbCompleteOffers = 0;
+        for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
+            if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+                nbCompleteOffers ++;
             }
         }
-        System.out.println("The AI's Jest is now : "+ player.jest.toString());
-        player.hasPlayed = true;
-        player.isPicking = false;
+        return nbCompleteOffers;
+    }
 
-        //Set the next player
+    public void addMyOwnOfferToMyJest(Player me){
+        me.jest.add(me.offer.pollFirst());
+        System.out.println("The AI's Jest is now : " + me.jest.toString());
+
+        me.hasPlayed = true;
+        me.isPicking = false;
+        RoundsManager.getInstance().setTurnOver(true);
+    }
+
+    public void addTheOnlyCardAvailableToMyJest(Player me){
+        int index = 0;
+        for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
+            if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+                me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
+                index = i;
+            }
+        }
+        Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
+        System.out.println("The AI's Jest is now : " + me.jest.toString());
+        me.hasPlayed = true;
+        me.isPicking = false;
+        setNextPlayer(playerSelected);
+    }
+
+    public void addRandomCardToMyJest(Player me){
+        Random rand = new Random();
+        int randomNb = rand.nextInt(RoundsManager.getInstance().listPlayers.size());
+        int randomNb2 = rand.nextInt(2);
+
+        System.out.println("RandomNB 1 " + randomNb);
+        System.out.println("RandomNB 2 " + randomNb2);
+        playerSelected = RoundsManager.getInstance().listPlayers.get(randomNb);
+
+        while (playerSelected == me || !playerSelected.hasCompleteOffer()){
+            randomNb = rand.nextInt(RoundsManager.getInstance().listPlayers.size());
+            playerSelected = RoundsManager.getInstance().listPlayers.get(randomNb);
+        }
+
+        Card cardSelected = playerSelected.offer.get(randomNb2);
+        me.jest.add(cardSelected);
+
+        System.out.println("The AI's Jest is now : " + me.jest.toString());
+        me.hasPlayed = true;
+        me.isPicking = false;
         setNextPlayer(playerSelected);
     }
 

@@ -35,7 +35,7 @@ public class DefensiveStrategy implements ChooseStrategy {
 		System.out.println("DEFENSIVE STRATEGY");
 
 		int nbCompleteOffers = countNbCompleteOffers(player);
-		if (nbCompleteOffers ==0) {
+		if (nbCompleteOffers == 0) {
             addMyOwnOfferToMyJest(player);
         } else if (nbCompleteOffers == 1) {
             addTheOnlyCardAvailableToMyJest(player);
@@ -46,7 +46,7 @@ public class DefensiveStrategy implements ChooseStrategy {
 	public int countNbCompleteOffers(Player me){
 		int nbCompleteOffers = 0;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
-			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+			if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
 				nbCompleteOffers ++;
 			}
 		}
@@ -65,12 +65,8 @@ public class DefensiveStrategy implements ChooseStrategy {
 	public void addTheOnlyCardAvailableToMyJest(Player me){
 		int index = 0;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
-			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+			if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
 				me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
-				/*
-				 Card cardSelected = RoundsManager.getInstance().listPlayers.get(i).offer.get(0); //problem
-				me.jest.add(cardSelected);
-				*/
 				index = i;
 			}
 		}
@@ -78,36 +74,24 @@ public class DefensiveStrategy implements ChooseStrategy {
 		System.out.println("The AI's Jest is now : " + me.jest.toString());
 		me.hasPlayed = true;
 		me.isPicking = false;
-		//Set the next player
 		setNextPlayer(playerSelected);
 	}
 
 	public void addTheBestCardToMyJest(Player me){
-		int bestCardValueToPick = 5;
+		int bestCardValueToPick = 0;
         Iterator itr = RoundsManager.getInstance().listPlayers.iterator();
         while (itr.hasNext()){
             Player element = (Player) itr.next();
             int cardValueIndex = element.offer.get(0).cardValue();
             Card cardIndex = element.offer.get(0);
 
-            if (element.completeOffer()) {
-                if (cardValueIndex < bestCardValueToPick && cardIndex != me.offer.get(0)) {
+            if (element.hasCompleteOffer()) {
+                if (cardValueIndex > bestCardValueToPick && cardIndex != me.offer.get(0)) {
                     bestCardValueToPick = element.offer.get(0).cardValue();
                     playerSelected = element;
                 }
             }
         }
-        /*for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
-			int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
-			Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
-
-			if (RoundsManager.getInstance().listPlayers.get(i).completeOffer()) {
-				if (cardValueIndex < bestCardValueToPick && cardIndex != me.offer.get(0)) {
-					bestCardValueToPick = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
-					index = i;
-				}
-			}
-		}*/
 
         Card cardSelected = playerSelected.offer.pollFirst();
 
@@ -117,7 +101,6 @@ public class DefensiveStrategy implements ChooseStrategy {
 
 		me.hasPlayed = true;
 		me.isPicking = false;
-		//Set the next player
 		setNextPlayer(playerSelected);
 	}
 

@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Player implements Visitable{
-	
+
+	ChooseStrategy strategy;
+
+	//attribut nb pas nécessaire
 	protected int nb;
 	protected String name;
 	protected LinkedList<Card> hand;
@@ -19,7 +22,7 @@ public class Player implements Visitable{
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
-	private ArrayList<Visitor> listVisitor = new ArrayList<Visitor>(); 
+	private ArrayList<Visitor> listVisitor = new ArrayList<Visitor>();
 	
 	public boolean getHasPlayed() {
 		return hasPlayed;
@@ -47,7 +50,7 @@ public class Player implements Visitable{
 		return offer;
 	}
 	//Constructor
-	public Player (String name, int nb) {
+	public Player (String name, int nb, ChooseStrategy strategy) {
 		this.name = name;
 		this.nb = nb;
 		
@@ -55,7 +58,7 @@ public class Player implements Visitable{
 		this.jest = new LinkedList<Card>();
 		this.offer = new LinkedList<Card>();
 		this.finalScore = 0;
-		
+		this.strategy = strategy;
 	}
 	
 	//Players methods
@@ -87,18 +90,19 @@ public class Player implements Visitable{
 		this.offer.add(this.hiddenCard());
 	}
 	
-	public boolean completeOffer() {
+	public boolean hasCompleteOffer() {
 		if(this.offer.size()==2) {
 			return true;
 		}
 		return false;
 	}
+
 	public void makeOffer() {
-		
+		strategy.makeOfferStrategy(this);
 	}
 	
 	public void pickOffer() {
-		
+		strategy.pickOfferStrategy(this);
 	}
 	
 	//----------------------------------------------------

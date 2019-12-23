@@ -18,9 +18,9 @@ import java.util.Scanner;
 	        return instance;
 	    }
 
-	    public void isCorrectInputBetweenMinMax(int min, int max, int input) throws setupException {
+	    public void isCorrectInputBetweenMinMax(int min, int max, int input, ConsoleOutput output) throws setupException {
 	    	if (input >= min && input <= max){
-				ConsoleGameView.display(ConsoleOutput.PlayerNb);
+				ConsoleGameView.display(output);
 			} else {
 	    		throw new setupException("The value is not correct.");
 			}

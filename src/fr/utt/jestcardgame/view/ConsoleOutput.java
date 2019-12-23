@@ -17,5 +17,5 @@ public enum ConsoleOutput {
 	OfferMade,
 	BestOffer,
 	Picking,
-	
+	Standard,
 }

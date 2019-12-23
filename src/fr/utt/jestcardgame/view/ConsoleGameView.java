@@ -70,6 +70,9 @@ public abstract class ConsoleGameView {
 		case Picking:
 			System.out.println("Select the opponent you want to pick a card from");
 			break;
+		case Standard :
+			System.out.println(" ");
+			break;
 		default:System.out.println("Nothing to display");
 		}
 		

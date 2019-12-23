@@ -57,7 +57,7 @@ public abstract class GameOptions {
 			try {
 				int nbPlayer = ConsoleUserInput.getInstance().nextInt();
 				GameOptions.nbPlayer = nbPlayer;
-				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(3, 4, nbPlayer);
+				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(3, 4, nbPlayer, ConsoleOutput.PlayerNb);
 				correctNumber = true;
 			} catch (setupException e){
 				e.getMessage();
@@ -81,7 +81,7 @@ public abstract class GameOptions {
 				try {
 					int nbRealPlayer = ConsoleUserInput.getInstance().nextInt();
 					GameOptions.nbRealPlayer = nbRealPlayer;
-					ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(0, nbPlayer, nbRealPlayer);
+					ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(0, nbPlayer, nbRealPlayer, ConsoleOutput.Standard);
 					correctNumber = true;
 				} catch (setupException e){
 					e.getMessage();
@@ -107,7 +107,7 @@ public abstract class GameOptions {
 			try {
 				int nbVariant = ConsoleUserInput.getInstance().nextInt();
 				variant = nbVariant;
-				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(1, 3, nbVariant);
+				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(1, 3, nbVariant, ConsoleOutput.SelectVar);
 				correctNumber = true;
 			} catch (setupException e){
 				e.getMessage();
@@ -153,7 +153,6 @@ public abstract class GameOptions {
 			switch (playerChoice) {
 				case 2:
 					chooseVariant();
-					ConsoleGameView.display(ConsoleOutput.SelectVar);
 					break;
 				case 1:
 					startGame = true;

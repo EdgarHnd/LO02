@@ -3,10 +3,7 @@ package fr.utt.jestcardgame.model;
 import fr.utt.jestcardgame.visitor.Visitor;
 
 import java.util.ArrayList;
-
-
-
-
+import java.util.Random;
 
 /**
  * This class is where a new party is created and managed once the user has entered all the options.
@@ -50,15 +47,28 @@ public class RoundsManager implements Visitor {
 	
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
-		
 		this.listPlayers = new ArrayList<Player>(4);
 		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			this.listPlayers.add(i, new RealPlayer(GameOptions.getPlayersNames(i),i+1));
+			this.listPlayers.add(i, new Player(GameOptions.getPlayersNames(i),i+1, new RealPlayerStrategy()));
 			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
 		}
 		
 		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
-			this.listPlayers.add(new VirtualPlayer("AI"+ j,j));
+			Random rand = new Random();
+			int randomNb = rand.nextInt(2) + 1;
+			switch (randomNb){
+				case 1 :
+					this.listPlayers.add(new Player("AI"+ j,j, new OffensiveStrategy()));
+					break;
+				case 2 :
+					this.listPlayers.add(new Player("AI"+ j,j, new DefensiveStrategy()));
+					break;
+				/*case 1 :
+					this.listPlayers.add(new Player("AI"+ j,j, new ModerateStrategy()));
+					break;*/
+				default:
+					break;
+			}
 			System.out.println("\n"+this.listPlayers.get(j-1).getName() + " will play as AIPlayer "+ this.listPlayers.get(j-1).getNb());
 		}
 	}
@@ -79,6 +89,7 @@ public class RoundsManager implements Visitor {
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
 			this.listPlayers.get(i).makeOffer();
+
 		}
 		
 		//This is the player with the best offer
@@ -152,7 +163,7 @@ public class RoundsManager implements Visitor {
 	//return the player with the best offer
 	public Player checkBestOffer() {
 		//just a default value
-		Player bestOfferPlayer = new RealPlayer("Default",10);
+		Player bestOfferPlayer = new Player("Default",10, new RealPlayerStrategy());
 		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophy.None));
 		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophy.None));
 		bestOfferPlayer.hand.get(0).setHidden(false);
@@ -214,15 +225,35 @@ public class RoundsManager implements Visitor {
 	
 	public void showValidOffers() {
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			if((this.listPlayers.get(i).completeOffer() && this.listPlayers.get(i).isPicking == false)){
-				
+			if((this.listPlayers.get(i).hasCompleteOffer() && this.listPlayers.get(i).isPicking == false)){
 				System.out.println("("+this.listPlayers.get(i).getNb()+") : "+this.listPlayers.get(i).getName()+" offer : "+ 
 				this.listPlayers.get(i).offeredCard() + " and a hidden card");
 			}
 		}
 	}
-	
-	
+
+	public int getMinValidOffer() {
+		int min = 10;
+		for (int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			Player playerSelected = this.listPlayers.get(i);
+			if (playerSelected.hasCompleteOffer() && playerSelected.isPicking == false && playerSelected.getNb() < min) {
+				min = this.listPlayers.get(i).getNb();
+			}
+		}
+		return min;
+	}
+
+	public int getMaxValidOffer(){
+		int max = 0;
+		for (int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			Player playerSelected = this.listPlayers.get(i);
+			if (playerSelected.hasCompleteOffer() && playerSelected.isPicking == false && playerSelected.getNb() > max) {
+				max = this.listPlayers.get(i).getNb();
+			}
+		}
+		return max;
+	}
+
 	public void countPlayerScore() {
 		
 	}

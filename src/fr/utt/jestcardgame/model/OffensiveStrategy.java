@@ -77,7 +77,7 @@ public class OffensiveStrategy implements ChooseStrategy {
     public int countNbCompleteOffers(Player me){
         int nbCompleteOffers = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
-            if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+            if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
                 nbCompleteOffers ++;
             }
         }
@@ -90,14 +90,13 @@ public class OffensiveStrategy implements ChooseStrategy {
 
         me.hasPlayed = true;
         me.isPicking = false;
-        //Set the next player
         RoundsManager.getInstance().setTurnOver(true);
     }
 
     public void addTheOnlyCardAvailableToMyJest(Player me){
         int index = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
-            if (RoundsManager.getInstance().listPlayers.get(i).completeOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
+            if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
                 me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
                 index = i;
             }
@@ -106,7 +105,6 @@ public class OffensiveStrategy implements ChooseStrategy {
         System.out.println("The AI's Jest is now : " + me.jest.toString());
         me.hasPlayed = true;
         me.isPicking = false;
-        //Set the next player
         setNextPlayer(playerSelected);
     }
 
@@ -118,24 +116,14 @@ public class OffensiveStrategy implements ChooseStrategy {
             int cardValueIndex = element.offer.get(0).cardValue();
             Card cardIndex = element.offer.get(0);
 
-            if (element.completeOffer()) {
+            if (element.hasCompleteOffer()) {
                 if (cardValueIndex > bestCardValueToPick && cardIndex != me.offer.get(0)) {
                     bestCardValueToPick = element.offer.get(0).cardValue();
                     playerSelected = element;
                 }
             }
         }
-        /*for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size() ; i ++){
-            int cardValueIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
-            Card cardIndex = RoundsManager.getInstance().listPlayers.get(i).offer.get(0);
 
-            if (RoundsManager.getInstance().listPlayers.get(i).completeOffer()) {
-                if (cardValueIndex > bestCardValueToPick && cardIndex != me.offer.get(0)) {
-                    bestCardValueToPick = RoundsManager.getInstance().listPlayers.get(i).offer.get(0).cardValue();
-                    index = i;
-                }
-            }
-        }*/
         Card cardSelected = playerSelected.offer.pollFirst();
 
         me.jest.add(cardSelected);
@@ -143,7 +131,6 @@ public class OffensiveStrategy implements ChooseStrategy {
 
         me.hasPlayed = true;
         me.isPicking = false;
-        //Set the next player
         setNextPlayer(playerSelected);
     }
 }
