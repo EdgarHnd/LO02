@@ -1,12 +1,7 @@
 package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
-
 import fr.utt.jestcardgame.observer.Observer;
-
-
-
-
 
 /**
  * This class is where a new party is created and managed once the user has entered all the options.

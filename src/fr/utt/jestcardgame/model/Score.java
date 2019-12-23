@@ -74,7 +74,7 @@ public class Score implements Visitor{
 					Iterator<Card> j = this.player.getJest().getJestCards().iterator();
 					 while(i.hasNext()) {
 							Card b = j.next();
-							if(b.suit == Suit.Spades) {
+							if(b.suit == Suit.Clubs) {
 								
 								if(c.kind == b.kind) {
 									this.score += 1;
