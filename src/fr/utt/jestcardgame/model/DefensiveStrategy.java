@@ -54,8 +54,8 @@ public class DefensiveStrategy implements ChooseStrategy {
 	}
 
 	public void addMyOwnOfferToMyJest(Player me){
-		me.jest.add(me.offer.pollFirst());
-		System.out.println("The AI's Jest is now : " + me.jest.toString());
+		me.getJest().addToJest(me.offer.pollFirst());
+		System.out.println("The AI's Jest is now : " + me.getJest().getJestCards().toString());
 
 		me.hasPlayed = true;
 		me.isPicking = false;
@@ -66,12 +66,12 @@ public class DefensiveStrategy implements ChooseStrategy {
 		int index = 0;
 		for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
 			if (RoundsManager.getInstance().listPlayers.get(i).hasCompleteOffer() && RoundsManager.getInstance().listPlayers.get(i)!= me){
-				me.jest.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
+				me.getJest().addToJest(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
 				index = i;
 			}
 		}
 		Player playerSelected = RoundsManager.getInstance().listPlayers.get(index);
-		System.out.println("The AI's Jest is now : " + me.jest.toString());
+		System.out.println("The AI's Jest is now : " + me.getJest().getJestCards().toString());
 		me.hasPlayed = true;
 		me.isPicking = false;
 		setNextPlayer(playerSelected);
@@ -79,7 +79,7 @@ public class DefensiveStrategy implements ChooseStrategy {
 
 	public void addTheBestCardToMyJest(Player me){
 		int bestCardValueToPick = 0;
-        Iterator itr = RoundsManager.getInstance().listPlayers.iterator();
+        Iterator<Player> itr = RoundsManager.getInstance().listPlayers.iterator();
         while (itr.hasNext()){
             Player element = (Player) itr.next();
             int cardValueIndex = element.offer.get(0).cardValue();
@@ -95,9 +95,9 @@ public class DefensiveStrategy implements ChooseStrategy {
 
         Card cardSelected = playerSelected.offer.pollFirst();
 
-        me.jest.add(cardSelected);
+        me.jest.addToJest(cardSelected);
 
-		System.out.println("The AI's Jest is now : " + me.jest.toString());
+		System.out.println("The AI's Jest is now : " + me.getJest().getJestCards().toString());
 
 		me.hasPlayed = true;
 		me.isPicking = false;

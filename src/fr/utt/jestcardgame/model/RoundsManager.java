@@ -1,6 +1,7 @@
 package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 import fr.utt.jestcardgame.observer.Observer;
 
@@ -62,7 +63,7 @@ public class RoundsManager implements Observer {
 				case 2 :
 					this.listPlayers.add(new Player("AI"+ j,j, new DefensiveStrategy()));
 					break;
-				/*case 1 :
+				/*case 3 :
 					this.listPlayers.add(new Player("AI"+ j,j, new ModerateStrategy()));
 					break;*/
 				default:
@@ -129,21 +130,30 @@ public class RoundsManager implements Observer {
 		}
 		System.out.println("No more cards, time to show your JESTS !");
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			this.listPlayers.get(i).jest.addToJest(this.listPlayers.get(i).getOffer().pollFirst());
-			this.listPlayers.get(i).calculateJestValue();
-			System.out.println(this.listPlayers.get(i).getName()+" Jest is : "+this.listPlayers.get(i).jest.toString()
-					+" with a value of : "+this.listPlayers.get(i).jestValue);
+			//add visitor			
+			this.listPlayers.get(i).getScore().visit(this.listPlayers.get(i));
+			//add last card one the board to the jest
+			this.listPlayers.get(i).getJest().addToJest(this.listPlayers.get(i).getOffer().pollFirst());
+			this.listPlayers.get(i).getScore().giveScore();
+			System.out.println(this.listPlayers.get(i).getName()+" Jest is : "+this.listPlayers.get(i).getJest().getJestCards().toString()
+					+" with a value of : "+this.listPlayers.get(i).getScore().getScore());
 		}
 	}
 	
 	public void giveTrophy() {
 		System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys());
+		//add visitor
+		Iterator<Player> j= this.listPlayers.iterator();
+		while(j.hasNext()) {
+			Player p = j.next();
+			GameBoard.getInstance().visit(p);
+		}
 		GameBoard.getInstance().giveTrophys();
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			this.listPlayers.get(i).resetJest();
-			this.listPlayers.get(i).calculateJestValue();
-			System.out.println(this.listPlayers.get(i).getName()+" Final Jest is : "+this.listPlayers.get(i).jest.toString()
-					+" with a value of : "+this.listPlayers.get(i).jestValue);
+			this.listPlayers.get(i).getScore().resetScore();;
+			this.listPlayers.get(i).getScore().giveScore();;
+			System.out.println(this.listPlayers.get(i).getName()+" Final Jest is : "+this.listPlayers.get(i).getJest().getJestCards().toString()
+					+" with a value of : "+this.listPlayers.get(i).getScore().getScore());
 			}
 	}
 	
@@ -151,12 +161,12 @@ public class RoundsManager implements Observer {
 		int bestJest = 0;
 		Player finalWinner = null;
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			if(this.listPlayers.get(i).jestValue > bestJest) {
-				bestJest = this.listPlayers.get(i).jestValue;
+			if(this.listPlayers.get(i).getScore().getScore() > bestJest) {
+				bestJest = this.listPlayers.get(i).getScore().getScore();
 				finalWinner = this.listPlayers.get(i);
 			}
 		}
-		System.out.println(finalWinner.getName()+" win this game with a Jest value of : "+finalWinner.jestValue);
+		System.out.println(finalWinner.getName()+" win this game with a Jest value of : "+finalWinner.getScore().getScore());
 	}
 	
 	//return the player with the best offer
@@ -251,10 +261,6 @@ public class RoundsManager implements Observer {
 			}
 		}
 		return max;
-	}
-
-	public void countPlayerScore() {
-		
 	}
 
 	public void printFinalRanking() {

@@ -64,11 +64,11 @@ public class RealPlayerStrategy implements ChooseStrategy{
                         ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(1, 2, cardSelect, ConsoleOutput.Standard);
                         correctInputCard = true;
                         if (cardSelect == 1) {
-                            player.jest.add(playerSelect.getOffer().pollFirst());
+                            player.getJest().addToJest(playerSelect.getOffer().pollFirst());
                         } else if (cardSelect == 2) {
-                            player.jest.add(playerSelect.getOffer().pollLast());
+                            player.getJest().addToJest(playerSelect.getOffer().pollLast());
                         }
-                        System.out.println("Your Jest is now : " + player.jest.toString());
+                        System.out.println("Your Jest is now : " + player.getJest().getJestCards().toString());
                         player.hasPlayed = true;
                         player.isPicking = false;
 

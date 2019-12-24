@@ -15,16 +15,20 @@ public class Score implements Visitor{
 	
 	@Override
 	public void visit(Player p) {
+		System.out.println("Visiting : "+p.getName());
 		this.player = p;
 	}
 	
 	public void giveScore() {
 		this.calculateJestValue();
-		this.player.setScore(score);
 	}
 	
 	public void resetScore() {
 		this.score = 0;
+	}
+	
+	public int getScore() {
+		return this.score;
 	}
 	
 	//Calculating player score
@@ -49,8 +53,7 @@ public class Score implements Visitor{
 					else {
 						this.score += c.cardValue();
 					}
-				}
-				
+				}	
 			}
 		 }
 		
@@ -60,7 +63,7 @@ public class Score implements Visitor{
 				Card c = i.next();
 				if(c.suit == Suit.Clubs) {
 					Iterator<Card> j = this.player.getJest().getJestCards().iterator();
-					 while(i.hasNext()) {
+					 while(j.hasNext()) {
 							Card b = j.next();
 							if(b.suit == Suit.Spades) {
 								
@@ -72,7 +75,7 @@ public class Score implements Visitor{
 				}
 				else if(c.suit == Suit.Spades) {
 					Iterator<Card> j = this.player.getJest().getJestCards().iterator();
-					 while(i.hasNext()) {
+					 while(j.hasNext()) {
 							Card b = j.next();
 							if(b.suit == Suit.Clubs) {
 								

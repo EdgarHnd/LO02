@@ -70,6 +70,9 @@ public enum Trophys {
 	Joker{
 		@Override
 		int deserveTrophy(Player p) {
+			if(p.getJest().hasJoker()) {
+				return 10;
+			}
 			return 0;
 		}
 	},	
@@ -77,7 +80,7 @@ public enum Trophys {
 		@Override
 		int deserveTrophy(Player p) {
 			if(p.getJest().hasJoker()) {
-				return p.getScore();
+				return p.getScore().getScore();
 			}
 		return 0;
 		}
@@ -86,7 +89,7 @@ public enum Trophys {
 		@Override
 		int deserveTrophy(Player p) {
 				if(p.getJest().hasJoker() == false) {
-					return p.getScore();
+					return p.getScore().getScore();
 				}
 			return 0;
 		}

@@ -1,6 +1,5 @@
 package fr.utt.jestcardgame.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 import fr.utt.jestcardgame.visitor.Visitable;
@@ -16,11 +15,10 @@ public class Player implements Visitable{
 	protected LinkedList<Card> offer;
 	protected Jest jest;
 	protected int finalBoolean;
-	protected int score;
+	protected Score score;
 	protected boolean hasPlayed = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
-	private ArrayList<Visitor> listVisitor = new ArrayList<>();
 	
 	public boolean getHasPlayed() {
 		return hasPlayed;
@@ -47,6 +45,15 @@ public class Player implements Visitable{
 	public LinkedList<Card> getOffer() {
 		return offer;
 	}
+	public Score getScore() {
+		return score;
+	}
+	public void setScore(Score s) {
+		this.score = s;
+	}
+	public Jest getJest() {
+		return jest;
+	}
 	//Constructor
 	public Player (String name, int nb, ChooseStrategy strategy) {
 		this.name = name;
@@ -56,7 +63,7 @@ public class Player implements Visitable{
 		this.jest = new Jest();
 		this.offer = new LinkedList<Card>();
 		this.strategy = strategy;
-		this.score = 0;
+		this.score = new Score();
 	}
 	
 	//Players methods
@@ -104,18 +111,6 @@ public class Player implements Visitable{
 	}
 	@Override
 	public void acceptVisitor(Visitor v) {
-		this.listVisitor.add(v);
-
-		
+		v.visit(this);
 	}
-	public int getScore() {
-		return score;
-	}
-	public void setScore(int finalScore) {
-		this.score = finalScore;
-	}
-	public Jest getJest() {
-		return jest;
-	}
-
 }
