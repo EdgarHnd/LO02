@@ -1,9 +1,10 @@
 package fr.utt.jestcardgame.model;
 
+import fr.utt.jestcardgame.observer.Observer;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
-import fr.utt.jestcardgame.observer.Observer;
 
 /**
  * This class is where a new party is created and managed once the user has entered all the options.
@@ -239,6 +240,16 @@ public class RoundsManager implements Observer {
 				this.listPlayers.get(i).offeredCard() + " and a hidden card");
 			}
 		}
+	}
+
+	public ArrayList getListNbOffers(){
+		ArrayList<Integer> listNb = new ArrayList<>(4);
+		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			if((this.listPlayers.get(i).hasCompleteOffer() && this.listPlayers.get(i).isPicking == false)){
+				listNb.add(this.listPlayers.get(i).getNb());
+			}
+		}
+		return listNb;
 	}
 
 	public int getMinValidOffer() {

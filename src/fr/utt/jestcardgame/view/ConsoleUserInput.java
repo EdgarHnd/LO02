@@ -1,5 +1,6 @@
 package fr.utt.jestcardgame.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 	public class ConsoleUserInput {
@@ -23,6 +24,14 @@ import java.util.Scanner;
 				ConsoleGameView.display(output);
 			} else {
 	    		throw new setupException("The value is not correct.");
+			}
+		}
+
+		public void isCorrectInputList(ArrayList list, int input, ConsoleOutput output) throws setupException {
+			if (list.contains(input)){
+				ConsoleGameView.display(output);
+			} else {
+				throw new setupException("The value is not correct.");
 			}
 		}
 
