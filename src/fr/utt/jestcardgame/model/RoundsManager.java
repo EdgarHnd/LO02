@@ -252,28 +252,6 @@ public class RoundsManager implements Observer {
 		return listNb;
 	}
 
-	public int getMinValidOffer() {
-		int min = 10;
-		for (int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			Player playerSelected = this.listPlayers.get(i);
-			if (playerSelected.hasCompleteOffer() && playerSelected.isPicking == false && playerSelected.getNb() < min) {
-				min = this.listPlayers.get(i).getNb();
-			}
-		}
-		return min;
-	}
-
-	public int getMaxValidOffer(){
-		int max = 0;
-		for (int i = 0; i < GameOptions.getNbPlayer(); i++) {
-			Player playerSelected = this.listPlayers.get(i);
-			if (playerSelected.hasCompleteOffer() && playerSelected.isPicking == false && playerSelected.getNb() > max) {
-				max = this.listPlayers.get(i).getNb();
-			}
-		}
-		return max;
-	}
-
 	public void printFinalRanking() {
 		
 	}
