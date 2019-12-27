@@ -79,10 +79,7 @@ public enum Trophys {
 	BestJest{
 		@Override
 		int deserveTrophy(Player p) {
-			if(p.getJest().hasJoker()) {
 				return p.getScore().getScore();
-			}
-		return 0;
 		}
 	},
 	BJnoJoke{

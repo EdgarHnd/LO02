@@ -35,12 +35,11 @@ public class Jest {
 	
 	public boolean isAlone(Kind k,Suit s) {
 		for(int i=0; i<this.jestCards.size();i++) {
-			if(this.jestCards.get(i).kind != k) {
-				if(this.jestCards.get(i).suit == s) {
+			if(this.jestCards.get(i).kind != k && 
+					this.jestCards.get(i).suit == s) {
 					return false;
 				}
 			}
-		}
 		return true;
 	}
 	
@@ -77,12 +76,11 @@ public class Jest {
 	public int tieMajority(Kind k) {
 		int high = 0;
 		for(int i=0; i<this.jestCards.size();i++) {
-			if(this.jestCards.get(i).kind == k) {
-				if(this.jestCards.get(i).cardTiesValue() > high) {
+			if(this.jestCards.get(i).kind == k 
+					&& this.jestCards.get(i).cardTiesValue() > high) {
 					high = this.jestCards.get(i).cardTiesValue();
 					}
 			}
-		}
 		return high;
 	}
 	
@@ -127,12 +125,11 @@ public class Jest {
 	public int highestFaceTiesValue() {
 		int high = 0;
 		for(int i=0; i<this.jestCards.size();i++) {
-			if(this.jestCards.get(i).cardValue() == this.highestFaceValue()) {
-				if(this.jestCards.get(i).cardTiesValue() > high) {
+			if(this.jestCards.get(i).cardValue() == this.highestFaceValue() && 
+					this.jestCards.get(i).cardTiesValue() > high) {
 					high = this.jestCards.get(i).cardTiesValue();
 				}
 			}
-		}
 		return high;
 	}
 	
