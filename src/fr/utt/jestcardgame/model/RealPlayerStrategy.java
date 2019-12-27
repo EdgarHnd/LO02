@@ -5,6 +5,7 @@ import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
 import fr.utt.jestcardgame.view.setupException;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class RealPlayerStrategy implements ChooseStrategy{
@@ -44,15 +45,11 @@ public class RealPlayerStrategy implements ChooseStrategy{
         while (!correctInputPlayer) {
             RoundsManager.getInstance().showValidOffers();
             ConsoleGameView.display(ConsoleOutput.Picking);
-            int max = RoundsManager.getInstance().getMaxValidOffer();
-            int min = RoundsManager.getInstance().getMinValidOffer();
-            System.out.println("MIN : " + min);
-            System.out.println("MAX : " + max);
+            ArrayList<Integer> listNb = RoundsManager.getInstance().getListNbOffers();
+
             try{
                 int playerSlct = ConsoleUserInput.getInstance().nextInt()-1;
-                System.out.println("HELLO U : " + playerSlct);
-                // @TODO Have to change this way to handle the exceptions, not appropriate :)
-                ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(min, max, playerSlct+1, ConsoleOutput.Standard);
+                ConsoleUserInput.getInstance().isCorrectInputList(listNb, playerSlct+1, ConsoleOutput.Standard);
                 Player playerSelect = RoundsManager.getInstance().listPlayers.get(playerSlct);
 
                 correctInputPlayer = true;
