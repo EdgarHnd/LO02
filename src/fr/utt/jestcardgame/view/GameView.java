@@ -1,6 +1,8 @@
 package fr.utt.jestcardgame.view;
 
 
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 
 import fr.utt.jestcardgame.observer.Observer;
@@ -14,8 +16,18 @@ public class GameView extends Window implements Observer{
 		
 	}
 	 public static void main(String[] args){
-
-		    JFrame win = new GameView();            
+		 
+		 EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						JFrame win = new GameView();
+						win.setVisible(true);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}
+			});
+		              
 		  }
 
 	@Override

@@ -26,12 +26,12 @@ public class Window extends JFrame{
 	    this.container.setBackground(Color.white);
 	    this.initWelcome();
 	    this.setContentPane(this.container);
-	    this.setVisible(true);
 	}
 	
 	public void initWelcome() {
 		System.out.println("Showing Welcome");
 		container.removeAll();
+		//container.add(new Welcome(size).getPanel(), BorderLayout.CENTER);
 		container.add(new Welcome(size).getPanel(), BorderLayout.CENTER);
 		container.revalidate();
 	}
