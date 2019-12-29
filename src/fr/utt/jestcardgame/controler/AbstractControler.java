@@ -1,11 +1,13 @@
 package fr.utt.jestcardgame.controler;
 
-import fr.utt.jestcardgame.model.AbstractGameManager;
+import fr.utt.jestcardgame.model.GameManager;
 
 public abstract class AbstractControler {
 	
-	public AbstractControler(AbstractGameManager gm) {
-		
+	protected GameManager gm;
+	
+	public AbstractControler(GameManager gm) {
+		this.gm = gm;
 	}
 
 	

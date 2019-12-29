@@ -15,7 +15,8 @@ public abstract class ConsoleGameView {
 			System.out.println("Welcome to JestGame !");
 	        System.out.println("____________________");
 	        System.out.println("\n1 - Start game");
-	        System.out.println("\n2 - Quit");
+	        System.out.println("\n2 - Rules");
+	        System.out.println("\n3 - Quit");
 	        break;
 		case settingNbPlayer:
 			System.out.println("How many players for your game ? (You have the choice between 3 or 4.)");

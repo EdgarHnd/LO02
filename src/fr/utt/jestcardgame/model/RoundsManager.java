@@ -1,5 +1,6 @@
 package fr.utt.jestcardgame.model;
 
+import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
 
 import java.util.ArrayList;
@@ -242,7 +243,7 @@ public class RoundsManager implements Observer {
 		}
 	}
 
-	public ArrayList getListNbOffers(){
+	public ArrayList<Integer> getListNbOffers(){
 		ArrayList<Integer> listNb = new ArrayList<>(4);
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			if((this.listPlayers.get(i).hasCompleteOffer() && this.listPlayers.get(i).isPicking == false)){
@@ -256,8 +257,9 @@ public class RoundsManager implements Observer {
 		
 	}
 
+
 	@Override
-	public void update(String str) {
+	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}
