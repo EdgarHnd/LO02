@@ -10,7 +10,7 @@ import fr.utt.jestcardgame.view.Window;
 
 //Class principal de l'interface graphique héritant de la classe window qui correspond à une fenetre
 
-public class GameView extends Window implements Observer{
+public class GameView implements Observer{
 	
 	public GameView(){
 		
@@ -20,7 +20,8 @@ public class GameView extends Window implements Observer{
 		 EventQueue.invokeLater(new Runnable() {
 				public void run() {
 					try {
-						JFrame win = new GameView();
+						JFrame win = new Window();
+						//win.pack();
 						win.setVisible(true);
 					} catch (Exception e) {
 						e.printStackTrace();

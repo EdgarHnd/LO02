@@ -12,17 +12,22 @@ import javax.swing.JLabel;
 public class CardLabel extends JLabel{
 	
 	private String imagePath = "pictures/CardsPng/rulescard.png";
-	public CardLabel(){}
+	private int factor;
+	public CardLabel(){
+		this.factor = 4;
+	}
 	public CardLabel(String path){
 		this.imagePath = path;
+		this.factor = 4;
 	}
 	
 	public void paint(Graphics g){
-			g.setColor(Color.red);
-			g.drawRect(0, 0, this.getWidth(), this.getHeight());
+			g.setColor(Color.black);
+			g.drawRect(0, 0, 34*this.factor, 48*this.factor);
 			try {
 				Image img = ImageIO.read(new File(this.imagePath));
-				g.drawImage(img, 0, 0, this);
+				Image scdImg = img.getScaledInstance(33*this.factor, 47*this.factor, Image.SCALE_AREA_AVERAGING);
+				g.drawImage(scdImg, 1, 1, this);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -30,6 +35,12 @@ public class CardLabel extends JLabel{
 		
 	}
 	
+	public int getFactor() {
+		return factor;
+	}
+	public void setFactor(int factor) {
+		this.factor = factor;
+	}
 	public void setImagePath(String path){
 		this.imagePath = path;
 		repaint();

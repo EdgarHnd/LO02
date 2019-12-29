@@ -27,19 +27,23 @@ public class Welcome extends Panel{
 
 	@Override
 	protected void initPanel() {
+		this.panel.setLayout(null);
 		JLabel titre = new JLabel("Welcome to JEST Game\n");
 		titre.setHorizontalAlignment(JLabel.CENTER);
 		titre.setFont(comics40);
+		titre.setBounds(350, 0, 500, 100);
 		
 		this.panel.add(titre);
 		
 		startB = new JButton("START");
-		//startB.setBounds(300, 100, 120, 40);
+		startB.setBounds(550, 250, 120, 40);
 		quitB = new JButton("QUIT");
+		quitB.setBounds(550, 350, 120, 40);
 		rulesB = new JButton("RULES");
+		rulesB.setBounds(550, 300, 120, 40);
 		
 		
-		this.panel.add(startB, BorderLayout.SOUTH);
+		this.panel.add(startB);
 		this.panel.add(rulesB);
 		this.panel.add(quitB);
 		
@@ -58,11 +62,15 @@ public class Welcome extends Panel{
 		texte.setFont(arial);
 		texte.setEditable(false);
 		texte.setBackground(Color.white);
+		texte.setBounds(500, 100, 300, 100);
 		
-		this.panel.add(texte, BorderLayout.SOUTH);
+		this.panel.add(texte);
 		
-		this.card = new CardLabel();
-		this.card.setImagePath("pictures/CardsPng/rulescard.png");
+		this.card = new CardLabel("pictures/CardsPng/rulescard.png");
+		//this.card.setImagePath("pictures/CardsPng/Aheart.png");
+		this.card.setPreferredSize(new Dimension(this.card.getFactor() * 34,this.card.getFactor() * 48));
+		this.card.setVerticalAlignment(JLabel.CENTER);
+		this.card.setBounds(100, 300, this.card.getFactor() * 34, this.card.getFactor() * 48);
 		this.panel.add(card);
 		
 	}
