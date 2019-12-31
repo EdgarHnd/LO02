@@ -1,5 +1,7 @@
 package fr.utt.jestcardgame;
 
+import java.awt.EventQueue;
+
 import fr.utt.jestcardgame.controler.GameViewControler;
 import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
@@ -8,7 +10,7 @@ import fr.utt.jestcardgame.view.setupException;
 
 public class Main {
 
-	    public static void main(String[] args) throws setupException {
+	    public static void main(String[] args) throws setupException, InterruptedException {
 	       
 	    	//Instantiate the game model
 	    	GameManager gm = new GameManager();
@@ -24,7 +26,7 @@ public class Main {
 	    		}
 	    	});
 	    	
-	    	Thread t2 = new Thread(new Runnable() {
+	    	/*Thread t2 = new Thread(new Runnable() {
 	    		public void run() {
 	    			//Create a controler linked to the model
 	    	    	GameViewControler cCtrl = new GameViewControler(gm);
@@ -36,27 +38,36 @@ public class Main {
 	    			gm.addObserver(gv);
 	    			gv.setVisible(true);
 	    		}
-	    	});
+	    	});*/
+	    	EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					//Create a controler linked to the model
+	    	    	GameViewControler cCtrl = new GameViewControler(gm);
+	    	    	
+	    	    	//Create a view the game in the Console linked to the ConsoleControler
+	    	    	GameView gv =  new GameView(cCtrl);
+	    	    	
+	    	    	//Our view can now visit the game model in order to update
+	    			gm.addObserver(gv);
+					gv.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	    	
-	    	Thread t3 = new Thread(new Runnable() {
+	    	/*Thread t3 = new Thread(new Runnable() {
 	    		public void run() {
 	    			ConsoleUserInput c = new ConsoleUserInput();
 	    		}
-	    	});
+	    	});*/
 	    	
 	    	t.start();
-	    	t2.start();
-	    	t3.start();
+	    	//t2.start();
+	    	//t3.start();
 	    	
-	    	/*EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							gv.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});*/
+	    	
 	    	
 	   
 	    }
