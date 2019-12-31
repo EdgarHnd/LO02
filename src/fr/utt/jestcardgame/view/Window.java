@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import fr.utt.jestcardgame.controler.AbstractControler;
 import fr.utt.jestcardgame.controler.GameViewControler;
 
 //Class de la fenetre principale de l'interface permettant d'initialliser les différents panneaux
@@ -16,9 +15,9 @@ public class Window extends JFrame{
 	
 	private Dimension size;
 	private JPanel container = new JPanel();
-	protected AbstractControler gvc;
+	protected GameViewControler gvc;
 	
-	public Window(AbstractControler gvc) {
+	public Window(GameViewControler gvc) {
 		this.gvc = gvc;
 		this.setTitle("Jest Game");
 		this.setSize(1200, 700);
@@ -36,14 +35,14 @@ public class Window extends JFrame{
 	public void initWelcome() {
 		System.out.println("Showing Welcome");
 		container.removeAll();
-		container.add(new Welcome(size).getPanel(), BorderLayout.CENTER);
+		container.add(new Welcome(size,gvc).getPanel(), BorderLayout.CENTER);
 		container.revalidate();
 	}
 	
 	public void initRules() {
 		System.out.println("Showing Rules");
 		container.removeAll();
-		container.add(new Rules(size).getPanel(), BorderLayout.CENTER);
+		container.add(new Rules(size,gvc).getPanel(), BorderLayout.CENTER);
 		container.revalidate();
 	}
 	
@@ -54,4 +53,5 @@ public class Window extends JFrame{
 	public void initNewGame() {
 		
 	}
+	
 }

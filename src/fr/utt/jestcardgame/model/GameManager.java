@@ -33,6 +33,8 @@ public class GameManager extends Observable{
     	this.userChoice = userChoice;
         switch (userChoice) {
             case 1:
+            	this.setChanged();
+            	this.notifyObservers();
                 try {
                     GameOptions.setup();
                 }
@@ -41,26 +43,42 @@ public class GameManager extends Observable{
                 }
                 break;
             case 2:
-            	System.out.println("Show the rules");
+            	this.setChanged();
+                this.notifyObservers();
+            	this.rules();
+                System.out.println("notify");
             	this.mainMenu();
+            	break;
             case 3:
+            	this.setChanged();
+            	this.notifyObservers();
                 System.exit(0);
                 break;
-            default:
                 //Gestion d'exception à faire
         }
-        this.setChanged();
-        this.notifyObservers();
     }
 
     	public void mainMenu() throws setupException {
 		//Main menu
-		ConsoleGameView.display(ConsoleOutput.MainMenu);	    
+    	this.userChoice = 0;
+    	this.setChanged();
+    	this.notifyObservers();
+		ConsoleGameView.display(ConsoleOutput.MainMenu);
         this.executeUserChoice(ConsoleUserInput.getInstance().nextInt());
+       
         //Start a game
         this.play();
         
 	}
+    	public void rules() throws setupException {
+    		System.out.println("Showing rules, press 1 to get back to the menu");
+    		int input = ConsoleUserInput.getInstance().nextInt();
+    		if(input == 1) {
+    			this.mainMenu();
+    		}
+    		
+    		
+    	}
 		public int getUserChoice() {
 			return userChoice;
 		}

@@ -3,11 +3,11 @@ package fr.utt.jestcardgame.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+
+import fr.utt.jestcardgame.controler.GameViewControler;
 
 //Class Accueil héritant de panneau qui correspond à l'écran principale du jeu
 
@@ -18,8 +18,9 @@ public class Welcome extends Panel{
 	private JButton rulesB;
 	private CardLabel card;
 	
-	public Welcome(Dimension dim) {
-		super(dim);
+	
+	public Welcome(Dimension dim, GameViewControler gvc) {
+		super(dim,gvc);
 		this.initPanel();
 	}
 
@@ -45,11 +46,8 @@ public class Welcome extends Panel{
 		this.panel.add(rulesB);
 		this.panel.add(quitB);
 		
-		quitB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0){
-				System.exit(0);
-			}
-		});
+		this.rulesB.addActionListener(this.gvc.getRules());
+		this.quitB.addActionListener(this.gvc.getQuit());
 		
 		//this.panel.add(new JLabel(new ImageIcon("images/accueil.jpg")), BorderLayout.CENTER);
 		
