@@ -12,14 +12,14 @@ public class GameViewControler extends AbstractControler {
 		super(gm);
 		
 	}
-	public void start() {
+	/*public void start() {
 		try {
 			this.gm.mainMenu();
 		} catch (setupException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	
 	/*public void rules() {
 		try {
@@ -45,12 +45,17 @@ public class GameViewControler extends AbstractControler {
 	private ActionListener rules = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			try {
-				gm.executeUserChoice(2);
-			} catch (setupException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}		
+			Thread rules = new Thread(new Runnable() {
+				public void run() {
+					try {
+						gm.executeUserChoice(2);
+					} catch (setupException e) {
+						e.printStackTrace();
+					}
+					System.out.println("button rules pressed");
+				}
+			}); 
+			rules.start();
 		}
 		
 	};
@@ -58,16 +63,19 @@ public class GameViewControler extends AbstractControler {
 	private ActionListener back = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-				try {
-					gm.mainMenu();
-				} catch (setupException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				
+			Thread back = new Thread(new Runnable() {
+				public void run() {
+					try {
+						gm.mainMenu();
+					} catch (setupException e) {
+						e.printStackTrace();
+					}
+					System.out.println("button rules pressed");
+				}	
+			});
+			back.start();
 		}
-		
-	};
+		};
 	
 	private ActionListener quit = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {

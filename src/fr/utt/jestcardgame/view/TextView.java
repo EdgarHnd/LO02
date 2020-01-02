@@ -2,7 +2,9 @@ package fr.utt.jestcardgame.view;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.observer.Observable;
@@ -10,35 +12,46 @@ import fr.utt.jestcardgame.observer.Observer;
 
 public class TextView implements Observer, Runnable{
 
-	public static String QUITTER = "Quit";
-    public static String COMMUTER = "C";
+	public static String QUIT = "Quit";
     public static String PROMPT = ">";
+    private InputStream input;
     private GameManager gm;
     
     public TextView(GameManager gm) {  
       // A compléter     
+    this.input = System.in;
     Thread t = new Thread(this);
     t.start();
     }
     
     public void run() {
+    	//gm.addObserver(this);
     	String saisie = null;
-    	boolean quitter = false;
     	
     	do {
-      saisie = this.lireChaine();
+      saisie = this.readString();
       if (saisie != null) {
-    	  // A compléter     
+    	  if(gm.getGameState() == "mainMenu" && saisie == "1") {
+    			  try {
+					gm.executeUserChoice(1);
+				} catch (setupException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+    	  }
+    	  else {
+    		  System.out.println("Wrong input");
+    	  }
       }
-    	} while (quitter == false);
+    	} while (saisie.equalsIgnoreCase(QUIT) == false);
     	System.exit(0);
     }
     
-    private String lireChaine() {
-    	BufferedReader br = new BufferedReader (new InputStreamReader(System.in));
-    	String resultat = null;
-    	try {
-      System.out.print(TextView.PROMPT);
+    private String readString() {
+	    BufferedReader br = new BufferedReader (new InputStreamReader(input));
+	    String resultat = null;
+	    try {
+	  System.out.print(TextView.PROMPT);
       resultat = br.readLine();
     	} catch (IOException e) {
       System.err.println(e.getMessage());
@@ -46,8 +59,23 @@ public class TextView implements Observer, Runnable{
     	return resultat;   
     }
     @Override
-    public void update(Observable arg0, Object arg1) {
-    	// A compléter     
+    public void update(Observable o, Object a) {
+    	if(o instanceof GameManager) {
+			switch (((GameManager)o).getGameState()) {
+			case "mainMenu":
+				ConsoleGameView.display(ConsoleOutput.MainMenu);
+				break;
+			// case 1: 
+			//	 this.initOptions();
+			 case "rules": 
+			     System.out.println("initrule");				 
+				 break;
+			 case "exit":
+				 System.exit(0);
+				 break;
+			}
+		} 
     }
 
 }
+   
