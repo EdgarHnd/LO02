@@ -1,18 +1,12 @@
 package fr.utt.jestcardgame.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import fr.utt.jestcardgame.controler.GameViewControler;
 import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
 
-//Class principal de l'interface graphique héritant de la classe window qui correspond à une fenetre
+import javax.swing.*;
+import java.awt.*;
 
 public class GameView extends JFrame implements Observer{
 	
@@ -50,11 +44,12 @@ public class GameView extends JFrame implements Observer{
 	}
 	
 	public void initOptions() {
-		
+		this.initNewGame();
 	}
 	
 	public void initNewGame() {
-		
+		System.out.println("Showing New Game");
+		container = new NewGame(size, gvc).getPanel();
 	}
 
 	@Override
@@ -65,8 +60,8 @@ public class GameView extends JFrame implements Observer{
 				System.out.println("back");
 				this.initWelcome();
 				break;
-			// case 1: 
-			//	 this.initOptions();
+			 case "options":
+				 this.initOptions();
 			 case "rules": 
 			     System.out.println("initrule");
 				 this.initRules();

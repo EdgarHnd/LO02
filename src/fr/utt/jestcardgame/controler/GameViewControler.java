@@ -1,10 +1,10 @@
 package fr.utt.jestcardgame.controler;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.view.setupException;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameViewControler extends AbstractControler {
 	
@@ -29,7 +29,11 @@ public class GameViewControler extends AbstractControler {
 			e.printStackTrace();
 		}
 	}*/
-	
+
+	public ActionListener getOptions(){
+		return options;
+	}
+
 	public ActionListener getRules() {
 		return rules;
 	}
@@ -41,6 +45,24 @@ public class GameViewControler extends AbstractControler {
 	public ActionListener getBack() {
 		return back;
 	}
+
+	private ActionListener options = new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Thread options = new Thread(new Runnable() {
+				public void run() {
+					try {
+						gm.executeUserChoice(1);
+					} catch (setupException e) {
+						e.printStackTrace();
+					}
+					System.out.println("button play pressed");
+				}
+			});
+			options.start();
+		}
+
+	};
 
 	private ActionListener rules = new ActionListener() {
 		@Override

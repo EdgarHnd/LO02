@@ -1,13 +1,11 @@
 package fr.utt.jestcardgame;
 
-import java.awt.EventQueue;
-
 import fr.utt.jestcardgame.controler.GameViewControler;
 import fr.utt.jestcardgame.model.GameManager;
-import fr.utt.jestcardgame.view.ConsoleUserInput;
 import fr.utt.jestcardgame.view.GameView;
-import fr.utt.jestcardgame.view.TextView;
 import fr.utt.jestcardgame.view.setupException;
+
+import java.awt.*;
 
 public class Main {
 
@@ -48,7 +46,7 @@ public class Main {
 				try {
 					
 	    	    	
-	    	    	//Create a view the game in the Console linked to the ConsoleControler
+	    	    	//Create a view of the game in the Console linked to the ConsoleControler
 	    	    	GameView gv =  new GameView(cCtrl);
 	    	    	
 	    	    	//Our view can now visit the game model in order to update

@@ -1,15 +1,12 @@
 package fr.utt.jestcardgame.view;
 
 
-import java.awt.Color;
-import java.awt.Dimension;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-
 import fr.utt.jestcardgame.controler.GameViewControler;
 
-//Class Accueil héritant de panneau qui correspond à l'écran principale du jeu
+import javax.swing.*;
+import java.awt.*;
+
+//Classe Accueil héritant de panneau qui correspond à l'écran principal du jeu
 
 public class Welcome extends Panel{
 	
@@ -45,12 +42,11 @@ public class Welcome extends Panel{
 		this.panel.add(startB);
 		this.panel.add(rulesB);
 		this.panel.add(quitB);
-		
+
+		this.startB.addActionListener(this.gvc.getOptions());
 		this.rulesB.addActionListener(this.gvc.getRules());
 		this.quitB.addActionListener(this.gvc.getQuit());
-		
-		//this.panel.add(new JLabel(new ImageIcon("images/accueil.jpg")), BorderLayout.CENTER);
-		
+
 		JTextArea texte = new JTextArea(	"Welcome to Jest Game\n" +
 											"To start a new game press START\n" +
 											"To check the game rules press RULES\n" +
