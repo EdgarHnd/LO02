@@ -2,6 +2,7 @@ package fr.utt.jestcardgame.model;
 
 
 import fr.utt.jestcardgame.observer.Observable;
+import fr.utt.jestcardgame.observer.Observer;
 import fr.utt.jestcardgame.view.ConsoleGameView;
 import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
@@ -10,18 +11,19 @@ import fr.utt.jestcardgame.view.setupException;
 
 public class GameManager extends Observable{
 
-	//private static GameManager gm= null;
+	private static GameManager gm= null;
 	private String gameState;
 	private int userChoice;
+	private Observer board;
 	
-	/*public static GameManager getInstance(){
+	public static GameManager getInstance(){
 		
 		if(gm == null){
 			gm = new GameManager();
 		}
 		
 		return gm;
-	}*/
+	}
 	
 	public GameManager(){
 		
@@ -31,6 +33,7 @@ public class GameManager extends Observable{
 		this.gameState = "started";
 		this.setChanged();
 		this.notifyObservers();
+		System.out.println("Game started and notify");
 		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
     	currentGame.nextRounds();
@@ -97,11 +100,11 @@ public class GameManager extends Observable{
 		}
 	}*/
 
-	public void startGame() {
+	/*public void startGame() {
 		System.out.println("New Game !");
 		this.setChanged();
 		this.notifyObservers();
-	}
+	}*/
 
 	public int getUserChoice() {
 			return userChoice;
@@ -109,5 +112,13 @@ public class GameManager extends Observable{
 
 	public String getGameState() {
 		return gameState;
+	}
+
+	public Observer getBoard() {
+		return board;
+	}
+
+	public void setBoard(Observer board) {
+		this.board = board;
 	}
 }

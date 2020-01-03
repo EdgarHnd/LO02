@@ -34,23 +34,24 @@ public class Deck {
 		
 		cards = new LinkedList<Card>();
 		
-		getCards().add(new Card(Kind.Joker,Suit.None,Trophys.BestJest));
-		getCards().add(new Card(Kind.Ace,Suit.Hearts,Trophys.Joker));
-		getCards().add(new Card(Kind.Four,Suit.Spades,Trophys.LowestClub));
-		getCards().add(new Card(Kind.Four,Suit.Clubs,Trophys.LowestSpade));
-		getCards().add(new Card(Kind.Two,Suit.Hearts,Trophys.Joker));
-		getCards().add(new Card(Kind.Four,Suit.Diamonds,Trophys.BJnoJoke));
-		getCards().add(new Card(Kind.Four,Suit.Hearts,Trophys.Joker));
-		getCards().add(new Card(Kind.Three,Suit.Hearts,Trophys.Joker));
-		getCards().add(new Card(Kind.Ace,Suit.Spades,Trophys.HighestClub));
-		getCards().add(new Card(Kind.Ace,Suit.Clubs,Trophys.HighestSpade));
-		getCards().add(new Card(Kind.Ace,Suit.Diamonds,Trophys.MajorityFour));
-		getCards().add(new Card(Kind.Two,Suit.Spades,Trophys.MajorityTree));
-		getCards().add(new Card(Kind.Two,Suit.Clubs,Trophys.LowestHeart));
-		getCards().add(new Card(Kind.Two,Suit.Diamonds,Trophys.HighestDiamond));
-		getCards().add(new Card(Kind.Three,Suit.Spades,Trophys.MajorityTwo));
-		getCards().add(new Card(Kind.Three,Suit.Clubs,Trophys.HighestHeart));
-		getCards().add(new Card(Kind.Three, Suit.Diamonds, Trophys.LowestDiamond));
+		getCards().add(new Card(Kind.Joker,Suit.None,Trophys.BestJest,"pictures/CardsPng/joker.png"));
+		getCards().add(new Card(Kind.Ace,Suit.Hearts,Trophys.Joker,"pictures/CardsPng/Aheart.png"));
+		getCards().add(new Card(Kind.Ace,Suit.Spades,Trophys.HighestClub,"pictures/CardsPng/Aspade.png"));
+		getCards().add(new Card(Kind.Ace,Suit.Clubs,Trophys.HighestSpade,"pictures/CardsPng/Aclub.png"));
+		getCards().add(new Card(Kind.Ace,Suit.Diamonds,Trophys.MajorityFour,"pictures/CardsPng/Adiamond.png"));
+		getCards().add(new Card(Kind.Four,Suit.Spades,Trophys.LowestClub,"pictures/CardsPng/4spade.png"));
+		getCards().add(new Card(Kind.Four,Suit.Clubs,Trophys.LowestSpade,"pictures/CardsPng/4club.png"));
+		getCards().add(new Card(Kind.Four,Suit.Diamonds,Trophys.BJnoJoke,"pictures/CardsPng/4diamond.png"));
+		getCards().add(new Card(Kind.Four,Suit.Hearts,Trophys.Joker,"pictures/CardsPng/4heart.png"));
+		getCards().add(new Card(Kind.Three,Suit.Spades,Trophys.MajorityTwo,"pictures/CardsPng/3spade.png"));
+		getCards().add(new Card(Kind.Three,Suit.Clubs,Trophys.HighestHeart,"pictures/CardsPng/3club.png"));
+		getCards().add(new Card(Kind.Three, Suit.Diamonds, Trophys.LowestDiamond,"pictures/CardsPng/3diamond.png"));
+		getCards().add(new Card(Kind.Three,Suit.Hearts,Trophys.Joker,"pictures/CardsPng/3heart.png"));
+		getCards().add(new Card(Kind.Two,Suit.Hearts,Trophys.Joker,"pictures/CardsPng/2heart.png"));		
+		getCards().add(new Card(Kind.Two,Suit.Spades,Trophys.MajorityTree,"pictures/CardsPng/2spade.png"));
+		getCards().add(new Card(Kind.Two,Suit.Clubs,Trophys.LowestHeart,"pictures/CardsPng/2club.png"));
+		getCards().add(new Card(Kind.Two,Suit.Diamonds,Trophys.HighestDiamond,"pictures/CardsPng/2diamond.png"));
+		
 		
 		topCards = new LinkedList<Card>();
 	}

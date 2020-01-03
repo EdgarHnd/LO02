@@ -17,13 +17,14 @@ import java.util.Random;
  * @version 1.0
  */
 
-public class RoundsManager implements Observer {
+public class RoundsManager extends Observable{
 	
 	private static RoundsManager rm= null;
 	protected int roundNb = 0;
 	protected int currentPlayer;
 	protected ArrayList<Player> listPlayers;
 	private boolean turnOver = false;
+	private GameBoard gb = GameBoard.getInstance();
 	
 	public static RoundsManager getInstance(){
 		
@@ -78,7 +79,6 @@ public class RoundsManager implements Observer {
 	public void firstRound() {
 		this.roundNb = 1;
 		Deck deck = Deck.getInstance();
-		
 		System.out.println("\n" + deck.getCards());
 		deck.shuffle();
 		System.out.println("\nDeck shuffled");
@@ -86,6 +86,15 @@ public class RoundsManager implements Observer {
 		
 		deck.deal();
 		deck.dealTrophys();
+		
+		//workinprogress
+		System.out.println("gm ob" + GameManager.getInstance().getBoard());
+		this.addObserver(GameManager.getInstance().getBoard());
+		System.out.println("add ob to gb "+this.listObserver.get(0));
+		this.gb.addObserver(this.listObserver.get(0));
+		this.gb.notifyOb();
+		//----------------
+		
 		System.out.println("\n________________");
 		
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
@@ -148,9 +157,9 @@ public class RoundsManager implements Observer {
 		Iterator<Player> j= this.listPlayers.iterator();
 		while(j.hasNext()) {
 			Player p = j.next();
-			GameBoard.getInstance().visit(p);
+			this.gb.visit(p);
 		}
-		GameBoard.getInstance().giveTrophys();
+		this.gb.giveTrophys();
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			this.listPlayers.get(i).getScore().resetScore();;
 			this.listPlayers.get(i).getScore().giveScore();;
@@ -175,8 +184,8 @@ public class RoundsManager implements Observer {
 	public Player checkBestOffer() {
 		//just a default value
 		Player bestOfferPlayer = new Player("Default",10, new RealPlayerStrategy());
-		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None));
-		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None));
+		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None,"pictures/CardsPng/rulescard.png"));
+		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None,"pictures/CardsPng/rulescard.png"));
 		bestOfferPlayer.hand.get(0).setHidden(false);
 		
 		
@@ -254,13 +263,6 @@ public class RoundsManager implements Observer {
 	}
 
 	public void printFinalRanking() {
-		
-	}
-
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		
 	}
 }

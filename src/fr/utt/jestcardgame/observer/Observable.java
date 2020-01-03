@@ -43,5 +43,13 @@ public class Observable {
 				}
 			 }
 	 }
-	 
+	 public void notifyObservers(Object b) {
+		 if(this.changed) {
+		 Iterator<Observer> i = this.listObserver.iterator();
+			 while(i.hasNext()) {
+					Observer o = (Observer)i.next();
+					o.update(this,b);
+				}
+			 }
+	 }
 	}

@@ -13,7 +13,12 @@ public class GameView extends JFrame implements Observer{
 	private Dimension size;
 	private JPanel container = new JPanel();
 	protected GameViewControler gvc;
+	private Board board/* = new Board(size,gvc)*/;
 	
+	public Board getBoard() {
+		return board;
+	}
+
 	public GameView(GameViewControler gvc) {
 		this.gvc = gvc;
 		this.setTitle("Jest Game");
@@ -43,14 +48,17 @@ public class GameView extends JFrame implements Observer{
 		container.revalidate();
 	}
 	
-	public void initOptions() {
-		this.initNewGame();
-	}
+	/*public void initOptions() {
+		
+	}*/
 	
 	public void initNewGame() {
 		System.out.println("Showing Board");
 		container.removeAll();
-		container.add(new Board(size,gvc).getPanel(), BorderLayout.CENTER);
+		this.board = new Board(size,gvc);
+		GameManager.getInstance().setBoard(this.board);
+		System.out.println("getboard "+GameManager.getInstance().getBoard());
+		container.add(this.board.getPanel(), BorderLayout.CENTER);
 		container.revalidate();
 	}
 
@@ -59,16 +67,17 @@ public class GameView extends JFrame implements Observer{
 		if(o instanceof GameManager) {
 			switch (((GameManager)o).getGameState()) {
 			case "mainMenu":
-				System.out.println("back");
+				System.out.println("update menu");
 				this.initWelcome();
 				break;
 			case "started":
+				System.out.println("update show newGame");
 				this.initNewGame();
 				break;
 			// case 1: 
 			//	 this.initOptions();
 			 case "rules": 
-			     System.out.println("initrule");
+			     System.out.println("update rules");
 				 this.initRules();
 				 break;
 			 case "exit":

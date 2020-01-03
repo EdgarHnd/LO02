@@ -2,9 +2,11 @@ package fr.utt.jestcardgame.model;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.visitor.Visitor;
 
-public class GameBoard implements Visitor {
+public class GameBoard extends Observable implements Visitor {
 	
 	private static GameBoard gb= null;
 	private ArrayList<Card> trophys;
@@ -63,7 +65,11 @@ public class GameBoard implements Visitor {
 			System.out.println(winner.getName()+" receives the trophy : "+t);
 		}
 	}
-
+	public void notifyOb() {
+		System.out.println("notify trophy"+this.trophys.get(0)+this.listObserver.get(0));
+		this.setChanged();
+		this.notifyObservers();
+	}
 	@Override
 	public void visit(Player p) {
 		this.listPlayer.add(p);

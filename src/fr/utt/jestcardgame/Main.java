@@ -5,7 +5,6 @@ import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.view.GameView;
 import fr.utt.jestcardgame.view.setupException;
 
-import java.awt.*;
 
 public class Main {
 
@@ -25,23 +24,25 @@ public class Main {
 	    		}
 	    	});*/
 	    	
-	    	/*Thread t2 = new Thread(new Runnable() {
-	    		public void run() {
-	    			//Create a controler linked to the model
-	    	    	GameViewControler cCtrl = new GameViewControler(gm);
-	    	    	
-	    	    	//Create a view the game in the Console linked to the ConsoleControler
-	    	    	GameView gv =  new GameView(cCtrl);
-	    	    	
-	    	    	//Our view can now visit the game model in order to update
-	    			gm.addObserver(gv);
-	    			gv.setVisible(true);
-	    		}
-	    	});*/
+	    	
 	    	//Create a controler linked to the model
 	    	GameViewControler cCtrl = new GameViewControler(gm);
+	    	GameView gv =  new GameView(cCtrl);
 	    	
-	    	EventQueue.invokeLater(new Runnable() {
+	    	//Our view can now visit the game model in order to update
+			gm.addObserver(gv);
+			//gm.setBoard(gv.getBoard());
+			
+	    	Thread t = new Thread(new Runnable() {
+	    		public void run() {
+	    			
+	    	    	//Create a view the game in the Console linked to the ConsoleControler
+	    	    	
+	    			gv.setVisible(true);
+	    			
+	    		}
+	    	});
+	    	/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					
@@ -56,10 +57,11 @@ public class Main {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
 	    	
 	    	//TextView tv = new TextView(gm);
 	    	//gm.addObserver(tv);
+	    	t.start();
 	    	gm.mainMenu();
 	    	/*Thread t3 = new Thread(new Runnable() {
 	    		public void run() {
@@ -67,7 +69,7 @@ public class Main {
 	    		}
 	    	});*/
 	    	
-	    	//t.start();
+	    	
 	    	//t2.start();
 	    	//t3.start();
 	    	

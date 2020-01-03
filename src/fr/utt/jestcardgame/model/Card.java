@@ -5,6 +5,7 @@ public class Card {
 	protected Kind kind;
 	protected Suit suit;
 	protected Trophys trophy;
+	protected String imagePath;
 	protected boolean hidden = true;
 	
 	
@@ -16,10 +17,11 @@ public class Card {
 		this.hidden = hidden;
 	}
 
-	public Card(Kind k, Suit s, Trophys t) {
+	public Card(Kind k, Suit s, Trophys t, String i) {
 		this.kind = k;
 		this.suit = s;
 		this.trophy = t;
+		this.imagePath = i;
 	}
 	
 	public int cardValue() {
@@ -69,6 +71,10 @@ public class Card {
 			 break;
 		}
 		return tieValue;
+	}
+	
+	public String getImagePath() {
+		return this.imagePath;
 	}
 	
 	public String toString() {
