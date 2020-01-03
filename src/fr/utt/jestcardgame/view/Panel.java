@@ -1,12 +1,9 @@
 package fr.utt.jestcardgame.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-
-import javax.swing.JPanel;
-
 import fr.utt.jestcardgame.controler.GameViewControler;
+
+import javax.swing.*;
+import java.awt.*;
 
 //Class centrale panneau permettant de regrouper les attributs communs
 

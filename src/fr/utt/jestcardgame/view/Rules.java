@@ -1,16 +1,12 @@
 package fr.utt.jestcardgame.view;
 
-import java.awt.Dimension;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
+import fr.utt.jestcardgame.controler.GameViewControler;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-
-import fr.utt.jestcardgame.controler.GameViewControler;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Rules extends Panel{
 	
@@ -34,8 +30,7 @@ public class Rules extends Panel{
 		}
 		
 		Image scaledImage = this.im.getScaledInstance(1200, 700, Image.SCALE_AREA_AVERAGING);
-		
-		this.panel.setLayout(null);
+
 		this.back = new JButton("BACK");
 		this.back.setBounds(10, 0, 50, 50);
 		this.back.addActionListener(this.gvc.getBack());

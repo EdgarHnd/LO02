@@ -17,88 +17,78 @@ public class GameManager extends Observable{
 	private Observer board;
 	
 	public static GameManager getInstance(){
-		
+
 		if(gm == null){
 			gm = new GameManager();
 		}
 		
 		return gm;
 	}
-	
+
 	public GameManager(){
-		
+
 	}
-	
+
 	public void play(){
-		this.gameState = "started";
-		this.setChanged();
-		this.notifyObservers();
+		updateGameState("started");
 		System.out.println("Game started and notify");
 		RoundsManager currentGame = RoundsManager.getInstance();
-    	currentGame.firstRound();
-    	currentGame.nextRounds();
-    	currentGame.giveTrophy();
-    	currentGame.finalScore();
-    }    
+		currentGame.firstRound();
+		currentGame.nextRounds();
+		currentGame.giveTrophy();
+		currentGame.finalScore();
+	}
 
-    public void executeUserChoice(int userChoice) throws setupException {
-    	this.userChoice = userChoice;
-        switch (userChoice) {
-            case 1:
-                GameOptions.setup();       
-                break;
-            case 2:
-            	this.rules();
-            	break;
-            case 3:
-            	this.setChanged();
-            	this.notifyObservers();
-                System.exit(0);
-                break;
-                //Gestion d'exception à faire
-        }
-    }
+	public void executeUserChoice(int userChoice) throws setupException {
+		switch (userChoice) {
+			case 1:
+				GameOptions.setup();
+				break;
+			case 2:
+				this.rules();
+				break;
+			case 3:
+				this.setChanged();
+				this.notifyObservers();
+				System.exit(0);
+				break;
+			case 4 :
+				this.options();
+				break;
+			default:
+				System.out.println("No input given");
+				break;
+			//Gestion d'exception à faire
+		}
+	}
 
-    	public void mainMenu() throws setupException {
+	public void mainMenu() throws setupException {
 		//Main menu
-    	System.out.println("Game launched");
-    	this.gameState = "mainMenu";
-    	this.setChanged();
-    	this.notifyObservers();
+		System.out.println("Game launched");
+		updateGameState("mainMenu");
 		ConsoleGameView.display(ConsoleOutput.MainMenu);
-        this.executeUserChoice(ConsoleUserInput.getInstance().nextInt());
-       
-    	//this.executeUserChoice(TextView.nextString());
-        
-    	//Start a game
-        this.play();
-        
+		this.executeUserChoice(ConsoleUserInput.getInstance().nextInt());
+
+		//this.executeUserChoice(TextView.nextString());
+
+		//Start a game
+		this.play();
+
 	}
 
 	public void rules() throws setupException {
 		System.out.println("Rules, press 1 to get back to the menu");
-		this.gameState = "rules";
-		this.setChanged();
-		this.notifyObservers();
+		updateGameState("rules");
 		int input = ConsoleUserInput.getInstance().nextInt();
 		if(input == 1) {
 			this.mainMenu();
 		}
 	}
 
-	/*public void options() throws setupException {
-		System.out.println("Options \n Press 1 to get back to the menu");
-		System.out.println("Or press 2 to play !");
-		this.gameState = "options";
-		this.setChanged();
-		this.notifyObservers();
-		int input = ConsoleUserInput.getInstance().nextInt();
-		if(input == 1) {
-			this.mainMenu();
-		} else if (input == 2) {
-			this.startGame();
-		}
-	}*/
+	public void options() throws setupException {
+	    updateGameState("options");
+		GameOptions.setup();
+	}
 
 	/*public void startGame() {
 		System.out.println("New Game !");
@@ -106,9 +96,11 @@ public class GameManager extends Observable{
 		this.notifyObservers();
 	}*/
 
-	public int getUserChoice() {
-			return userChoice;
-		}
+	public void updateGameState(String newState) {
+		gameState = newState;
+		setChanged();
+		notifyObservers();
+	}
 
 	public String getGameState() {
 		return gameState;

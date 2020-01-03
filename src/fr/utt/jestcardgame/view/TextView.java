@@ -1,81 +1,78 @@
 package fr.utt.jestcardgame.view;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
-
 import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class TextView implements Observer, Runnable{
 
 	public static String QUIT = "Quit";
-    public static String PROMPT = ">";
-    private InputStream input;
-    private GameManager gm;
-    
-    public TextView(GameManager gm) {  
-      // A compléter     
-    this.input = System.in;
-    Thread t = new Thread(this);
-    t.start();
-    }
-    
-    public void run() {
-    	//gm.addObserver(this);
-    	String saisie = null;
-    	
-    	do {
-      saisie = this.readString();
-      if (saisie != null) {
-    	  if(gm.getGameState() == "mainMenu" && saisie == "1") {
-    			  try {
-					gm.executeUserChoice(1);
-				} catch (setupException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+	public static String PROMPT = ">";
+	private InputStream input;
+	private GameManager gm;
+
+	public TextView(GameManager gm) {
+		// A compléter
+		this.input = System.in;
+		Thread t = new Thread(this);
+		t.start();
+	}
+
+	public void run() {
+		//gm.addObserver(this);
+		String saisie = null;
+
+		do {
+			saisie = this.readString();
+			if (saisie != null) {
+				if(gm.getGameState() == "mainMenu" && saisie == "1") {
+					try {
+						gm.executeUserChoice(1);
+					} catch (setupException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-    	  }
-    	  else {
-    		  System.out.println("Wrong input");
-    	  }
-      }
-    	} while (saisie.equalsIgnoreCase(QUIT) == false);
-    	System.exit(0);
-    }
-    
-    private String readString() {
-	    BufferedReader br = new BufferedReader (new InputStreamReader(input));
-	    String resultat = null;
-	    try {
-	  System.out.print(TextView.PROMPT);
-      resultat = br.readLine();
-    	} catch (IOException e) {
-      System.err.println(e.getMessage());
-    	}
-    	return resultat;   
-    }
-    @Override
-    public void update(Observable o, Object a) {
-    	if(o instanceof GameManager) {
-			switch (((GameManager)o).getGameState()) {
-			case "mainMenu":
-				ConsoleGameView.display(ConsoleOutput.MainMenu);
-				break;
-			// case 1: 
-			//	 this.initOptions();
-			 case "rules": 
-			     System.out.println("initrule");				 
-				 break;
-			 case "exit":
-				 System.exit(0);
-				 break;
+				else {
+					System.out.println("Wrong input");
+				}
 			}
-		} 
-    }
+		} while (saisie.equalsIgnoreCase(QUIT) == false);
+		System.exit(0);
+	}
+
+	private String readString() {
+		BufferedReader br = new BufferedReader (new InputStreamReader(input));
+		String resultat = null;
+		try {
+			System.out.print(TextView.PROMPT);
+			resultat = br.readLine();
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+		}
+		return resultat;
+	}
+	@Override
+	public void update(Observable o, Object a) {
+		if(o instanceof GameManager) {
+			switch (((GameManager)o).getGameState()) {
+				case "mainMenu":
+					ConsoleGameView.display(ConsoleOutput.MainMenu);
+					break;
+				case "rules":
+					System.out.println("initrule");
+					break;
+				case "exit":
+					System.exit(0);
+					break;
+			}
+		}
+	}
 
 }
    

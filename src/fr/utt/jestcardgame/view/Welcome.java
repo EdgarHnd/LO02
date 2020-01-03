@@ -2,14 +2,17 @@ package fr.utt.jestcardgame.view;
 
 
 import fr.utt.jestcardgame.controler.GameViewControler;
+import fr.utt.jestcardgame.observer.Observable;
+import fr.utt.jestcardgame.observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 
 //Classe Accueil héritant de panneau qui correspond à l'écran principal du jeu
 
-public class Welcome extends Panel{
-	
+public class Welcome extends Panel implements Observer {
+
+	private JButton optionsB;
 	private JButton startB;
 	private JButton quitB;
 	private JButton rulesB;
@@ -38,15 +41,20 @@ public class Welcome extends Panel{
 		quitB.setBounds(550, 350, 120, 40);
 		rulesB = new JButton("RULES");
 		rulesB.setBounds(550, 300, 120, 40);
+
+		optionsB = new JButton("OPTIONS");
+		optionsB.setBounds(550, 400, 120, 40);
 		
 		
 		this.panel.add(startB);
 		this.panel.add(rulesB);
 		this.panel.add(quitB);
+		this.panel.add(optionsB);
 
 		this.rulesB.addActionListener(this.gvc.getRules());
 		this.quitB.addActionListener(this.gvc.getQuit());
 		this.startB.addActionListener(this.gvc.getStart());
+		this.optionsB.addActionListener(this.gvc.getOptions());
 		
 		//this.panel.add(new JLabel(new ImageIcon("images/accueil.jpg")), BorderLayout.CENTER);
 		
@@ -75,4 +83,8 @@ public class Welcome extends Panel{
 		this.panel.add(cardback);
 	}
 
+	@Override
+	public void update(Observable o, Object arg) {
+
+	}
 }
