@@ -10,17 +10,23 @@ import fr.utt.jestcardgame.view.setupException;
 
 public class GameManager extends Observable{
 
-	private static GameManager gm= null;
+	//private static GameManager gm= null;
+	private String gameState;
 	private int userChoice;
 	
-	public static GameManager getInstance(){
+	/*public static GameManager getInstance(){
 		
 		if(gm == null){
 			gm = new GameManager();
 		}
 		
 		return gm;
+	}*/
+	
+	public GameManager(){
+		
 	}
+	
 	public void play(){
 		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
@@ -43,11 +49,7 @@ public class GameManager extends Observable{
                 }
                 break;
             case 2:
-            	this.setChanged();
-                this.notifyObservers();
             	this.rules();
-                System.out.println("notify");
-            	this.mainMenu();
             	break;
             case 3:
             	this.setChanged();
@@ -60,18 +62,24 @@ public class GameManager extends Observable{
 
     	public void mainMenu() throws setupException {
 		//Main menu
-    	this.userChoice = 0;
+    	System.out.println("Game launched");
+    	this.gameState = "mainMenu";
     	this.setChanged();
     	this.notifyObservers();
 		ConsoleGameView.display(ConsoleOutput.MainMenu);
         this.executeUserChoice(ConsoleUserInput.getInstance().nextInt());
        
-        //Start a game
+    	//this.executeUserChoice(TextView.nextString());
+        
+    	//Start a game
         this.play();
         
 	}
     	public void rules() throws setupException {
-    		System.out.println("Showing rules, press 1 to get back to the menu");
+    		System.out.println("Rules, press 1 to get back to the menu");
+    		this.gameState = "rules";
+        	this.setChanged();
+            this.notifyObservers();
     		int input = ConsoleUserInput.getInstance().nextInt();
     		if(input == 1) {
     			this.mainMenu();
@@ -81,5 +89,9 @@ public class GameManager extends Observable{
     	}
 		public int getUserChoice() {
 			return userChoice;
+		}
+
+		public String getGameState() {
+			return gameState;
 		}
 }
