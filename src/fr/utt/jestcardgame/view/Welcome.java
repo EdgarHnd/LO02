@@ -42,12 +42,11 @@ public class Welcome extends Panel{
 		this.panel.add(startB);
 		this.panel.add(rulesB);
 		this.panel.add(quitB);
-		
+
+		this.startB.addActionListener(this.gvc.getOptions());
 		this.rulesB.addActionListener(this.gvc.getRules());
 		this.quitB.addActionListener(this.gvc.getQuit());
-		
-		//this.panel.add(new JLabel(new ImageIcon("images/accueil.jpg")), BorderLayout.CENTER);
-		
+
 		JTextArea texte = new JTextArea(	"Welcome to Jest Game\n" +
 											"To start a new game press START\n" +
 											"To check the game rules press RULES\n" +
@@ -60,7 +59,6 @@ public class Welcome extends Panel{
 		this.panel.add(texte);
 		
 		this.card = new CardLabel("pictures/CardsPng/rulescard.png");
-		//System.out.println(System.getProperty("user.dir"));
 		//this.card.setImagePath("pictures/CardsPng/Aheart.png");
 		this.card.setPreferredSize(new Dimension(this.card.getFactor() * 34,this.card.getFactor() * 48));
 		this.card.setVerticalAlignment(JLabel.CENTER);
