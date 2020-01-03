@@ -14,6 +14,7 @@ public class Welcome extends Panel{
 	private JButton quitB;
 	private JButton rulesB;
 	private CardLabel card;
+	private CardLabel cardback;
 	
 	
 	public Welcome(Dimension dim, GameViewControler gvc) {
@@ -62,12 +63,16 @@ public class Welcome extends Panel{
 		this.panel.add(texte);
 		
 		this.card = new CardLabel("pictures/CardsPng/rulescard.png");
-		//this.card.setImagePath("pictures/CardsPng/Aheart.png");
 		this.card.setPreferredSize(new Dimension(this.card.getFactor() * 34,this.card.getFactor() * 48));
 		this.card.setVerticalAlignment(JLabel.CENTER);
-		this.card.setBounds(100, 300, this.card.getFactor() * 34, this.card.getFactor() * 48);
+		this.card.setBounds(50, 300, this.card.getFactor() * 34, this.card.getFactor() * 48);
 		this.panel.add(card);
 		
+		this.cardback = new CardLabel("pictures/CardsPng/back.jpg");
+		this.cardback.setPreferredSize(new Dimension(this.cardback.getFactor() * 34,this.cardback.getFactor() * 48));
+		this.cardback.setVerticalAlignment(JLabel.CENTER);
+		this.cardback.setBounds(200, 300, this.cardback.getFactor() * 34, this.cardback.getFactor() * 48);
+		this.panel.add(cardback);
 	}
 
 }
