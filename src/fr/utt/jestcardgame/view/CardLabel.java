@@ -1,24 +1,18 @@
 package fr.utt.jestcardgame.view;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.JLabel;
-
 public class CardLabel extends JLabel{
 	
-	private String imagePath = "pictures/CardsPng/rulescard.png";
-	private int factor;
-	public CardLabel(){
-		this.factor = 4;
-	}
+	private String imagePath;
+	private int factor=4;
+
 	public CardLabel(String path){
 		this.imagePath = path;
-		this.factor = 4;
 	}
 	
 	public void paint(Graphics g){

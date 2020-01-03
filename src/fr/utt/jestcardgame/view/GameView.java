@@ -4,9 +4,8 @@ import fr.utt.jestcardgame.controler.GameViewControler;
 import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
-import fr.utt.jestcardgame.view.Window;
 
-//Class principal de l'interface graphique héritant de la classe window qui correspond à une fenetre
+//Classe principale de l'interface graphique héritant de la classe window qui correspond à une fenêtre
 
 public class GameView extends Window implements Observer{
 	

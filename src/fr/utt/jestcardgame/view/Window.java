@@ -1,15 +1,11 @@
 package fr.utt.jestcardgame.view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import fr.utt.jestcardgame.controler.GameViewControler;
 
-//Class de la fenetre principale de l'interface permettant d'initialliser les différents panneaux
+import javax.swing.*;
+import java.awt.*;
+
+//Classe de la fenetre principale de l'interface permettant d'initialiser les différents panneaux
 
 public class Window extends JFrame{
 	
@@ -23,7 +19,7 @@ public class Window extends JFrame{
 		this.setSize(1200, 700);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
-	    this.setResizable(false);
+	    this.setResizable(true);
 	    this.size = new Dimension(this.getWidth(), this.getHeight());
 	    
 	    this.container.setPreferredSize(this.size);
