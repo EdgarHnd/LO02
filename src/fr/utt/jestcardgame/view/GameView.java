@@ -48,8 +48,10 @@ public class GameView extends JFrame implements Observer{
 	}
 	
 	public void initNewGame() {
-		System.out.println("Showing New Game");
-		container = new NewGame(size, gvc).getPanel();
+		System.out.println("Showing Board");
+		container.removeAll();
+		container.add(new Board(size,gvc).getPanel(), BorderLayout.CENTER);
+		container.revalidate();
 	}
 
 	@Override
@@ -60,8 +62,11 @@ public class GameView extends JFrame implements Observer{
 				System.out.println("back");
 				this.initWelcome();
 				break;
-			 case "options":
-				 this.initOptions();
+			case "started":
+				this.initNewGame();
+				break;
+			// case 1: 
+			//	 this.initOptions();
 			 case "rules": 
 			     System.out.println("initrule");
 				 this.initRules();

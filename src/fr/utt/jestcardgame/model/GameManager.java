@@ -28,6 +28,9 @@ public class GameManager extends Observable{
 	}
 	
 	public void play(){
+		this.gameState = "started";
+		this.setChanged();
+		this.notifyObservers();
 		RoundsManager currentGame = RoundsManager.getInstance();
     	currentGame.firstRound();
     	currentGame.nextRounds();

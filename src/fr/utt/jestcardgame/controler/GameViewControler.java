@@ -30,9 +30,6 @@ public class GameViewControler extends AbstractControler {
 		}
 	}*/
 
-	public ActionListener getOptions(){
-		return options;
-	}
 
 	public ActionListener getRules() {
 		return rules;
@@ -46,24 +43,11 @@ public class GameViewControler extends AbstractControler {
 		return back;
 	}
 
-	private ActionListener options = new ActionListener() {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			Thread options = new Thread(new Runnable() {
-				public void run() {
-					try {
-						gm.executeUserChoice(1);
-					} catch (setupException e) {
-						e.printStackTrace();
-					}
-					System.out.println("button play pressed");
-				}
-			});
-			options.start();
-		}
 
-	};
-
+	public ActionListener getStart() {
+		return start;
+	}
+	
 	private ActionListener rules = new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -98,6 +82,19 @@ public class GameViewControler extends AbstractControler {
 			back.start();
 		}
 		};
+		
+		private ActionListener start = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Thread start = new Thread(new Runnable() {
+					public void run() {
+						gm.play();
+						System.out.println("button start pressed");
+					}	
+				});
+				start.start();
+			}
+			};
 	
 	private ActionListener quit = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
