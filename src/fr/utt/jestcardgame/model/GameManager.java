@@ -42,15 +42,7 @@ public class GameManager extends Observable{
     	this.userChoice = userChoice;
         switch (userChoice) {
             case 1:
-            	this.setChanged();
-            	this.notifyObservers();
-                try {
-                	this.options();
-                    //GameOptions.setup();
-                }
-                catch (setupException e){
-                    System.out.println(e.getMessage());
-                }
+                GameOptions.setup();       
                 break;
             case 2:
             	this.rules();
@@ -91,7 +83,7 @@ public class GameManager extends Observable{
 		}
 	}
 
-	public void options() throws setupException {
+	/*public void options() throws setupException {
 		System.out.println("Options \n Press 1 to get back to the menu");
 		System.out.println("Or press 2 to play !");
 		this.gameState = "options";
@@ -103,7 +95,7 @@ public class GameManager extends Observable{
 		} else if (input == 2) {
 			this.startGame();
 		}
-	}
+	}*/
 
 	public void startGame() {
 		System.out.println("New Game !");
