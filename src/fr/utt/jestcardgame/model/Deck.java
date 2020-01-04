@@ -71,14 +71,14 @@ public class Deck {
 	public void deal(){
 		ConsoleGameView.display(ConsoleOutput.Dealing);
 		
-		if(this.cards.size() >= 2*GameOptions.nbPlayer) {
+		if(this.cards.size() >= 2*OptionsData.nbPlayer) {
 			System.out.println("First Deal");
-			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCard());
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond Deal");
-			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCard());
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
@@ -89,7 +89,7 @@ public class Deck {
 	}
 	public void dealTrophys(){
 		System.out.println("Dealing trophys");
-		if(GameOptions.nbPlayer == 3) {
+		if(OptionsData.nbPlayer == 3) {
 			GameBoard.getInstance().getTrophys().add(this.topCard());
 			GameBoard.getInstance().getTrophys().add(this.topCard());
 			System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0)
@@ -103,7 +103,7 @@ public class Deck {
 	
 	public void gather(){
 		//Gather the top cards of the deck to give them to the player
-		for(int i = 0; i < GameOptions.nbPlayer;i++) {
+		for(int i = 0; i < OptionsData.nbPlayer;i++) {
 		this.topCards.add(this.topCard());
 		RoundsManager.getInstance().listPlayers.get(i).hand.clear();
 		//Reset players states
@@ -120,15 +120,15 @@ public class Deck {
 		
 		System.out.println("Dealing stack");
 		
-		if(this.topCards.size() >= 2*GameOptions.nbPlayer) {
+		if(this.topCards.size() >= 2*OptionsData.nbPlayer) {
 			System.out.println("First StackDeal");
-			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				this.topCards.getFirst().setHidden(true);
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCards.pop());
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond StackDeal");
-			for(int i = 0; i < GameOptions.nbPlayer;i++) {
+			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				this.topCards.getFirst().setHidden(true);
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCards.pop());
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());

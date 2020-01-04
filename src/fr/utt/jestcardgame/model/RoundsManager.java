@@ -1,7 +1,6 @@
 package fr.utt.jestcardgame.model;
 
 import fr.utt.jestcardgame.observer.Observable;
-import fr.utt.jestcardgame.observer.Observer;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,12 +50,12 @@ public class RoundsManager extends Observable{
 	//Constructor to create the players based on the options of the Game
 	public RoundsManager() {
 		this.listPlayers = new ArrayList<>(4);
-		for(int i = 0; i < GameOptions.getNbRealPlayer(); i++) {
-			this.listPlayers.add(i, new Player(GameOptions.getPlayersNames(i),i+1, new RealPlayerStrategy()));
+		for(int i = 0; i < OptionsData.getNbRealPlayer(); i++) {
+			this.listPlayers.add(i, new Player(OptionsData.getPlayersNames(i),i+1, new RealPlayerStrategy()));
 			System.out.println("\n"+listPlayers.get(i).getName() + " will play as Player "+ this.listPlayers.get(i).getNb());
 		}
 		
-		for(int j = GameOptions.getNbRealPlayer()+1; j < GameOptions.getNbPlayer()+1; j++) {
+		for(int j = OptionsData.getNbRealPlayer()+1; j < OptionsData.getNbPlayer()+1; j++) {
 			Random rand = new Random();
 			int randomNb = rand.nextInt(2) + 1;
 			switch (randomNb){
@@ -97,7 +96,7 @@ public class RoundsManager extends Observable{
 		
 		System.out.println("\n________________");
 		
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
 			this.listPlayers.get(i).makeOffer();
 
@@ -108,7 +107,7 @@ public class RoundsManager extends Observable{
 		this.checkBestOffer().pickOffer();
 		
 		
-		for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 1; i < OptionsData.getNbPlayer(); i++) {
 			if(!this.turnOver) {
 			this.nextPlayer().pickOffer();
 			}
@@ -122,7 +121,7 @@ public class RoundsManager extends Observable{
 			System.out.println("\nThe deck still has :" + Deck.getInstance().getCards());
 			Deck.getInstance().gather();
 			Deck.getInstance().dealStack();
-			for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+			for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 				System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
 				this.listPlayers.get(i).makeOffer();
 			}
@@ -133,14 +132,14 @@ public class RoundsManager extends Observable{
 			this.checkBestOffer().pickOffer();
 			
 			
-			for(int i = 1; i < GameOptions.getNbPlayer(); i++) {
+			for(int i = 1; i < OptionsData.getNbPlayer(); i++) {
 				if(this.turnOver == false) {
 				this.nextPlayer().pickOffer();
 				}
 			}
 		}
 		System.out.println("No more cards, time to show your JESTS !");
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			//add visitor			
 			this.listPlayers.get(i).getScore().visit(this.listPlayers.get(i));
 			//add last card one the board to the jest
@@ -160,7 +159,7 @@ public class RoundsManager extends Observable{
 			this.gb.visit(p);
 		}
 		this.gb.giveTrophys();
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			this.listPlayers.get(i).getScore().resetScore();;
 			this.listPlayers.get(i).getScore().giveScore();;
 			System.out.println(this.listPlayers.get(i).getName()+" Final Jest is : "+this.listPlayers.get(i).getJest().getJestCards().toString()
@@ -171,7 +170,7 @@ public class RoundsManager extends Observable{
 	public void finalScore() {
 		int bestJest = 0;
 		Player finalWinner = null;
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if(this.listPlayers.get(i).getScore().getScore() > bestJest) {
 				bestJest = this.listPlayers.get(i).getScore().getScore();
 				finalWinner = this.listPlayers.get(i);
@@ -189,13 +188,13 @@ public class RoundsManager extends Observable{
 		bestOfferPlayer.hand.get(0).setHidden(false);
 		
 		
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 					if(this.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue() 
 							&& this.listPlayers.get(i).hasPlayed == false) {
 						bestOfferPlayer =this.listPlayers.get(i);					
 				}
 		}
-		for(int h = 0; h < GameOptions.getNbPlayer(); h++) {
+		for(int h = 0; h < OptionsData.getNbPlayer(); h++) {
 					if(this.listPlayers.get(h).offeredCard().cardValue() == bestOfferPlayer.offeredCard().cardValue()
 							&& this.listPlayers.get(h).hasPlayed == false) {
 						if(this.listPlayers.get(h).offeredCard().cardTiesValue() > bestOfferPlayer.offeredCard().cardTiesValue()) {
@@ -212,7 +211,7 @@ public class RoundsManager extends Observable{
 	
 	public Player nextPlayer() {
 		Player nextToPlay = null;
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if(this.listPlayers.get(i).isNext) {
 				nextToPlay =this.listPlayers.get(i);					
 			}
@@ -222,7 +221,7 @@ public class RoundsManager extends Observable{
 	}
 	
 	public void showAllOffers() {
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if((this.listPlayers.get(i).hiddenCard()!=null && 
 					this.listPlayers.get(i).offeredCard()!=null)){
 				System.out.println(this.listPlayers.get(i).getName()+" offer : "+ this.listPlayers.get(i).getOffer().get(0)
@@ -244,7 +243,7 @@ public class RoundsManager extends Observable{
 	}
 	
 	public void showValidOffers() {
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if((this.listPlayers.get(i).hasCompleteOffer() && this.listPlayers.get(i).isPicking == false)){
 				System.out.println("("+this.listPlayers.get(i).getNb()+") : "+this.listPlayers.get(i).getName()+" offer : "+ 
 				this.listPlayers.get(i).offeredCard() + " and a hidden card");
@@ -254,7 +253,7 @@ public class RoundsManager extends Observable{
 
 	public ArrayList<Integer> getListNbOffers(){
 		ArrayList<Integer> listNb = new ArrayList<>(4);
-		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if((this.listPlayers.get(i).hasCompleteOffer() && this.listPlayers.get(i).isPicking == false)){
 				listNb.add(this.listPlayers.get(i).getNb());
 			}

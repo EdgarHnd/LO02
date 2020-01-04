@@ -2,7 +2,7 @@
 package fr.utt.jestcardgame.view;
 
 
-import fr.utt.jestcardgame.model.GameOptions;
+import fr.utt.jestcardgame.model.OptionsData;
 import fr.utt.jestcardgame.model.RoundsManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
@@ -27,14 +27,14 @@ public abstract class ConsoleGameView implements Observer {
                 System.out.println("How many players for your game ? (You have the choice between 3 or 4.)");
                 break;
             case PlayerNb:
-                System.out.println(GameOptions.getNbPlayer() + " players will play the next game. \n");
+                System.out.println(OptionsData.getNbPlayer() + " players will play the next game. \n");
                 break;
             case RealPlayer:
                 System.out.println("How many players are real for this game ?");
                 break;
             case PlayVar:
-                System.out.println(GameOptions.getNbRealPlayer() + " REAL PLAYER(S)");
-                System.out.println(GameOptions.getNbVirtualPlayer() + " VIRTUAL PLAYER(S)");
+                System.out.println(OptionsData.getNbRealPlayer() + " REAL PLAYER(S)");
+                System.out.println(OptionsData.getNbVirtualPlayer() + " VIRTUAL PLAYER(S)");
                 System.out.println("____________________");
                 System.out.println("1 - Play");
                 System.out.println("2 - Choose a variant");
@@ -46,7 +46,7 @@ public abstract class ConsoleGameView implements Observer {
                 System.out.println("3- Variant 3");
                 break;
             case SelectVar:
-                System.out.println("You will play with the variant : " + GameOptions.getVariant() + "\n");
+                System.out.println("You will play with the variant : " + OptionsData.getVariant() + "\n");
                 break;
             case NewGame:
                 System.out.println("Starting a new game where :");

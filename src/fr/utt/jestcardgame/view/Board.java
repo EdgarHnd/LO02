@@ -1,16 +1,15 @@
 package fr.utt.jestcardgame.view;
 
-import java.awt.Dimension;
-import java.util.ArrayList;
-
-import javax.swing.JLabel;
-
 import fr.utt.jestcardgame.controler.GameViewControler;
 import fr.utt.jestcardgame.model.GameBoard;
-import fr.utt.jestcardgame.model.GameOptions;
+import fr.utt.jestcardgame.model.OptionsData;
 import fr.utt.jestcardgame.model.RoundsManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class Board extends Panel implements Observer{
 	
@@ -103,22 +102,22 @@ public class Board extends Panel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		if(o instanceof GameBoard) {
-			if(GameOptions.getNbPlayer() == 3) {
+			if(OptionsData.getNbPlayer() == 3) {
 				this.panel.add(trophy1);
 				this.trophy1.setImagePath(((GameBoard) o).getTrophys().get(0).getImagePath());
 				this.panel.add(trophy2);
 				this.trophy2.setImagePath(((GameBoard) o).getTrophys().get(1).getImagePath());
 			}
-			else if(GameOptions.getNbPlayer() == 4) {
+			else if(OptionsData.getNbPlayer() == 4) {
 				this.panel.add(trophy);
 				this.trophy.setImagePath(((GameBoard) o).getTrophys().get(0).getImagePath());
 			}
 		}
 		else if(o instanceof RoundsManager) {
-			if(GameOptions.getNbPlayer() == 3) {
+			if(OptionsData.getNbPlayer() == 3) {
 				
 			}
-			else if(GameOptions.getNbPlayer() == 4) {
+			else if(OptionsData.getNbPlayer() == 4) {
 				
 			}
 		}

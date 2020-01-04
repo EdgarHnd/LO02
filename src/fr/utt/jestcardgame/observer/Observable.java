@@ -10,7 +10,7 @@ public class Observable {
 	protected boolean changed = false;
 	
 	// Gestion des observateurs
-	 public void addObserver (Observer o) {
+	 public void addObserver(Observer o) {
 		 this.listObserver.add(o);
 	 }
 	 /*public void deleteObserver (Observer o) {

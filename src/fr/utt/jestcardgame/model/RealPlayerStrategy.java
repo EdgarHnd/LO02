@@ -95,7 +95,7 @@ public class RealPlayerStrategy implements ChooseStrategy{
 
             //check the number of player remaining
             int playerNotPlayed = 0;
-            for (int i = 0; i < GameOptions.getNbPlayer(); i++) {
+            for (int i = 0; i < OptionsData.getNbPlayer(); i++) {
                 if (RoundsManager.getInstance().listPlayers.get(i).hasPlayed == false) {
                     playerNotPlayed++;
                 }

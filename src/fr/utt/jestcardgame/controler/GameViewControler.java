@@ -46,10 +46,25 @@ public class GameViewControler extends AbstractControler {
 		return back;
 	}
 
+	//public ActionListener getNumberPlayers(){return nbPlayer;}
 
 	public ActionListener getStart() {
 		return start;
 	}
+
+	/*private ActionListener nbPlayer = e -> {
+		Thread rules = new Thread(new Runnable() {
+		public void run() {
+			try {
+				GameOptions.getNbPlayer();
+			} catch (setupException e) {
+				e.printStackTrace();
+			}
+			System.out.println("button rules pressed");
+			}
+		});
+		rules.start();
+	};*/
 
 	private ActionListener options = new ActionListener() {
 		@Override
@@ -100,7 +115,7 @@ public class GameViewControler extends AbstractControler {
 		}
 		};
 		
-		private ActionListener start = new ActionListener() {
+	private ActionListener start = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				Thread start = new Thread(new Runnable() {

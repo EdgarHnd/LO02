@@ -1,6 +1,7 @@
 package fr.utt.jestcardgame.model;
 
 
+import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.view.ConsoleGameView;
 import fr.utt.jestcardgame.view.ConsoleOutput;
 import fr.utt.jestcardgame.view.ConsoleUserInput;
@@ -18,37 +19,7 @@ import java.util.InputMismatchException;
  * @author Elina
  * @version 1.0
  */
-public abstract class GameOptions {
-
-	//variables pouvant être utiles
-	protected static int nbPlayer;
-	protected static int nbRealPlayer;
-	protected static int nbVirtualPlayer;
-	protected static int variant;
-	
-	//Des noms pour tester
-	protected static String[] playersNames = {"Edgar","Elina","Patrick","Bernard"};
-	
-	//Getters
-	public static int getNbPlayer(){
-			return nbPlayer;
-	}
-
-	public static String getPlayersNames(int i) {
-		return playersNames[i];
-	}
-
-	public static int getNbRealPlayer() {
-		return nbRealPlayer;
-	}
-
-	public static int getNbVirtualPlayer() {
-		return nbVirtualPlayer;
-	}
-
-	public static int getVariant() {
-		return variant;
-	}
+public abstract class GameOptions extends Observable {
 
 	public static int setNbPlayer() {
 		boolean correctNumber = false;
@@ -56,7 +27,7 @@ public abstract class GameOptions {
 			ConsoleGameView.display(ConsoleOutput.settingNbPlayer);
 			try {
 				int nbPlayer = ConsoleUserInput.getInstance().nextInt();
-				GameOptions.nbPlayer = nbPlayer;
+				OptionsData.nbPlayer = nbPlayer;
 				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(3, 4, nbPlayer, ConsoleOutput.PlayerNb);
 				correctNumber = true;
 			} catch (setupException e){
@@ -68,11 +39,11 @@ public abstract class GameOptions {
 				System.exit(0);
 			}
 		}
-		return nbPlayer;
+		return OptionsData.nbPlayer;
 	}
 
 	public static int setNbRealPlayer( int nbPlayer) throws setupException {
-			GameOptions.nbPlayer = nbPlayer;
+			OptionsData.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
 				
@@ -80,7 +51,7 @@ public abstract class GameOptions {
 
 				try {
 					int nbRealPlayer = ConsoleUserInput.getInstance().nextInt();
-					GameOptions.nbRealPlayer = nbRealPlayer;
+					OptionsData.nbRealPlayer = nbRealPlayer;
 					ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(0, nbPlayer, nbRealPlayer, ConsoleOutput.Standard);
 					correctNumber = true;
 				} catch (setupException e){
@@ -92,11 +63,12 @@ public abstract class GameOptions {
 					System.exit(0);
 				}
 			}
-			return nbRealPlayer;
+			return OptionsData.nbRealPlayer;
 	}
 
 	public static int setNbVirtualPlayer() {
-			int nbVirtualPlayer = GameOptions.nbPlayer - GameOptions.nbRealPlayer;
+			int nbVirtualPlayer = OptionsData.nbPlayer - OptionsData.nbRealPlayer;
+			OptionsData.nbVirtualPlayer = nbVirtualPlayer;
 			return nbVirtualPlayer;
 	}
 
@@ -106,7 +78,7 @@ public abstract class GameOptions {
 			ConsoleGameView.display(ConsoleOutput.Variant);
 			try {
 				int nbVariant = ConsoleUserInput.getInstance().nextInt();
-				variant = nbVariant;
+				OptionsData.variant = nbVariant;
 				ConsoleUserInput.getInstance().isCorrectInputBetweenMinMax(1, 3, nbVariant, ConsoleOutput.SelectVar);
 				correctNumber = true;
 			} catch (setupException e){
@@ -118,7 +90,7 @@ public abstract class GameOptions {
 				System.exit(0);
 			}
 		}
-		return variant;
+		return OptionsData.variant;
 	}
 
 	/*public String[] setNamePlayer(int nbPlayer){
@@ -141,9 +113,9 @@ public abstract class GameOptions {
 
 	public static void setup() throws setupException {
 
-		nbPlayer = setNbPlayer();
-		nbRealPlayer = setNbRealPlayer(nbPlayer);
-		nbVirtualPlayer = setNbVirtualPlayer();
+		OptionsData.nbPlayer = setNbPlayer();
+		OptionsData.nbRealPlayer = setNbRealPlayer(OptionsData.nbPlayer);
+		OptionsData.nbVirtualPlayer = setNbVirtualPlayer();
 		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
 		//playerName.toString();
 
