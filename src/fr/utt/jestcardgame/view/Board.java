@@ -115,7 +115,8 @@ public class Board extends Panel implements Observer{
 		}
 		else if(o instanceof RoundsManager) {
 			if(OptionsData.getNbPlayer() == 3) {
-				
+				this.hand1p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(0).getImagePath());
+				this.hand2p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(1).getImagePath());
 			}
 			else if(OptionsData.getNbPlayer() == 4) {
 				
