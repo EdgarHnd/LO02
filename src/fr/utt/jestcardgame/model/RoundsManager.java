@@ -93,6 +93,8 @@ public class RoundsManager extends Observable{
 		System.out.println("add ob to gb "+this.listObserver.get(0));
 		this.gb.addObserver(this.listObserver.get(0));
 		this.gb.notifyOb();
+		this.setChanged();
+		this.notifyObservers();
 		//----------------
 		
 		System.out.println("\n________________");
@@ -100,7 +102,6 @@ public class RoundsManager extends Observable{
 		for(int i = 0; i < GameOptions.getNbPlayer(); i++) {
 			System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
 			this.listPlayers.get(i).makeOffer();
-
 		}
 		
 		//This is the player with the best offer

@@ -2,10 +2,11 @@ package fr.utt.jestcardgame.model;
 
 import java.util.LinkedList;
 
+import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.visitor.Visitable;
 import fr.utt.jestcardgame.visitor.Visitor;
 
-public class Player implements Visitable{
+public class Player extends Observable implements Visitable{
 
 	ChooseStrategy strategy;
 
