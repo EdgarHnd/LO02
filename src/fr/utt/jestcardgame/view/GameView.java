@@ -22,7 +22,7 @@ public class GameView extends JFrame implements Observer{
 	public GameView(GameViewControler gvc) {
 		this.gvc = gvc;
 		this.setTitle("Jest Game");
-		this.setSize(1200, 700);
+		this.setSize(1300, 800);
 	    this.setLocationRelativeTo(null);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             
 	    this.setResizable(false);

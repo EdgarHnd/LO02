@@ -16,8 +16,8 @@ public class CardLabel extends JLabel{
 	}
 	
 	public void paint(Graphics g){
-			g.setColor(Color.black);
-			g.drawRect(0, 0, 34*this.factor, 48*this.factor);
+			g.setColor(Color.white);
+			g.drawRect(0, 0, 33*this.factor, 47*this.factor);
 			try {
 				Image img = ImageIO.read(new File(this.imagePath));
 				Image scdImg = img.getScaledInstance(33*this.factor, 47*this.factor, Image.SCALE_AREA_AVERAGING);
