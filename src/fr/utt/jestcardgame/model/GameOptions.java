@@ -13,7 +13,6 @@ import java.util.InputMismatchException;
 /**
  * Class which allows the user to setup different parameters of the game, such as :
  * The number of players, and more precisely the number of real and virtual players
- * The name of each player
  * The user can choose one variant
  *
  * @author Elina
@@ -21,7 +20,7 @@ import java.util.InputMismatchException;
  */
 public abstract class GameOptions extends Observable {
 
-	public static int setNbPlayer() {
+	public static int consolePutNbPlayer() {
 		boolean correctNumber = false;
 		while (!correctNumber){
 			ConsoleGameView.display(ConsoleOutput.settingNbPlayer);
@@ -42,7 +41,7 @@ public abstract class GameOptions extends Observable {
 		return OptionsData.nbPlayer;
 	}
 
-	public static int setNbRealPlayer( int nbPlayer) throws setupException {
+	public static int consolePutNbRealPlayer(int nbPlayer) throws setupException {
 			OptionsData.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {
@@ -66,7 +65,7 @@ public abstract class GameOptions extends Observable {
 			return OptionsData.nbRealPlayer;
 	}
 
-	public static int setNbVirtualPlayer() {
+	public static int consolePutNbVirtualPlayer() {
 			int nbVirtualPlayer = OptionsData.nbPlayer - OptionsData.nbRealPlayer;
 			OptionsData.nbVirtualPlayer = nbVirtualPlayer;
 			return nbVirtualPlayer;
@@ -93,18 +92,6 @@ public abstract class GameOptions extends Observable {
 		return OptionsData.variant;
 	}
 
-	/*public String[] setNamePlayer(int nbPlayer){
-		System.out.println("Please put a name on you, we don't want to call you by a number ;)");
-		String [] playerName = new String[0];
-		for (int j = 0; j < nbRealPlayer; j++){
-			System.out.println("What's your name, player " + j + "?");
-			Scanner sc = new Scanner(System.in);
-			String name = sc.nextLine();
-			playerName[j] = name;
-		}
-		return playerName;
-	}*/
-
 		//Menu des options
 	public static int selectionOptionMenu () {
 			ConsoleGameView.display(ConsoleOutput.PlayVar);
@@ -113,11 +100,9 @@ public abstract class GameOptions extends Observable {
 
 	public static void setup() throws setupException {
 
-		OptionsData.nbPlayer = setNbPlayer();
-		OptionsData.nbRealPlayer = setNbRealPlayer(OptionsData.nbPlayer);
-		OptionsData.nbVirtualPlayer = setNbVirtualPlayer();
-		//String[] playerName = gameOp.setNamePlayer(nbRealPlayer);
-		//playerName.toString();
+		OptionsData.nbPlayer = consolePutNbPlayer();
+		OptionsData.nbRealPlayer = consolePutNbRealPlayer(OptionsData.nbPlayer);
+		OptionsData.nbVirtualPlayer = consolePutNbVirtualPlayer();
 
 		boolean startGame = false;
 		while (!startGame) {

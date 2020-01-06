@@ -10,10 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
-public class Options extends Panel implements ItemListener, Observer {
+public class Options extends Panel implements Observer {
 
     private GameOptions gameOp;
     private JButton back;
@@ -21,6 +19,7 @@ public class Options extends Panel implements ItemListener, Observer {
     private JRadioButton rb2;
     private JButton validate;
     private JLabel showNbPlayers;
+    private JComboBox comboBoxRealPlayer;
 
     private int nbPlayer;
 
@@ -40,14 +39,14 @@ public class Options extends Panel implements ItemListener, Observer {
         titre.setBounds(350, 0, 500, 100);
         panel.add(titre);
 
-        JLabel lbl = new JLabel("Number of players");
-        lbl.setFont(comics20);
-        lbl.setHorizontalAlignment(JLabel.CENTER);
-        lbl.setBounds(350, 100, 500, 100);
-        panel.add(lbl);
+        JLabel labelNbPlayer = new JLabel("Number of players");
+        labelNbPlayer.setFont(comics20);
+        labelNbPlayer.setHorizontalAlignment(JLabel.CENTER);
+        labelNbPlayer.setBounds(350, 80, 500, 100);
+        panel.add(labelNbPlayer);
 
         validate = new JButton("OK");
-        validate.setBounds(550, 300, 70, 50);
+        validate.setBounds(560, 280, 70, 40);
         validate.setEnabled(false);
         validate.addActionListener(new ActionValidateNumberOfPlayer());
 
@@ -56,14 +55,28 @@ public class Options extends Panel implements ItemListener, Observer {
         rb2 = new JRadioButton("4");
         rb2.addActionListener(new ActionChooseNumberOfPlayer(4, this, validate));
         ButtonGroup group = new ButtonGroup();
-        rb1.setBounds(550, 200, 100, 30);
-        rb2.setBounds(550, 250, 100, 30);
+        rb1.setBounds(550, 180, 100, 30);
+        rb2.setBounds(550, 230, 100, 30);
 
         showNbPlayers = new JLabel(" ");
-        showNbPlayers.setBounds(120, 200, 3000, 30);
+        showNbPlayers.setBounds(120, 190, 3000, 30);
         showNbPlayers.setFont(comics20);
         showNbPlayers.setVisible(true);
         panel.add(showNbPlayers);
+
+        JLabel labelNbRealPlayers = new JLabel("How many players are real for this game ?");
+        labelNbRealPlayers.setBounds(400, 350, 3000, 30);
+        labelNbRealPlayers.setFont(comics20);
+        labelNbRealPlayers.setVisible(true);
+        panel.add(labelNbRealPlayers);
+
+        String[] listNbRealPlayers3 = {"1", "2", "3"};
+        comboBoxRealPlayer = new JComboBox(listNbRealPlayers3);
+        comboBoxRealPlayer.setBounds(550, 400, 100, 30);
+        comboBoxRealPlayer.setVisible(true);
+        comboBoxRealPlayer.setEnabled(false);
+        comboBoxRealPlayer.addActionListener(new ActionChooseNumberRealPLayer());
+        panel.add(comboBoxRealPlayer);
 
         group.add(rb1);
         group.add(rb2);
@@ -80,11 +93,6 @@ public class Options extends Panel implements ItemListener, Observer {
 
     }
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-
-    }
-
     public void setNbPlayer(int nbPlayer) {
         this.nbPlayer = nbPlayer;
     }
@@ -92,6 +100,19 @@ public class Options extends Panel implements ItemListener, Observer {
     @Override
     public void update(Observable o, Object arg) {
 
+    }
+
+    private class ActionChooseNumberRealPLayer implements ActionListener {
+
+        public ActionChooseNumberRealPLayer(){
+
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            OptionsData.setNbRealPlayer(comboBoxRealPlayer.getSelectedIndex() + 1);
+            System.out.println(OptionsData.getNbRealPlayer());
+        }
     }
 
     private class ActionValidateNumberOfPlayer implements ActionListener {
@@ -103,10 +124,17 @@ public class Options extends Panel implements ItemListener, Observer {
         public void actionPerformed(ActionEvent e) {
             if (rb1.isSelected()) {
                 OptionsData.setNbPlayer(3);
+                System.out.println(OptionsData.getNbPlayer());
                 showNbPlayers.setText("3 players will play the next game.");
+                comboBoxRealPlayer.setEnabled(true);
+                //update(new Observable(), 0);
             } else if (rb2.isSelected()) {
                 OptionsData.setNbPlayer(4);
+                System.out.println(OptionsData.getNbPlayer());
                 showNbPlayers.setText("4 players will play the next game.");
+                String four = "4";
+                comboBoxRealPlayer.addItem(four);
+                comboBoxRealPlayer.setEnabled(true);
             }
         }
     }

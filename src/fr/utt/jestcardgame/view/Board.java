@@ -119,7 +119,7 @@ public class Board extends Panel implements Observer{
 				this.hand2p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(1).getImagePath());
 			}
 			else if(OptionsData.getNbPlayer() == 4) {
-				
+
 			}
 		}
 	}

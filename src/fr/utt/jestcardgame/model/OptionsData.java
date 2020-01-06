@@ -13,6 +13,10 @@ public class OptionsData extends Observable {
         nbPlayer = numbPlayer;
     }
 
+    public static void setNbRealPlayer(int numbRealPlayer) {
+        nbRealPlayer = numbRealPlayer;
+    }
+
     public static int getNbPlayer() {
         return nbPlayer;
     }
@@ -22,6 +26,7 @@ public class OptionsData extends Observable {
     }
 
     public static int getNbVirtualPlayer() {
+        nbVirtualPlayer = OptionsData.nbPlayer - OptionsData.nbRealPlayer;
         return nbVirtualPlayer;
     }
 

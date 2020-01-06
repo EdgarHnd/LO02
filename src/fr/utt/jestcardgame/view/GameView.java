@@ -51,6 +51,7 @@ public class GameView extends JFrame implements Observer{
 
 	public void initOptions() {
 		System.out.println("Showing Options");
+		System.out.println("Showing Options");
 		container.removeAll();
 		container.add(new Options(size, gvc).getPanel(), BorderLayout.CENTER);
 		container.revalidate();
