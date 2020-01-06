@@ -1,8 +1,11 @@
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.controler.GameViewControler;
+import fr.utt.jestcardgame.model.Card;
 import fr.utt.jestcardgame.model.GameBoard;
+import fr.utt.jestcardgame.model.Jest;
 import fr.utt.jestcardgame.model.OptionsData;
+import fr.utt.jestcardgame.model.Player;
 import fr.utt.jestcardgame.model.RoundsManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
@@ -158,7 +161,7 @@ public class Board extends Panel implements Observer{
 		    }  
 		}); 
 		
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < 8; i++) {
 			CardLabel jestCard = new CardLabel("pictures/CardsPng/back.jpg"){
 				public void paint(Graphics g) {
 					Graphics2D g2 = (Graphics2D)g;
@@ -177,6 +180,7 @@ public class Board extends Panel implements Observer{
 			jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34,jestCard.getFactor() * 48));
 			jestCard.setVerticalAlignment(JLabel.CENTER);
 			jestCard.setBounds(150, 50+i*100, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+			jestCard.setVisible(false);
 			this.jestp1.add(jestCard);
 		}
 		for(CardLabel j:jestp1){
@@ -221,12 +225,13 @@ public class Board extends Panel implements Observer{
 			}  
 		}); 
 				
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < 8; i++) {
 			CardLabel jestCard = new CardLabel("pictures/CardsPng/back.jpg");
 			jestCard.setFactor(trophysSize);
 			jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34,jestCard.getFactor() * 48));
 			jestCard.setVerticalAlignment(JLabel.CENTER);
 			jestCard.setBounds(350+i*100, 650, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+			jestCard.setVisible(false);
 			this.jestp2.add(jestCard);
 			}
 		for(CardLabel j:jestp2) {
@@ -312,7 +317,7 @@ public class Board extends Panel implements Observer{
 		    }  
 		});
 		
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < 8; i++) {
 			CardLabel jestCard = new CardLabel("pictures/CardsPng/back.jpg"){
 				public void paint(Graphics g) {
 					Graphics2D g2 = (Graphics2D)g;
@@ -331,6 +336,7 @@ public class Board extends Panel implements Observer{
 			jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34,jestCard.getFactor() * 48));
 			jestCard.setVerticalAlignment(JLabel.CENTER);
 			jestCard.setBounds(1100, 50+i*100, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+			jestCard.setVisible(false);
 			this.jestp3.add(jestCard);
 		}
 		for(CardLabel j:jestp3){
@@ -375,13 +381,23 @@ public class Board extends Panel implements Observer{
 		    }  
 		}); 
 		
-		for(int i = 1; i < 6; i++) {
+		for(int i = 1; i < 8; i++) {
 			CardLabel jestCard = new CardLabel("pictures/CardsPng/back.jpg");
 			jestCard.setFactor(trophysSize);
 			jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34,jestCard.getFactor() * 48));
 			jestCard.setVerticalAlignment(JLabel.CENTER);
 			jestCard.setBounds(350+i*100, 50, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+			jestCard.setVisible(false);
 			this.jestp4.add(jestCard);
+		}
+		this.panel.add(this.hand1p4);
+		this.panel.add(this.hand2p4);
+		this.panel.add(this.player4);
+		this.player4.setVisible(false);
+		this.hand1p4.setVisible(false);
+		this.hand2p4.setVisible(false);
+		for(CardLabel j:this.jestp4){
+		    this.panel.add(j);
 		}
 	}
 	
@@ -403,8 +419,7 @@ public class Board extends Panel implements Observer{
 		else if(o instanceof RoundsManager) {
 			if(OptionsData.getNbPlayer() == 3) {
 				this.player1.setText(((RoundsManager) o).getListPlayers().get(0).getName());
-				this.hand1p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(0).getImagePath());
-				this.hand2p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(1).getImagePath());
+				
 				
 				this.player2.setText(((RoundsManager) o).getListPlayers().get(1).getName());
 				this.hand1p2.setImagePath(((RoundsManager) o).getListPlayers().get(1).getHand().get(0).getImagePath());
@@ -416,6 +431,9 @@ public class Board extends Panel implements Observer{
 				
 			}
 			else if(OptionsData.getNbPlayer() == 4) {
+				this.player4.setVisible(true);
+				this.hand1p4.setVisible(true);
+				this.hand2p4.setVisible(true);
 				this.player1.setText(((RoundsManager) o).getListPlayers().get(0).getName());
 				this.hand1p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(0).getImagePath());
 				this.hand2p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(1).getImagePath());
@@ -428,15 +446,77 @@ public class Board extends Panel implements Observer{
 				this.hand1p3.setImagePath(((RoundsManager) o).getListPlayers().get(2).getHand().get(0).getImagePath());
 				this.hand2p3.setImagePath(((RoundsManager) o).getListPlayers().get(2).getHand().get(1).getImagePath());
 				
-				this.panel.add(this.player4);
-				this.panel.add(this.hand1p4);
-				this.panel.add(this.hand2p4);
-				for(CardLabel j:this.jestp4){
-				    this.panel.add(j);
-				}
+				
 				this.player4.setText(((RoundsManager) o).getListPlayers().get(3).getName());
 				this.hand1p4.setImagePath(((RoundsManager) o).getListPlayers().get(3).getHand().get(0).getImagePath());
 				this.hand2p4.setImagePath(((RoundsManager) o).getListPlayers().get(3).getHand().get(1).getImagePath());
+				
+			}
+		}
+		else if(o instanceof Player) {
+			if(((Player) o).getNb() == 1) {
+				if(arg instanceof Card) {
+					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
+						this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
+					}
+					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
+						this.hand2p1.setImagePath(((Player) o).getHand().get(1).getImagePath());
+					}
+				}
+				else if(arg instanceof Jest) {
+					for(int i=0; i < ((Jest) arg).getJestCards().size();i++) {
+						this.jestp1.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
+						this.jestp1.get(i).setVisible(true);
+					}
+				}
+			}
+			if(((Player) o).getNb() == 2) {
+				if(arg instanceof Card) {
+					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
+						this.hand1p2.setImagePath(((Player) o).getHand().get(0).getImagePath());
+					}
+					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
+						this.hand2p2.setImagePath(((Player) o).getHand().get(1).getImagePath());
+					}
+				}
+				else if(arg instanceof Jest) {
+					for(int i=0; i < ((Jest) arg).getJestCards().size();i++) {
+						this.jestp2.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
+						this.jestp2.get(i).setVisible(true);
+					}
+				}
+			}
+			if(((Player) o).getNb() == 3) {
+				if(arg instanceof Card) {
+					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
+						this.hand1p3.setImagePath(((Player) o).getHand().get(0).getImagePath());
+					}
+					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
+						this.hand2p3.setImagePath(((Player) o).getHand().get(1).getImagePath());
+					}
+				}
+				else if(arg instanceof Jest) {
+					for(int i=0; i < ((Jest) arg).getJestCards().size();i++) {
+						this.jestp3.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
+						this.jestp3.get(i).setVisible(true);
+					}
+				}
+			}
+			if(((Player) o).getNb() == 4) {
+				if(arg instanceof Card) {
+					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
+						this.hand1p4.setImagePath(((Player) o).getHand().get(0).getImagePath());
+					}
+					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
+						this.hand2p4.setImagePath(((Player) o).getHand().get(1).getImagePath());
+					}
+				}
+				else if(arg instanceof Jest) {
+					for(int i=0; i < ((Jest) arg).getJestCards().size();i++) {
+						this.jestp4.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
+						this.jestp4.get(i).setVisible(true);
+					}
+				}
 			}
 		}
 	}

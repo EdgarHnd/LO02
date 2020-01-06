@@ -1,6 +1,7 @@
 package fr.utt.jestcardgame.model;
 
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.visitor.Visitable;
@@ -71,6 +72,15 @@ public class Player extends Observable implements Visitable{
 	
 	public void receiveCard(Card c) {
 		this.hand.add(c);
+		this.setChanged();
+		this.notifyObservers(c);
+		System.out.println("notify receivedCard");
+		try {
+			TimeUnit.SECONDS.sleep(1);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public Card offeredCard() {
 		Card oCard = null;
@@ -109,9 +119,15 @@ public class Player extends Observable implements Visitable{
 	
 	public void pickOffer() {
 		strategy.pickOfferStrategy(this);
+		this.setChanged();
+		this.notifyObservers(this.jest);
 	}
 	@Override
 	public void acceptVisitor(Visitor v) {
 		v.visit(this);
+	}
+	public void receiveTrophy() {
+		this.setChanged();
+		this.notifyObservers(this.jest);
 	}
 }
