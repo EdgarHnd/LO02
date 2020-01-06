@@ -186,6 +186,9 @@ public class Board extends Panel implements Observer{
 		for(CardLabel j:jestp1){
 		    this.panel.add(j);
 		}
+		this.hand1p1.setVisible(false);
+		this.hand2p1.setVisible(false);
+		
 		//player2
 		this.player2 = new JLabel("Player 2");
 		this.player2.setHorizontalAlignment(JLabel.CENTER);
@@ -237,6 +240,9 @@ public class Board extends Panel implements Observer{
 		for(CardLabel j:jestp2) {
 			this.panel.add(j);
 				}
+		this.hand1p2.setVisible(false);
+		this.hand2p2.setVisible(false);
+		
 		//player3
 		this.player3 = new JLabel("Player 3") {
 			protected void paintComponent(Graphics g) {
@@ -342,6 +348,8 @@ public class Board extends Panel implements Observer{
 		for(CardLabel j:jestp3){
 		    this.panel.add(j);
 		}
+		this.hand1p3.setVisible(false);
+		this.hand2p3.setVisible(false);
 		
 		//player4
 		this.player4 = new JLabel("Player 4");
@@ -420,37 +428,19 @@ public class Board extends Panel implements Observer{
 			if(OptionsData.getNbPlayer() == 3) {
 				this.player1.setText(((RoundsManager) o).getListPlayers().get(0).getName());
 				
-				
 				this.player2.setText(((RoundsManager) o).getListPlayers().get(1).getName());
-				this.hand1p2.setImagePath(((RoundsManager) o).getListPlayers().get(1).getHand().get(0).getImagePath());
-				this.hand2p2.setImagePath(((RoundsManager) o).getListPlayers().get(1).getHand().get(1).getImagePath());
 				
 				this.player3.setText(((RoundsManager) o).getListPlayers().get(2).getName());
-				this.hand1p3.setImagePath(((RoundsManager) o).getListPlayers().get(2).getHand().get(0).getImagePath());
-				this.hand2p3.setImagePath(((RoundsManager) o).getListPlayers().get(2).getHand().get(1).getImagePath());
-				
 			}
 			else if(OptionsData.getNbPlayer() == 4) {
-				this.player4.setVisible(true);
-				this.hand1p4.setVisible(true);
-				this.hand2p4.setVisible(true);
 				this.player1.setText(((RoundsManager) o).getListPlayers().get(0).getName());
-				this.hand1p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(0).getImagePath());
-				this.hand2p1.setImagePath(((RoundsManager) o).getListPlayers().get(0).getHand().get(1).getImagePath());
 				
 				this.player2.setText(((RoundsManager) o).getListPlayers().get(1).getName());
-				this.hand1p2.setImagePath(((RoundsManager) o).getListPlayers().get(1).getHand().get(0).getImagePath());
-				this.hand2p2.setImagePath(((RoundsManager) o).getListPlayers().get(1).getHand().get(1).getImagePath());
 				
 				this.player3.setText(((RoundsManager) o).getListPlayers().get(2).getName());
-				this.hand1p3.setImagePath(((RoundsManager) o).getListPlayers().get(2).getHand().get(0).getImagePath());
-				this.hand2p3.setImagePath(((RoundsManager) o).getListPlayers().get(2).getHand().get(1).getImagePath());
-				
 				
 				this.player4.setText(((RoundsManager) o).getListPlayers().get(3).getName());
-				this.hand1p4.setImagePath(((RoundsManager) o).getListPlayers().get(3).getHand().get(0).getImagePath());
-				this.hand2p4.setImagePath(((RoundsManager) o).getListPlayers().get(3).getHand().get(1).getImagePath());
-				
+				this.player4.setVisible(true);
 			}
 		}
 		else if(o instanceof Player) {
@@ -458,9 +448,11 @@ public class Board extends Panel implements Observer{
 				if(arg instanceof Card) {
 					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
 						this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
+						this.hand1p1.setVisible(true);
 					}
 					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
 						this.hand2p1.setImagePath(((Player) o).getHand().get(1).getImagePath());
+						this.hand2p1.setVisible(true);
 					}
 				}
 				else if(arg instanceof Jest) {
@@ -474,9 +466,11 @@ public class Board extends Panel implements Observer{
 				if(arg instanceof Card) {
 					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
 						this.hand1p2.setImagePath(((Player) o).getHand().get(0).getImagePath());
+						this.hand1p2.setVisible(true);
 					}
 					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
 						this.hand2p2.setImagePath(((Player) o).getHand().get(1).getImagePath());
+						this.hand2p2.setVisible(true);
 					}
 				}
 				else if(arg instanceof Jest) {
@@ -490,9 +484,11 @@ public class Board extends Panel implements Observer{
 				if(arg instanceof Card) {
 					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
 						this.hand1p3.setImagePath(((Player) o).getHand().get(0).getImagePath());
+						this.hand1p3.setVisible(true);
 					}
 					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
 						this.hand2p3.setImagePath(((Player) o).getHand().get(1).getImagePath());
+						this.hand2p3.setVisible(true);
 					}
 				}
 				else if(arg instanceof Jest) {
@@ -506,9 +502,11 @@ public class Board extends Panel implements Observer{
 				if(arg instanceof Card) {
 					if(((Card) arg).equals(((Player) o).getHand().get(0))) {
 						this.hand1p4.setImagePath(((Player) o).getHand().get(0).getImagePath());
+						this.hand1p4.setVisible(true);
 					}
 					else if(((Card) arg).equals(((Player) o).getHand().get(1))) {
 						this.hand2p4.setImagePath(((Player) o).getHand().get(1).getImagePath());
+						this.hand2p4.setVisible(true);
 					}
 				}
 				else if(arg instanceof Jest) {
