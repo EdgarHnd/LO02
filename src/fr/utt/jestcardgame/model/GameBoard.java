@@ -62,6 +62,7 @@ public class GameBoard extends Observable implements Visitor {
 				}
 			}
 			winner.getJest().addToJest(t);
+			winner.receiveTrophy();
 			System.out.println(winner.getName()+" receives the trophy : "+t);
 		}
 	}

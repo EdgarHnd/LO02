@@ -83,12 +83,18 @@ public class RoundsManager extends Observable{
 		System.out.println("\nDeck shuffled");
 		System.out.println("\n" + deck.getCards());
 		
-		deck.deal();
-		deck.dealTrophys();
+		
 		
 		//workinprogress
 		System.out.println("gm ob" + GameManager.getInstance().getBoard());
 		this.addObserver(GameManager.getInstance().getBoard());
+		
+		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
+			//add obsever
+			this.listPlayers.get(i).addObserver(this.listObserver.get(0));
+			}
+		deck.deal();
+		deck.dealTrophys();
 		System.out.println("add ob to gb "+this.listObserver.get(0));
 		this.gb.addObserver(this.listObserver.get(0));
 		this.gb.notifyOb();

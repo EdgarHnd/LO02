@@ -31,19 +31,19 @@ public class Welcome extends Panel implements Observer {
 		JLabel titre = new JLabel("Welcome to JEST Game\n");
 		titre.setHorizontalAlignment(JLabel.CENTER);
 		titre.setFont(comics40);
-		titre.setBounds(350, 0, 500, 100);
+		titre.setBounds(400, 0, 500, 100);
 		
 		this.panel.add(titre);
 		
 		startB = new JButton("START");
-		startB.setBounds(550, 250, 120, 40);
+		startB.setBounds(600, 350, 120, 40);
 		quitB = new JButton("QUIT");
-		quitB.setBounds(550, 350, 120, 40);
+		quitB.setBounds(600, 450, 120, 40);
 		rulesB = new JButton("RULES");
-		rulesB.setBounds(550, 300, 120, 40);
+		rulesB.setBounds(600, 400, 120, 40);
 
 		optionsB = new JButton("OPTIONS");
-		optionsB.setBounds(550, 400, 120, 40);
+		optionsB.setBounds(600, 500, 120, 40);
 		
 		
 		this.panel.add(startB);
@@ -66,7 +66,7 @@ public class Welcome extends Panel implements Observer {
 		texte.setFont(arial);
 		texte.setEditable(false);
 		texte.setBackground(Color.white);
-		texte.setBounds(500, 100, 300, 100);
+		texte.setBounds(550, 150, 300, 100);
 		
 		this.panel.add(texte);
 		
