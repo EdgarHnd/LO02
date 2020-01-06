@@ -122,17 +122,18 @@ public class Options extends Panel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            String four = "4";
             if (rb1.isSelected()) {
                 OptionsData.setNbPlayer(3);
                 System.out.println(OptionsData.getNbPlayer());
                 showNbPlayers.setText("3 players will play the next game.");
+                comboBoxRealPlayer.removeItem(four);
                 comboBoxRealPlayer.setEnabled(true);
                 //update(new Observable(), 0);
             } else if (rb2.isSelected()) {
                 OptionsData.setNbPlayer(4);
                 System.out.println(OptionsData.getNbPlayer());
                 showNbPlayers.setText("4 players will play the next game.");
-                String four = "4";
                 comboBoxRealPlayer.addItem(four);
                 comboBoxRealPlayer.setEnabled(true);
             }
