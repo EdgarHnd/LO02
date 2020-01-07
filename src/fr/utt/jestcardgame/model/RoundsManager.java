@@ -155,6 +155,7 @@ public class RoundsManager extends Observable{
 			this.listPlayers.get(i).getScore().visit(this.listPlayers.get(i));
 			//add last card one the board to the jest
 			this.listPlayers.get(i).getJest().addToJest(this.listPlayers.get(i).getOffer().pollFirst());
+			this.listPlayers.get(i).updateJest();
 			this.listPlayers.get(i).getScore().giveScore();
 			System.out.println(this.listPlayers.get(i).getName()+" Jest is : "+this.listPlayers.get(i).getJest().getJestCards().toString()
 					+" with a value of : "+this.listPlayers.get(i).getScore().getScore());

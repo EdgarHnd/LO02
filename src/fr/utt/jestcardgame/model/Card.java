@@ -79,7 +79,7 @@ public class Card {
 	
 	public String toString() {
 		return this.kind.toString() + " " +this.suit.toString() + " " + 
-	this.trophy.toString() /*+ " " + this.hidden+" value "+this.cardValue()+" tieValue "+this.cardTiesValue()*/;
+	this.trophy.toString();
 	}
 	
 }

@@ -9,26 +9,8 @@ import java.awt.event.ActionListener;
 public class GameViewControler extends AbstractControler {
 	
 	public GameViewControler(GameManager gm) {
-		super(gm);
-		
+		super(gm);	
 	}
-	/*public void start() {
-		try {
-			this.gm.mainMenu();
-		} catch (setupException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
-	
-	/*public void rules() {
-		try {
-			this.gm.executeUserChoice(2);
-		} catch (setupException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 
 	public ActionListener getOptions() {
 		return options;
@@ -46,25 +28,9 @@ public class GameViewControler extends AbstractControler {
 		return back;
 	}
 
-	//public ActionListener getNumberPlayers(){return nbPlayer;}
-
 	public ActionListener getStart() {
 		return start;
 	}
-
-	/*private ActionListener nbPlayer = e -> {
-		Thread rules = new Thread(new Runnable() {
-		public void run() {
-			try {
-				GameOptions.getNbPlayer();
-			} catch (setupException e) {
-				e.printStackTrace();
-			}
-			System.out.println("button rules pressed");
-			}
-		});
-		rules.start();
-	};*/
 
 	private ActionListener options = new ActionListener() {
 		@Override

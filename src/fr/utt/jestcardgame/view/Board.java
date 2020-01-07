@@ -100,20 +100,7 @@ public class Board extends Panel implements Observer {
 
         //players
         //player1
-        this.player1 = new JLabel("Player 1");/* {
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(90), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
-                super.paintComponent(g);
-            }
-        };*/
+        this.player1 = new JLabel("Player 1");
         this.player1.setHorizontalAlignment(JLabel.CENTER);
         this.player1.setFont(comics20);
         this.player1.setBounds(0, 350, 100, 50);
@@ -133,20 +120,7 @@ public class Board extends Panel implements Observer {
         this.panel.add(this.s1);
         this.s1.setVisible(false);
 
-        this.hand1p1 = new CardLabel("pictures/CardsPng/back.jpg");/* {
-            public void paint(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(90), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
-                super.paint(g);
-            }
-        };*/
+        this.hand1p1 = new CardLabel("pictures/CardsPng/back.jpg");
         this.hand1p1.setFactor(handSize);
         this.hand1p1.setPreferredSize(new Dimension(this.hand1p1.getFactor() * 34, this.hand1p1.getFactor() * 48));
         this.hand1p1.setVerticalAlignment(JLabel.CENTER);
@@ -160,20 +134,7 @@ public class Board extends Panel implements Observer {
 
             }
         });
-        this.hand2p1 = new CardLabel("pictures/CardsPng/back.jpg");/* {
-            public void paint(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(90), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
-                super.paint(g);
-            }
-        };*/
+        this.hand2p1 = new CardLabel("pictures/CardsPng/back.jpg");
         this.hand2p1.setFactor(handSize);
         this.hand2p1.setPreferredSize(new Dimension(this.hand1p1.getFactor() * 34, this.hand1p1.getFactor() * 48));
         this.hand2p1.setVerticalAlignment(JLabel.CENTER);
@@ -206,7 +167,7 @@ public class Board extends Panel implements Observer {
             jestCard.setFactor(trophysSize);
             jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34, jestCard.getFactor() * 48));
             jestCard.setVerticalAlignment(JLabel.CENTER);
-            jestCard.setBounds(150, 50 + i * 100, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+            jestCard.setBounds(150, 100 + i * 80, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
             jestCard.setVisible(false);
             this.jestp1.add(jestCard);
         }
@@ -270,7 +231,7 @@ public class Board extends Panel implements Observer {
             jestCard.setFactor(trophysSize);
             jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34, jestCard.getFactor() * 48));
             jestCard.setVerticalAlignment(JLabel.CENTER);
-            jestCard.setBounds(350 + i * 100, 650, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+            jestCard.setBounds(250 + i * 100, 650, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
             jestCard.setVisible(false);
             this.jestp2.add(jestCard);
         }
@@ -281,21 +242,7 @@ public class Board extends Panel implements Observer {
         this.hand2p2.setVisible(false);
 
         //player3
-        this.player3 = new JLabel("Player 3");/* {
-            protected void paintComponent(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                        RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(-90), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
-                super.paintComponent(g);
-            }
-        };*/
+        this.player3 = new JLabel("Player 3");
         this.player3.setHorizontalAlignment(JLabel.CENTER);
         this.player3.setFont(comics20);
         this.player3.setBounds(1200, 350, 100, 50);
@@ -315,20 +262,7 @@ public class Board extends Panel implements Observer {
     	this.panel.add(this.s3);
     	this.s3.setVisible(false);
 
-        this.hand1p3 = new CardLabel("pictures/CardsPng/back.jpg");/* {
-            public void paint(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(-90), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
-                super.paint(g);
-            }
-        };*/
+        this.hand1p3 = new CardLabel("pictures/CardsPng/back.jpg");
         this.hand1p3.setFactor(handSize);
         this.hand1p3.setPreferredSize(new Dimension(this.hand1p1.getFactor() * 34, this.hand1p1.getFactor() * 48));
         this.hand1p3.setVerticalAlignment(JLabel.CENTER);
@@ -342,20 +276,7 @@ public class Board extends Panel implements Observer {
 
             }
         });
-        this.hand2p3 = new CardLabel("pictures/CardsPng/back.jpg");/* {
-            public void paint(Graphics g) {
-                Graphics2D g2 = (Graphics2D) g;
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                AffineTransform aT = g2.getTransform();
-                Shape oldshape = g2.getClip();
-                double x = getWidth() / 2.0;
-                double y = getHeight() / 2.0;
-                aT.rotate(Math.toRadians(-90), x, y);
-                g2.setTransform(aT);
-                g2.setClip(oldshape);
-                super.paint(g);
-            }
-        };*/
+        this.hand2p3 = new CardLabel("pictures/CardsPng/back.jpg");
         this.hand2p3.setFactor(handSize);
         this.hand2p3.setPreferredSize(new Dimension(this.hand1p1.getFactor() * 34, this.hand1p1.getFactor() * 48));
         this.hand2p3.setVerticalAlignment(JLabel.CENTER);
@@ -388,7 +309,7 @@ public class Board extends Panel implements Observer {
             jestCard.setFactor(trophysSize);
             jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34, jestCard.getFactor() * 48));
             jestCard.setVerticalAlignment(JLabel.CENTER);
-            jestCard.setBounds(1100, 50 + i * 100, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+            jestCard.setBounds(1100, 100 + i * 80, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
             jestCard.setVisible(false);
             this.jestp3.add(jestCard);
         }
@@ -451,7 +372,7 @@ public class Board extends Panel implements Observer {
             jestCard.setFactor(trophysSize);
             jestCard.setPreferredSize(new Dimension(jestCard.getFactor() * 34, jestCard.getFactor() * 48));
             jestCard.setVerticalAlignment(JLabel.CENTER);
-            jestCard.setBounds(350 + i * 100, 50, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
+            jestCard.setBounds(250 + i * 100, 50, jestCard.getFactor() * 34, jestCard.getFactor() * 48);
             jestCard.setVisible(false);
             this.jestp4.add(jestCard);
         }
@@ -512,10 +433,10 @@ public class Board extends Panel implements Observer {
             if (((Player) o).getNb() == 1) {
             	if (arg instanceof Card) {
                     if (((Card) arg).equals(((Player) o).getHand().get(0))) {
-                        this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
+                      //this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
                         this.hand1p1.setVisible(true);
                     } else if (((Card) arg).equals(((Player) o).getHand().get(1))) {
-                        this.hand2p1.setImagePath(((Player) o).getHand().get(1).getImagePath());
+                      //this.hand2p1.setImagePath(((Player) o).getHand().get(1).getImagePath());
                         this.hand2p1.setVisible(true);
                     } 
                 } else if (arg instanceof Jest) {
@@ -526,13 +447,29 @@ public class Board extends Panel implements Observer {
                 } else if (arg == null) {
 	            	if(((Player) o).isPlaying() == true) {
 	            		this.p1.setVisible(true);
+	            		this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
+                        this.hand1p1.setVisible(true);
+                        this.hand2p1.setImagePath(((Player) o).getHand().get(1).getImagePath());
+                        this.hand2p1.setVisible(true);
 	            	}
 	            	else if(((Player) o).isPlaying() == false){
 	            		this.p1.setVisible(false);
-	            		this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
-	            		//this.hand1p1.setVisible(true);
-	            		this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
-	            		//this.hand2p1.setVisible(true);
+	            		if(((Player) o).getHand().get(0).isHidden()){
+	            			this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
+	            			//this.hand1p1.setVisible(true);
+	            		}
+	            		if(((Player) o).getHand().get(1).isHidden()){
+	            			this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
+	            			//this.hand2p1.setVisible(true);
+	            		}
+	            	}
+	            	else if(((Player) o).getOffer().size() == 0) {
+	            		this.hand1p1.setVisible(false);
+                        this.hand2p1.setVisible(false);
+	            	}
+	            	else if(((Player) o).getOffer().size() == 1) {
+	            		this.hand1p1.setVisible(true);
+                        this.hand2p1.setVisible(false);
 	            	}
             	} else if (arg instanceof Score) {
             		this.s1.setText("Score : " + ((Score) arg).getScore());
