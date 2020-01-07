@@ -75,11 +75,13 @@ public class Deck {
 			System.out.println("First Deal");
 			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCard());
+				RoundsManager.getInstance().setState("Dealing");
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond Deal");
 			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCard());
+				RoundsManager.getInstance().setState("Dealing");
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 		}
@@ -125,12 +127,14 @@ public class Deck {
 			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				this.topCards.getFirst().setHidden(true);
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCards.pop());
+				RoundsManager.getInstance().setState("Dealing");
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 			System.out.println("\nSecond StackDeal");
 			for(int i = 0; i < OptionsData.nbPlayer;i++) {
 				this.topCards.getFirst().setHidden(true);
 				RoundsManager.getInstance().listPlayers.get(i).receiveCard(this.topCards.pop());
+				RoundsManager.getInstance().setState("Dealing");
 				System.out.println(RoundsManager.getInstance().listPlayers.get(i).getName()+" received "+RoundsManager.getInstance().listPlayers.get(i).getHand());
 			}
 		}
