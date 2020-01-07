@@ -76,9 +76,9 @@ public class Options extends Panel implements Observer {
         comboBoxRealPlayer.addActionListener(new ActionChooseNumberRealPLayer());
         panel.add(comboBoxRealPlayer);
 
-        String[] listVariant = {"Variant 1", "Variant 2", "Variant 3"};
+        String[] listVariant = {"Variant 1 : Super Joker", "Variant 2 : Power of Heart", "Variant 3 : Bad Clubs"};
         comboBoxVariant = new JComboBox(listVariant);
-        comboBoxVariant.setBounds(550, 500, 100, 30);
+        comboBoxVariant.setBounds(500, 500, 200, 30);
         comboBoxVariant.setVisible(true);
         comboBoxVariant.addActionListener(new ActionChooseVariant());
         panel.add(comboBoxVariant);

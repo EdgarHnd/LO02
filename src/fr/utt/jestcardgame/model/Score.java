@@ -68,7 +68,11 @@ public class Score implements Visitor{
 							if(b.suit == Suit.Spades) {
 								
 								if(c.kind == b.kind) {
-									this.score += 1;
+									if (OptionsData.getVariant() == 3) {
+										this.score -= 10;
+									} else {
+										this.score += 1;
+									}
 								}
 							}
 					 }
@@ -113,7 +117,11 @@ public class Score implements Visitor{
 				if(c.suit == Suit.Hearts && this.player.getJest().hasJoker()) {
 					if(c.kind == Kind.Ace &&
 							this.player.getJest().isAlone(Kind.Ace, c.suit)) {
-						this.score -= 5;
+						if (OptionsData.getVariant() == 2) {
+							this.score += 15;
+						} else {
+							this.score -= 5;
+						}
 					}
 					else {
 					this.score -= c.cardValue();
@@ -136,7 +144,11 @@ public class Score implements Visitor{
 		
 		public void addJoker() {
 			if(this.player.getJest().hasJoker() && this.player.getJest().hasSuit(Suit.Hearts)==false) {
-				this.score += 4;
+				if (OptionsData.getVariant() == 1){
+					this.score += 10;
+				} else {
+					this.score += 4;
+				}
 			}
 		}
 		

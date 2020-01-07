@@ -41,9 +41,9 @@ public abstract class ConsoleGameView implements Observer {
                 break;
             case Variant:
                 System.out.println("We have different variants for your game. Make your choice");
-                System.out.println("1- Variant 1");
-                System.out.println("2- Variant 2");
-                System.out.println("3- Variant 3");
+                System.out.println("1- Variant 1 : Super Joker");
+                System.out.println("2- Variant 2 : Power of Heart");
+                System.out.println("3- Variant 3 : Bad Clubs");
                 break;
             case SelectVar:
                 System.out.println("You will play with the variant : " + OptionsData.getVariant() + "\n");
