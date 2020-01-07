@@ -67,12 +67,8 @@ public class Score implements Visitor{
 							Card b = j.next();
 							if(b.suit == Suit.Spades) {
 								
-								if(c.kind == b.kind) {
-									if (OptionsData.getVariant() == 3) {
-										this.score -= 10;
-									} else {
-										this.score += 1;
-									}
+								if(c.kind == b.kind) {									
+									this.score += 1;
 								}
 							}
 					 }
@@ -118,13 +114,17 @@ public class Score implements Visitor{
 					if(c.kind == Kind.Ace &&
 							this.player.getJest().isAlone(Kind.Ace, c.suit)) {
 						if (OptionsData.getVariant() == 2) {
-							this.score += 15;
+							this.score += 5;
 						} else {
 							this.score -= 5;
 						}
 					}
 					else {
-					this.score -= c.cardValue();
+						if (OptionsData.getVariant() == 2) {
+							this.score += c.cardValue();
+						} else {
+							this.score -= c.cardValue();
+						}
 					}
 				}
 				else if(c.suit == Suit.Hearts &&

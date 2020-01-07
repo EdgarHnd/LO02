@@ -24,6 +24,7 @@ public class RoundsManager extends Observable{
 	protected ArrayList<Player> listPlayers;
 	private boolean turnOver = false;
 	private GameBoard gb = GameBoard.getInstance();
+	private Player finalWinner;
 	
 	public static RoundsManager getInstance(){
 		
@@ -41,6 +42,9 @@ public class RoundsManager extends Observable{
 	}
 	public int getRoundNb() {
 		return roundNb;
+	}
+	public Player getFinalWinner() {
+		return finalWinner;
 	}
 
 	public ArrayList<Player> getListPlayers() {
@@ -184,8 +188,11 @@ public class RoundsManager extends Observable{
 			}
 		}
 		System.out.println(finalWinner.getName()+" win this game with a Jest value of : "+finalWinner.getScore().getScore());
+		this.finalWinner = finalWinner;
+		this.setChanged();
+		this.notifyObservers(finalWinner);
 	}
-	
+
 	//return the player with the best offer
 	public Player checkBestOffer() {
 		//just a default value
