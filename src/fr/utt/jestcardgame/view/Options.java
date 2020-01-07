@@ -76,7 +76,7 @@ public class Options extends Panel implements Observer {
         comboBoxRealPlayer.addActionListener(new ActionChooseNumberRealPLayer());
         panel.add(comboBoxRealPlayer);
 
-        String[] listVariant = {"Variant 1 : Super Joker", "Variant 2 : Power of Heart", "Variant 3 : Bad Clubs"};
+        String[] listVariant = {"Choose a variant...","Variant 1 : Super Joker", "Variant 2 : Power of Heart", "Variant 3 : Bad Clubs"};
         comboBoxVariant = new JComboBox(listVariant);
         comboBoxVariant.setBounds(500, 500, 200, 30);
         comboBoxVariant.setVisible(true);
@@ -120,7 +120,7 @@ public class Options extends Panel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            OptionsData.setVariant(comboBoxVariant.getSelectedIndex() + 1);
+            OptionsData.setVariant(comboBoxVariant.getSelectedIndex());
             System.out.println("Variant for this game : " + OptionsData.getVariant());
         }
     }
