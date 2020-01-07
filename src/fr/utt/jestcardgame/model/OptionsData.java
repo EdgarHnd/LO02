@@ -17,6 +17,8 @@ public class OptionsData extends Observable {
         nbRealPlayer = numbRealPlayer;
     }
 
+    public static void setVariant(int numVariant) {variant = numVariant;}
+
     public static int getNbPlayer() {
         return nbPlayer;
     }

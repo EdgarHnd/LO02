@@ -1,7 +1,6 @@
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.controler.GameViewControler;
-import fr.utt.jestcardgame.model.GameOptions;
 import fr.utt.jestcardgame.model.OptionsData;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
@@ -13,21 +12,20 @@ import java.awt.event.ActionListener;
 
 public class Options extends Panel implements Observer {
 
-    private GameOptions gameOp;
     private JButton back;
     private JRadioButton rb1;
     private JRadioButton rb2;
     private JButton validate;
     private JLabel showNbPlayers;
     private JComboBox comboBoxRealPlayer;
+    private JComboBox comboBoxVariant;
+    private JButton startB;
 
     private int nbPlayer;
 
     public Options(Dimension dim, GameViewControler gvc) {
         super(dim, gvc);
         initPanel();
-        //this.gameOp = gameOp;
-        //gameOp.addObserver(this);
     }
 
     @Override
@@ -70,13 +68,25 @@ public class Options extends Panel implements Observer {
         labelNbRealPlayers.setVisible(true);
         panel.add(labelNbRealPlayers);
 
-        String[] listNbRealPlayers3 = {"1", "2", "3"};
+        String[] listNbRealPlayers3 = {"0", "1", "2", "3"};
         comboBoxRealPlayer = new JComboBox(listNbRealPlayers3);
         comboBoxRealPlayer.setBounds(550, 400, 100, 30);
         comboBoxRealPlayer.setVisible(true);
         comboBoxRealPlayer.setEnabled(false);
         comboBoxRealPlayer.addActionListener(new ActionChooseNumberRealPLayer());
         panel.add(comboBoxRealPlayer);
+
+        String[] listVariant = {"Variant 1", "Variant 2", "Variant 3"};
+        comboBoxVariant = new JComboBox(listVariant);
+        comboBoxVariant.setBounds(550, 500, 100, 30);
+        comboBoxVariant.setVisible(true);
+        comboBoxVariant.addActionListener(new ActionChooseVariant());
+        panel.add(comboBoxVariant);
+
+        startB = new JButton("START A NEW GAME");
+        startB.setBounds(530, 600, 150, 40);
+        startB.addActionListener(this.gvc.getStart());
+        panel.add(startB);
 
         group.add(rb1);
         group.add(rb2);
@@ -102,6 +112,19 @@ public class Options extends Panel implements Observer {
 
     }
 
+    private class ActionChooseVariant implements ActionListener{
+
+        public ActionChooseVariant(){
+
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            OptionsData.setVariant(comboBoxVariant.getSelectedIndex() + 1);
+            System.out.println("Variant for this game : " + OptionsData.getVariant());
+        }
+    }
+
     private class ActionChooseNumberRealPLayer implements ActionListener {
 
         public ActionChooseNumberRealPLayer(){
@@ -110,8 +133,9 @@ public class Options extends Panel implements Observer {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            OptionsData.setNbRealPlayer(comboBoxRealPlayer.getSelectedIndex() + 1);
-            System.out.println(OptionsData.getNbRealPlayer());
+            OptionsData.setNbRealPlayer(comboBoxRealPlayer.getSelectedIndex());
+            System.out.println(OptionsData.getNbRealPlayer() + " REAL PLAYER(S)");
+            System.out.println(OptionsData.getNbVirtualPlayer() + " VIRTUAL PLAYER(S)");
         }
     }
 
@@ -120,22 +144,22 @@ public class Options extends Panel implements Observer {
         public ActionValidateNumberOfPlayer() {
         }
 
+        public void UInterfacePrintNbPlayers(int nbPlayer){
+            OptionsData.setNbPlayer(nbPlayer);
+            System.out.println(OptionsData.getNbPlayer() + " players will play the next game. \n");
+            showNbPlayers.setText(OptionsData.getNbPlayer() + " players will play the next game.");
+            comboBoxRealPlayer.setEnabled(true);
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             String four = "4";
             if (rb1.isSelected()) {
-                OptionsData.setNbPlayer(3);
-                System.out.println(OptionsData.getNbPlayer());
-                showNbPlayers.setText("3 players will play the next game.");
+                UInterfacePrintNbPlayers(3);
                 comboBoxRealPlayer.removeItem(four);
-                comboBoxRealPlayer.setEnabled(true);
-                //update(new Observable(), 0);
             } else if (rb2.isSelected()) {
-                OptionsData.setNbPlayer(4);
-                System.out.println(OptionsData.getNbPlayer());
-                showNbPlayers.setText("4 players will play the next game.");
+               UInterfacePrintNbPlayers(4);
                 comboBoxRealPlayer.addItem(four);
-                comboBoxRealPlayer.setEnabled(true);
             }
         }
     }

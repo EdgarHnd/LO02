@@ -13,7 +13,6 @@ import java.awt.*;
 public class Welcome extends Panel implements Observer {
 
 	private JButton optionsB;
-	private JButton startB;
 	private JButton quitB;
 	private JButton rulesB;
 	private CardLabel card;
@@ -34,26 +33,20 @@ public class Welcome extends Panel implements Observer {
 		titre.setBounds(400, 0, 500, 100);
 		
 		this.panel.add(titre);
-		
-		startB = new JButton("START");
-		startB.setBounds(600, 350, 120, 40);
+
+		optionsB = new JButton("START");
+		optionsB.setBounds(600, 350, 120, 40);
 		quitB = new JButton("QUIT");
 		quitB.setBounds(600, 450, 120, 40);
 		rulesB = new JButton("RULES");
 		rulesB.setBounds(600, 400, 120, 40);
 
-		optionsB = new JButton("OPTIONS");
-		optionsB.setBounds(600, 500, 120, 40);
-		
-		
-		this.panel.add(startB);
 		this.panel.add(rulesB);
 		this.panel.add(quitB);
 		this.panel.add(optionsB);
 
 		this.rulesB.addActionListener(this.gvc.getRules());
 		this.quitB.addActionListener(this.gvc.getQuit());
-		this.startB.addActionListener(this.gvc.getStart());
 		this.optionsB.addActionListener(this.gvc.getOptions());
 		
 		//this.panel.add(new JLabel(new ImageIcon("images/accueil.jpg")), BorderLayout.CENTER);
