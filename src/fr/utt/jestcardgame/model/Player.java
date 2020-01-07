@@ -1,11 +1,11 @@
 package fr.utt.jestcardgame.model;
 
-import java.util.LinkedList;
-import java.util.concurrent.TimeUnit;
-
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.visitor.Visitable;
 import fr.utt.jestcardgame.visitor.Visitor;
+
+import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public class Player extends Observable implements Visitable{
 
@@ -19,6 +19,7 @@ public class Player extends Observable implements Visitable{
 	protected int finalBoolean;
 	protected Score score;
 	protected boolean hasPlayed = false;
+	protected boolean isPlaying = false;
 	protected boolean isPicking = false;
 	protected boolean isNext = false;
 	
@@ -38,6 +39,14 @@ public class Player extends Observable implements Visitable{
 	public String getName() {
 		return this.name;
 	}
+	public boolean isPlaying() {
+		return isPlaying;
+	}
+	public void setPlaying(boolean isPlaying) {
+		this.isPlaying = isPlaying;
+		this.hasChanged();
+		this.notifyObservers();
+	}
 	public int getNb() {
 		return nb;
 	}
@@ -48,6 +57,8 @@ public class Player extends Observable implements Visitable{
 		return offer;
 	}
 	public Score getScore() {
+		this.setChanged();
+		this.notifyObservers(score);
 		return score;
 	}
 	public void setScore(Score s) {
@@ -74,9 +85,10 @@ public class Player extends Observable implements Visitable{
 		this.hand.add(c);
 		this.setChanged();
 		this.notifyObservers(c);
+		this.notifyObservers();
 		System.out.println("notify receivedCard");
 		try {
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.MILLISECONDS.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,13 +126,31 @@ public class Player extends Observable implements Visitable{
 	}
 
 	public void makeOffer() {
+		this.setPlaying(true);
 		strategy.makeOfferStrategy(this);
+		try {
+			TimeUnit.MILLISECONDS.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.setPlaying(false);
 	}
 	
 	public void pickOffer() {
+		/*this.setChanged();
+		this.notifyObservers();*/
+		this.setPlaying(true);
 		strategy.pickOfferStrategy(this);
+		try {
+			TimeUnit.MILLISECONDS.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setChanged();
 		this.notifyObservers(this.jest);
+		this.setPlaying(false);
 	}
 	@Override
 	public void acceptVisitor(Visitor v) {
