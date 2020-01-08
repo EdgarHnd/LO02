@@ -97,7 +97,7 @@ public class Deck {
 			System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0)
 					+" and "+GameBoard.getInstance().getTrophys().get(1));
 		}
-		else {
+		else if(OptionsData.nbPlayer == 4) {
 			GameBoard.getInstance().getTrophys().add(this.topCard());
 			System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0));
 		}

@@ -546,7 +546,6 @@ public class Board extends Panel implements Observer {
 	            	else if(p.getOffer().size() == 1) {
 	            		switch(p.getNb()) {
 	            		case 1:
-	            			System.out.println("plus qu'une");
 	            			this.hand1p1.setVisible(true);
 	                        this.hand2p1.setVisible(false);
 	                        break;
@@ -595,6 +594,7 @@ public class Board extends Panel implements Observer {
         } 
         //Player
         else if (o instanceof Player) {
+        	this.panel.repaint();
         	//Player1
             if (((Player) o).getNb() == 1) {
             	if (arg instanceof Jest) {
