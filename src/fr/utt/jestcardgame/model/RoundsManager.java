@@ -155,7 +155,7 @@ public class RoundsManager extends Observable{
 			this.turnOver = false;
 			//This is the player with the best offer
 			this.showAllOffers();
-			this.setState("Pick offer");
+			//this.setState("Pick offer");
 			this.checkBestOffer().pickOffer();
 			
 			
@@ -165,7 +165,7 @@ public class RoundsManager extends Observable{
 				}
 			}
 		}
-		this.state = "GameOver";
+		this.setState("GameOver");
 		this.setChanged();
 		this.notifyObservers();
 		System.out.println("No more cards, time to show your JESTS !");
@@ -216,11 +216,11 @@ public class RoundsManager extends Observable{
 	//return the player with the best offer
 	public Player checkBestOffer() {
 		//just a default value
+		//this.setState("Pick offer");
 		Player bestOfferPlayer = new Player("Default",10, new RealPlayerStrategy());
 		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None,"pictures/CardsPng/rulescard.png"));
 		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None,"pictures/CardsPng/rulescard.png"));
 		bestOfferPlayer.hand.get(0).setHidden(false);
-		
 		
 		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 					if(this.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue() 
@@ -244,6 +244,7 @@ public class RoundsManager extends Observable{
 	}
 	
 	public Player nextPlayer() {
+		this.setState("Pick offer");
 		Player nextToPlay = null;
 		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if(this.listPlayers.get(i).isNext) {
