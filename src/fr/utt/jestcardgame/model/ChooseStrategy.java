@@ -9,17 +9,18 @@ package fr.utt.jestcardgame.model;
  */
 public interface ChooseStrategy {
 
-	/**
-	 * Declaration of the method which allows a player to make an offer at the beginning of a round.
-	 *
-	 * @param player
-	 */
-	void makeOfferStrategy(Player player);
+    /**
+     * Declaration of the method which allows a player to make an offer at the beginning of a round.
+     *
+     * @param player
+     */
+    void makeOfferStrategy(Player player);
 
-	/**
-	 * Declaration of the method which allows a player to pick an offer to another player during a round.
-	 * @param player
-	 */
-	void pickOfferStrategy(Player player);
+    /**
+     * Declaration of the method which allows a player to pick an offer to another player during a round.
+     *
+     * @param player
+     */
+    void pickOfferStrategy(Player player);
 
 }

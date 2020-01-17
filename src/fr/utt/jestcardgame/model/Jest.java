@@ -2,24 +2,52 @@ package fr.utt.jestcardgame.model;
 
 import java.util.LinkedList;
 
+/**
+ * Class representing the 'Jest' of each player, that is the collection of cards of each player, also their future score.
+ * It contains a <code>LinkedList</code> of {@link Card} that constitute the <code>jestCards</code> attribute.
+ * Also, this class defines the trophys conditions in order to win a trophy.
+ *
+ * @author Elina
+ */
 public class Jest {
 	
 	private LinkedList<Card> jestCards;
-	
+
+	/**
+	 * Creating a <code>Jest</code> instance will create a new LinkedList of cards, which is its <code>jestCards</code> attribute.
+	 *
+	 * @see LinkedList
+	 */
 	public Jest() {
-		this.jestCards = new LinkedList<Card>();
+		this.jestCards = new LinkedList<>();
 	}
-	
-	//Getter/Setters
+
+	/**
+	 * Gets the LinkedList <code>jestCards</code> attribute of the <code>Jest</code> instance.
+	 *
+	 * @see LinkedList
+	 * @return jestCards
+	 */
 	public LinkedList<Card> getJestCards() {
 		return jestCards;
 	}
 
+	/**
+	 * Adds a card put in the parameters to the player's jest.
+	 *
+	 * @see LinkedList
+	 * @param c Card added to the player's jest
+	 */
 	public void addToJest(Card c) {
 		this.jestCards.add(c);
 	}
 
-	//Booleans to analyse the player jest
+	/**
+	 * Returns a boolean value to know if the player's jest has all the card of the suit put in parameters.
+	 *
+	 * @param s Suit analysed
+	 * @return boolean
+	 */
 	public boolean hasAllSuit(Suit s) {
 		int count = 0;
 		for(int i=0; i<this.jestCards.size();i++) {
@@ -32,7 +60,14 @@ public class Jest {
 		}
 		return false;
 	}
-	
+
+	/**
+	 * Returns a boolean value to know if the player's jest
+	 *
+	 * @param k Kind analysed
+	 * @param s Suit analysed
+	 * @return boolean
+	 */
 	public boolean isAlone(Kind k,Suit s) {
 		for(int i=0; i<this.jestCards.size();i++) {
 			if(this.jestCards.get(i).kind != k && 
@@ -72,18 +107,7 @@ public class Jest {
 		}
 		return nbKind;
 	}
-	
-	public int tieMajority(Kind k) {
-		int high = 0;
-		for(int i=0; i<this.jestCards.size();i++) {
-			if(this.jestCards.get(i).kind == k 
-					&& this.jestCards.get(i).cardTiesValue() > high) {
-					high = this.jestCards.get(i).cardTiesValue();
-					}
-			}
-		return high;
-	}
-	
+
 	public int highestSuit(Suit s) {
 		int high = 0;
 		Card c;
