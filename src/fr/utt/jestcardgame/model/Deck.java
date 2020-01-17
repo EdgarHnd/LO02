@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 /**
- * This class is where the Deck for one game is created.
+ * This class is where the Deck countaining the <code>Card</code> for one game is created.
  * It contains all the method needed to interact with the deck.
  *
  * @author Edgar
@@ -20,6 +20,10 @@ public class Deck {
 	private static Deck dk= null;
 	private LinkedList<Card> topCards;
 	
+	/**
+	 * Method use to make this object a singleton
+	 * @return dk
+	 */
 	public static Deck getInstance(){
 		
 		if(dk == null){
@@ -28,7 +32,11 @@ public class Deck {
 		
 		return dk;
 	}
-	
+	/**
+	 * Create the deck for the game
+	 * This is were the card list is creaded and all the cards for the game are created and added to the list
+	 * This is also where the list topCards is created
+	 */
 	public Deck() {
 		
 		cards = new LinkedList<Card>();
@@ -54,19 +62,29 @@ public class Deck {
 		
 		topCards = new LinkedList<Card>();
 	}
-
+	/**
+	 * Return the card list of the deck
+	 * @return this.cards
+	 */
 	public LinkedList<Card> getCards() {
 		return this.cards;
 	}
-	
+	/*Shuffle the cards in the list cards of the deck
+	 */
 	public void shuffle() {
 		Collections.shuffle(cards);
 	}
-
+	/**
+	 * Return the topCard from the deck
+	 * @return this.cards.pop()
+	 */
 	public Card topCard() {
 		return this.cards.pop();
 	}
-
+	/**
+	 * Deal 2 cards to each players playing the game.
+	 * Also print a message if their is not enought cards left.
+	 */
 	public void deal(){
 		ConsoleGameView.display(ConsoleOutput.Dealing);
 		
@@ -88,6 +106,10 @@ public class Deck {
 			ConsoleGameView.display(ConsoleOutput.NoMoreCard);
 		}
 	}
+	/**
+	 * Deal the trophy cards for the game,
+	 * 2 if their is 3 players or 1 if their is 4.
+	 */
 	public void dealTrophys(){
 		System.out.println("Dealing trophys");
 		if(OptionsData.nbPlayer == 3) {
@@ -101,22 +123,26 @@ public class Deck {
 			System.out.println("The Trophys for this game are : "+GameBoard.getInstance().getTrophys().get(0));
 		}
 	}
-	
+	/**
+	 * Gather the left over cards from the players after they made their offers and reset their hand state
+	 * Mix those cards with a matching number of cards from the deck
+	 * Then store all these cards in the list topCards in order to deal them to the players the next turn
+	 */
 	public void gather(){
-		//Gather the top cards of the deck to give them to the player
 		for(int i = 0; i < OptionsData.nbPlayer;i++) {
 		this.topCards.add(this.topCard());
 		RoundsManager.getInstance().listPlayers.get(i).hand.clear();
-		//Reset players states
 		RoundsManager.getInstance().listPlayers.get(i).setHasPlayed(false);
 		RoundsManager.getInstance().listPlayers.get(i).setIsPicking(false);
-		//gather the left over offered card of the players
 		this.topCards.add(RoundsManager.getInstance().listPlayers.get(i).offer.pollFirst());
 		}
 		Collections.shuffle(this.topCards);
 		System.out.println("The stack is now : "+this.topCards);
 	}
-	
+	/**
+	 * Deal the cards from the topCards list to the players at the begining of a new turn
+	 * Print a message if their isn't enought card to deal
+	 */
 	public void dealStack(){
 		
 		System.out.println("Dealing stack");

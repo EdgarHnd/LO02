@@ -1,5 +1,8 @@
 package fr.utt.jestcardgame.view;
-
+/**
+ * This is an enum to store the different output that we want to display on the console
+ * @author Edgar
+ */
 public enum ConsoleOutput {
 	
 	MainMenu,
@@ -14,7 +17,6 @@ public enum ConsoleOutput {
 	NoMoreCard,
 	ReadyToOffer,
 	OfferMaking,
-	OfferMade,
 	BestOffer,
 	Picking,
 	Standard,

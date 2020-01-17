@@ -17,7 +17,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
-
+/**
+ * Class representing the panel where the players will be playing
+ * This class extends from the class <code>Panel</code> in order to set basic attributes
+ * This class implements the Observer design pattern since this is where most of the updates will be made
+ * @author Edgar
+ */
 public class Board extends Panel implements Observer {
 
     private final int trophysSize = 2;
@@ -51,12 +56,19 @@ public class Board extends Panel implements Observer {
     private CardLabel hand1p4;
     private CardLabel hand2p4;
     private ArrayList<CardLabel> jestp4 = new ArrayList<CardLabel>();
-
+    /**
+     * Constructor for this class
+     * @param dim Dimension for the panel
+     * @param gvc GameViewController to control the players input (not yet implemented)
+     */
     public Board(Dimension dim, GameViewControler gvc) {
         super(dim, gvc);
         this.initPanel();
     }
-
+    /**
+     * Method where all the graphical components needed for the game will be created and placed on the panel
+     * This is where all the parameters are set for our JLabels and CardLabels
+     */
     @Override
     protected void initPanel() {
         this.panel.setLayout(null);
@@ -393,8 +405,16 @@ public class Board extends Panel implements Observer {
             this.panel.add(j);
         }
     }
-
-
+    /**
+     * Update method from the observer design pattern in order to change the graphical components
+     * of the board based on what is happening in the game
+     * The observed object can either be :
+     * the <code>GameBoard</code> in order to update the trophys
+     * the <code>RoundsManager</code> in order to set the board based on the number of player
+     * or to update each player cards during the game
+     * @param o Observable object that we are observing
+     * @param arg Object send by the Observable object to the update method
+     */
     @Override
     public void update(Observable o, Object arg) {
     	//GameBoard

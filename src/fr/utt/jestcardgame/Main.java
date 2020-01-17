@@ -5,78 +5,37 @@ import fr.utt.jestcardgame.model.GameManager;
 import fr.utt.jestcardgame.view.GameView;
 import fr.utt.jestcardgame.view.setupException;
 
-
+/**
+ * This is the main class of our program.
+ * It is only use to instantiate the differents objects for the game :
+ * @author Edgar
+ */
 public class Main {
-
+	
+	/**
+	 * This is the main method of the program that will be executed on the launch of the program.
+	 * This is where we create the objects of the MVC for the game :
+	 * the model : <code>GameManager</code>
+	 * the controller : <code>GameViewController</code>
+	 * the view :<code>GameView</code>
+	 * 
+	 * Add the observer GameView to the GameManager
+	 * Create and start a new Thread for the graphical interface
+	 * Start the console interface (not yet in a separated thread)
+	 */
 	    public static void main(String[] args) throws setupException, InterruptedException {
-	       
-	    	//Instantiate the game model
-	    	GameManager gm = new GameManager();
-	    	
-	    	/*Thread t = new Thread(new Runnable() {
-	    		public void run() {
-	    			try {
-						gm.mainMenu();
-					} catch (setupException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-	    		}
-	    	});*/
-	    	
-	    	
-	    	//Create a controler linked to the model
+	    	GameManager gm = new GameManager();	    	
 	    	GameViewControler cCtrl = new GameViewControler(gm);
 	    	GameView gv =  new GameView(cCtrl);
-	    	
-	    	//Our view can now visit the game model in order to update
 			gm.addObserver(gv);
-			//gm.setBoard(gv.getBoard());
-			
 	    	Thread t = new Thread(new Runnable() {
 	    		public void run() {
 	    			
-	    	    	//Create a view the game in the Console linked to the ConsoleControler
-	    	    	
 	    			gv.setVisible(true);
 	    			
 	    		}
 	    	});
-	    	/*EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					
-	    	    	
-	    	    	//Create a view of the game in the Console linked to the ConsoleControler
-	    	    	GameView gv =  new GameView(cCtrl);
-	    	    	
-	    	    	//Our view can now visit the game model in order to update
-	    			gm.addObserver(gv);
-					gv.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
-	    	
-	    	//TextView tv = new TextView(gm);
-	    	//gm.addObserver(tv);
 	    	t.start();
-	    	gm.mainMenu();
-	    	/*Thread t3 = new Thread(new Runnable() {
-	    		public void run() {
-	    			ConsoleUserInput c = new ConsoleUserInput();
-	    		}
-	    	});*/
-	    	
-	    	
-	    	//t2.start();
-	    	//t3.start();
-	    	
-	    	
-	    	
-	   
+	    	gm.mainMenu();		   
 	    }
-	    	
-
 }

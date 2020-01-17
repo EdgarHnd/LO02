@@ -1,19 +1,20 @@
 
 package fr.utt.jestcardgame.view;
 
-
 import fr.utt.jestcardgame.model.OptionsData;
 import fr.utt.jestcardgame.model.RoundsManager;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
-
-public abstract class ConsoleGameView implements Observer {
-
-	@Override
-	public void update(Observable o, Object arg){
-
-	}
-
+/**
+ *This class is where all the different console output are stored 
+ * @author Edgar
+ */
+public abstract class ConsoleGameView{
+	/**
+	 *Static method that can be call at any moment by the program in order to display a message to the console
+	 *It uses the enum <code>ConsoleOutput</code> as a parameter
+	 *@param co ConsoleOutput enumeration
+	 */
 	public static void display(ConsoleOutput co) {
         switch (co) {
             case MainMenu:
@@ -66,12 +67,7 @@ public abstract class ConsoleGameView implements Observer {
                 System.out.println("[Press X to continue]");
                 break;
             case OfferMaking:
-                //	System.out.println("Carte 1:" + this.hand.get(0));
-                //	System.out.println("Carte 2:" + this.hand.get(1));
                 System.out.println("Select your offer (1 or 2) ");
-                break;
-            case OfferMade:
-                //	System.out.println(this.hand.get(0) + " card selected");
                 break;
             case Picking:
                 System.out.println("Select the opponent you want to pick a card from");

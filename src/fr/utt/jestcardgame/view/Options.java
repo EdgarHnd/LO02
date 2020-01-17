@@ -7,7 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+/**
+ * This class define the Options panel where the main player can select the different settings that he wants for the game
+ * This class extends the class Panel in order to get the basic settings for our panels
+ * @author Edgar
+ */
 public class Options extends Panel {
 
     private JButton back;
@@ -20,12 +24,19 @@ public class Options extends Panel {
     private JButton startB;
 
     private int nbPlayer;
-
+    /**
+     * Constructor for the class
+     * @param dim Dimension the size we want
+     * @param gvc GameViewController to control the players input (not yet implemented)
+     */
     public Options(Dimension dim, GameViewControler gvc) {
         super(dim, gvc);
         initPanel();
     }
-
+    /**
+     * Method where all the graphical components needed for the game will be created and placed on the panel
+     * This is where all the parameters are set for our JLabels, Buttons and CheckBoxs
+     */
     @Override
     protected void initPanel() {
         this.panel.setLayout(null);
@@ -102,30 +113,41 @@ public class Options extends Panel {
         panel.add(back);
 
     }
-
+    /**
+     *Setter for the number of player
+     *@param nbPlayer int representing the number of player we want for the game
+     */
     public void setNbPlayer(int nbPlayer) {
         this.nbPlayer = nbPlayer;
     }
-
+    /**
+     * Inner class implementing ActionListener to send the settings for the variant to the model
+     */
     private class ActionChooseVariant implements ActionListener{
 
         public ActionChooseVariant(){
 
         }
-
+        /**
+         * method to link the player input to the model
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             OptionsData.setVariant(comboBoxVariant.getSelectedIndex()-1);
             System.out.println("Variant for this game : " + OptionsData.getVariant());
         }
     }
-
+    /**
+     * Inner class implementing ActionListener to send the settings for the number of real players to the model
+     */
     private class ActionChooseNumberRealPLayer implements ActionListener {
 
         public ActionChooseNumberRealPLayer(){
 
         }
-
+        /**
+         * method to link the player input to the model
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             OptionsData.setNbRealPlayer(comboBoxRealPlayer.getSelectedIndex());
@@ -133,7 +155,9 @@ public class Options extends Panel {
             System.out.println(OptionsData.getNbVirtualPlayer() + " VIRTUAL PLAYER(S)");
         }
     }
-
+    /**
+     * Inner class implementing ActionListener to validate the settings for the number of players and inform the model
+     */
     private class ActionValidateNumberOfPlayer implements ActionListener {
 
         public ActionValidateNumberOfPlayer() {
@@ -145,7 +169,9 @@ public class Options extends Panel {
             showNbPlayers.setText(OptionsData.getNbPlayer() + " players will play the next game.");
             comboBoxRealPlayer.setEnabled(true);
         }
-
+        /**
+         * method to link the player input to the model
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             String four = "4";
@@ -158,7 +184,9 @@ public class Options extends Panel {
             }
         }
     }
-
+    /**
+     * Inner class implementing ActionListener to send the settings for the number of players to the model
+     */
     private class ActionChooseNumberOfPlayer implements ActionListener {
         private Options optionView;
         private int nbPlayer;
@@ -169,7 +197,9 @@ public class Options extends Panel {
             this.optionView = optionView;
             this.validate = validate;
         }
-
+        /**
+         * method to link the player input to the model
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             optionView.setNbPlayer(nbPlayer);

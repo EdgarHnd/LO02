@@ -8,7 +8,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
+/**
+ * This class is made in order to implement a concurancial console interface which has not yet been implemented
+ * We keep it their as a work in progress
+ * @author Edgar
+ */
 public class TextView implements Observer, Runnable{
 
 	public static String QUIT = "Quit";
@@ -24,7 +28,6 @@ public class TextView implements Observer, Runnable{
 	}
 
 	public void run() {
-		//gm.addObserver(this);
 		String saisie = null;
 
 		do {
