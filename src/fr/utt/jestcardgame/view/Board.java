@@ -1,13 +1,7 @@
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.controler.GameViewControler;
-import fr.utt.jestcardgame.model.Card;
-import fr.utt.jestcardgame.model.GameBoard;
-import fr.utt.jestcardgame.model.Jest;
-import fr.utt.jestcardgame.model.OptionsData;
-import fr.utt.jestcardgame.model.Player;
-import fr.utt.jestcardgame.model.RoundsManager;
-import fr.utt.jestcardgame.model.Score;
+import fr.utt.jestcardgame.model.*;
 import fr.utt.jestcardgame.observer.Observable;
 import fr.utt.jestcardgame.observer.Observer;
 
@@ -17,10 +11,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
+
 /**
  * Class representing the panel where the players will be playing
  * This class extends from the class <code>Panel</code> in order to set basic attributes
  * This class implements the Observer design pattern since this is where most of the updates will be made
+ *
  * @author Edgar
  */
 public class Board extends Panel implements Observer {
@@ -56,8 +52,10 @@ public class Board extends Panel implements Observer {
     private CardLabel hand1p4;
     private CardLabel hand2p4;
     private ArrayList<CardLabel> jestp4 = new ArrayList<CardLabel>();
+
     /**
      * Constructor for this class
+     *
      * @param dim Dimension for the panel
      * @param gvc GameViewController to control the players input (not yet implemented)
      */
@@ -65,6 +63,7 @@ public class Board extends Panel implements Observer {
         super(dim, gvc);
         this.initPanel();
     }
+
     /**
      * Method where all the graphical components needed for the game will be created and placed on the panel
      * This is where all the parameters are set for our JLabels and CardLabels
@@ -79,20 +78,20 @@ public class Board extends Panel implements Observer {
         titre.setFont(comics40);
         titre.setBounds(0, 0, 250, 50);
         this.panel.add(titre);
-        
+
         this.winner = new JLabel("The winner is");
         this.winner.setHorizontalAlignment(JLabel.CENTER);
         this.winner.setFont(comics40);
         this.winner.setBounds(400, 300, 500, 50);
         this.panel.add(this.winner);
         this.winner.setVisible(false);
-        
+
         this.state = new JLabel("Game started");
         this.state.setHorizontalAlignment(JLabel.CENTER);
         this.state.setFont(comics20);
         this.state.setBounds(1100, 0, 200, 50);
         this.panel.add(this.state);
-        
+
         //trophys
         //trophy1
         this.trophy1 = new CardLabel("pictures/CardsPng/back.jpg");
@@ -124,15 +123,15 @@ public class Board extends Panel implements Observer {
         this.player1.setFont(comics20);
         this.player1.setBounds(0, 350, 100, 50);
         this.panel.add(this.player1);
-        
-        this.p1 = new JLabel("Playing"); 
+
+        this.p1 = new JLabel("Playing");
         this.p1.setHorizontalAlignment(JLabel.CENTER);
         this.p1.setFont(comics20);
         this.p1.setBounds(0, 400, 100, 50);
         this.panel.add(this.p1);
         this.p1.setVisible(false);
-        
-        this.s1 = new JLabel("Score :"); 
+
+        this.s1 = new JLabel("Score :");
         this.s1.setHorizontalAlignment(JLabel.CENTER);
         this.s1.setFont(comics20);
         this.s1.setBounds(0, 500, 110, 50);
@@ -202,14 +201,14 @@ public class Board extends Panel implements Observer {
         this.player2.setFont(comics20);
         this.player2.setBounds(600, 730, 100, 50);
         this.panel.add(this.player2);
-        
+
         this.p2 = new JLabel("Playing");
         this.p2.setHorizontalAlignment(JLabel.CENTER);
         this.p2.setFont(comics20);
         this.p2.setBounds(700, 730, 100, 50);
         this.panel.add(this.p2);
         this.p2.setVisible(false);
-        
+
         this.s2 = new JLabel("Score :");
         this.s2.setHorizontalAlignment(JLabel.CENTER);
         this.s2.setFont(comics20);
@@ -266,20 +265,20 @@ public class Board extends Panel implements Observer {
         this.player3.setFont(comics20);
         this.player3.setBounds(1200, 350, 100, 50);
         this.panel.add(this.player3);
-        
+
         this.p3 = new JLabel("Playing");
         this.p3.setHorizontalAlignment(JLabel.CENTER);
         this.p3.setFont(comics20);
-    	this.p3.setBounds(1200, 400, 100, 50);
-    	this.panel.add(this.p3);
-    	this.p3.setVisible(false);
-    	
-    	this.s3 = new JLabel("Score :");
+        this.p3.setBounds(1200, 400, 100, 50);
+        this.panel.add(this.p3);
+        this.p3.setVisible(false);
+
+        this.s3 = new JLabel("Score :");
         this.s3.setHorizontalAlignment(JLabel.CENTER);
         this.s3.setFont(comics20);
-    	this.s3.setBounds(1170, 500, 150, 50);
-    	this.panel.add(this.s3);
-    	this.s3.setVisible(false);
+        this.s3.setBounds(1170, 500, 150, 50);
+        this.panel.add(this.s3);
+        this.s3.setVisible(false);
 
         this.hand1p3 = new CardLabel("pictures/CardsPng/back.jpg");
         this.hand1p3.setFactor(handSize);
@@ -343,14 +342,14 @@ public class Board extends Panel implements Observer {
         this.player4.setHorizontalAlignment(JLabel.CENTER);
         this.player4.setFont(comics20);
         this.player4.setBounds(600, 0, 100, 50);
-        
+
         this.p4 = new JLabel("Playing");
         this.p4.setHorizontalAlignment(JLabel.CENTER);
         this.p4.setFont(comics20);
         this.p4.setBounds(700, 0, 100, 50);
         this.panel.add(p4);
         this.p4.setVisible(false);
-        
+
         this.s4 = new JLabel("Score :");
         this.s4.setHorizontalAlignment(JLabel.CENTER);
         this.s4.setFont(comics20);
@@ -405,6 +404,7 @@ public class Board extends Panel implements Observer {
             this.panel.add(j);
         }
     }
+
     /**
      * Update method from the observer design pattern in order to change the graphical components
      * of the board based on what is happening in the game
@@ -412,12 +412,13 @@ public class Board extends Panel implements Observer {
      * the <code>GameBoard</code> in order to update the trophys
      * the <code>RoundsManager</code> in order to set the board based on the number of player
      * or to update each player cards during the game
-     * @param o Observable object that we are observing
+     *
+     * @param o   Observable object that we are observing
      * @param arg Object send by the Observable object to the update method
      */
     @Override
     public void update(Observable o, Object arg) {
-    	//GameBoard
+        //GameBoard
         if (o instanceof GameBoard) {
             if (OptionsData.getNbPlayer() == 3) {
                 this.panel.add(trophy1);
@@ -431,7 +432,7 @@ public class Board extends Panel implements Observer {
         }
         //RoundsManager
         else if (o instanceof RoundsManager) {
-        	this.state.setText(((RoundsManager) o).getState());
+            this.state.setText(((RoundsManager) o).getState());
             if (OptionsData.getNbPlayer() == 3) {
                 this.player1.setText(((RoundsManager) o).getListPlayers().get(0).getName());
 
@@ -447,9 +448,9 @@ public class Board extends Panel implements Observer {
 
                 this.player4.setText(((RoundsManager) o).getListPlayers().get(3).getName());
                 this.player4.setVisible(true);
-            } 
-            if(((RoundsManager) o).getState() == "GameOver") {
-            	this.hand1p1.setVisible(false);
+            }
+            if (((RoundsManager) o).getState() == "GameOver") {
+                this.hand1p1.setVisible(false);
                 this.hand2p1.setVisible(false);
                 this.hand1p2.setVisible(false);
                 this.hand2p2.setVisible(false);
@@ -461,186 +462,181 @@ public class Board extends Panel implements Observer {
                 this.trophy1.setVisible(false);
                 this.trophy2.setVisible(false);
             }
-            if(((RoundsManager) o).getState() == "Dealing" || ((RoundsManager) o).getState() == "Make offer") {
-            	for(Player p:((RoundsManager) o).getListPlayers()) {
-            		if(p.getHand().size() == 0) {
-            			switch(p.getNb()) {
-	            		case 1:
-	            			this.hand1p1.setVisible(false);
-	                        this.hand2p1.setVisible(false);
-	                        break;
-	            		case 2:
-	            			this.hand1p2.setVisible(false);
-	                        this.hand2p2.setVisible(false);
-	                        break;
-	            		case 3:
-	            			this.hand1p3.setVisible(false);
-	                        this.hand2p3.setVisible(false);
-	                        break;
-	            		case 4:
-	            			this.hand1p4.setVisible(false);
-	                        this.hand2p4.setVisible(false);
-	                        break;
-	            		}
-	            	}
-	            	else if(p.getHand().size() == 1) {
-	            		switch(p.getNb()) {
-	            		case 1:
-	            			this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p1.setVisible(true);
-	                        this.hand2p1.setVisible(false);
-	                        break;
-	            		case 2:
-	            			this.hand1p2.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p2.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p2.setVisible(true);
-	                        this.hand2p2.setVisible(false);
-	                        break;
-	            		case 3:
-	            			this.hand1p3.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p3.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p3.setVisible(true);
-	                        this.hand2p3.setVisible(false);
-	                        break;
-	            		case 4:
-	            			this.hand1p4.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p4.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p4.setVisible(true);
-	                        this.hand2p4.setVisible(false);
-	                        break;
-	            		}
-	            	}
-	            	else if(p.getHand().size() == 2) {
-	            		switch(p.getNb()) {
-	            		case 1:
-	            			this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p1.setVisible(true);
-	                        this.hand2p1.setVisible(true);
-	                        break;
-	            		case 2:
-	            			this.hand1p2.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p2.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p2.setVisible(true);
-	                        this.hand2p2.setVisible(true);
-	                        break;
-	            		case 3:
-	            			this.hand1p3.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p3.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p3.setVisible(true);
-	                        this.hand2p3.setVisible(true);
-	                        break;
-	            		case 4:
-	            			this.hand1p4.setImagePath("pictures/CardsPng/back.jpg");
-	                        this.hand2p4.setImagePath("pictures/CardsPng/back.jpg");
-	            			this.hand1p4.setVisible(true);
-	                        this.hand2p4.setVisible(true);
-	                        break;
-	            		}
-	            	}
-            	}
+            if (((RoundsManager) o).getState() == "Dealing" || ((RoundsManager) o).getState() == "Make offer") {
+                for (Player p : ((RoundsManager) o).getListPlayers()) {
+                    if (p.getHand().size() == 0) {
+                        switch (p.getNb()) {
+                            case 1:
+                                this.hand1p1.setVisible(false);
+                                this.hand2p1.setVisible(false);
+                                break;
+                            case 2:
+                                this.hand1p2.setVisible(false);
+                                this.hand2p2.setVisible(false);
+                                break;
+                            case 3:
+                                this.hand1p3.setVisible(false);
+                                this.hand2p3.setVisible(false);
+                                break;
+                            case 4:
+                                this.hand1p4.setVisible(false);
+                                this.hand2p4.setVisible(false);
+                                break;
+                        }
+                    } else if (p.getHand().size() == 1) {
+                        switch (p.getNb()) {
+                            case 1:
+                                this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p1.setVisible(true);
+                                this.hand2p1.setVisible(false);
+                                break;
+                            case 2:
+                                this.hand1p2.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p2.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p2.setVisible(true);
+                                this.hand2p2.setVisible(false);
+                                break;
+                            case 3:
+                                this.hand1p3.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p3.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p3.setVisible(true);
+                                this.hand2p3.setVisible(false);
+                                break;
+                            case 4:
+                                this.hand1p4.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p4.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p4.setVisible(true);
+                                this.hand2p4.setVisible(false);
+                                break;
+                        }
+                    } else if (p.getHand().size() == 2) {
+                        switch (p.getNb()) {
+                            case 1:
+                                this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p1.setVisible(true);
+                                this.hand2p1.setVisible(true);
+                                break;
+                            case 2:
+                                this.hand1p2.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p2.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p2.setVisible(true);
+                                this.hand2p2.setVisible(true);
+                                break;
+                            case 3:
+                                this.hand1p3.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p3.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p3.setVisible(true);
+                                this.hand2p3.setVisible(true);
+                                break;
+                            case 4:
+                                this.hand1p4.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand2p4.setImagePath("pictures/CardsPng/back.jpg");
+                                this.hand1p4.setVisible(true);
+                                this.hand2p4.setVisible(true);
+                                break;
+                        }
+                    }
+                }
             }
-            if(((RoundsManager) o).getState() == "Pick offer") {
-            	for(Player p:((RoundsManager) o).getListPlayers()) {
-            		if(p.getOffer().size() == 0) {
-            			switch(p.getNb()) {
-	            		case 1:
-	            			this.hand1p1.setVisible(false);
-	                        this.hand2p1.setVisible(false);
-	                        break;
-	            		case 2:
-	            			this.hand1p2.setVisible(false);
-	                        this.hand2p2.setVisible(false);
-	                        break;
-	            		case 3:
-	            			this.hand1p3.setVisible(false);
-	                        this.hand2p3.setVisible(false);
-	                        break;
-	            		case 4:
-	            			this.hand1p4.setVisible(false);
-	                        this.hand2p4.setVisible(false);
-	                        break;
-	            		}
-	            	}
-	            	else if(p.getOffer().size() == 1) {
-	            		switch(p.getNb()) {
-	            		case 1:
-	            			this.hand1p1.setVisible(true);
-	                        this.hand2p1.setVisible(false);
-	                        break;
-	            		case 2:
-	            			this.hand1p2.setVisible(true);
-	                        this.hand2p2.setVisible(false);
-	                        break;
-	            		case 3:
-	            			this.hand1p3.setVisible(true);
-	                        this.hand2p3.setVisible(false);
-	                        break;
-	            		case 4:
-	            			this.hand1p4.setVisible(true);
-	                        this.hand2p4.setVisible(false);
-	                        break;
-	            		}
-	            	}
-	            	else if(p.getOffer().size() == 2) {
-	            		switch(p.getNb()) {
-	            		case 1:
-	            			this.hand1p1.setVisible(true);
-	                        this.hand2p1.setVisible(true);
-	                        break;
-	            		case 2:
-	            			this.hand1p2.setVisible(true);
-	                        this.hand2p2.setVisible(true);
-	                        break;
-	            		case 3:
-	            			this.hand1p3.setVisible(true);
-	                        this.hand2p3.setVisible(true);
-	                        break;
-	            		case 4:
-	            			this.hand1p4.setVisible(true);
-	                        this.hand2p4.setVisible(true);
-	                        break;
-	            		}
-	            	}
-            	}
+            if (((RoundsManager) o).getState() == "Pick offer") {
+                for (Player p : ((RoundsManager) o).getListPlayers()) {
+                    if (p.getOffer().size() == 0) {
+                        switch (p.getNb()) {
+                            case 1:
+                                this.hand1p1.setVisible(false);
+                                this.hand2p1.setVisible(false);
+                                break;
+                            case 2:
+                                this.hand1p2.setVisible(false);
+                                this.hand2p2.setVisible(false);
+                                break;
+                            case 3:
+                                this.hand1p3.setVisible(false);
+                                this.hand2p3.setVisible(false);
+                                break;
+                            case 4:
+                                this.hand1p4.setVisible(false);
+                                this.hand2p4.setVisible(false);
+                                break;
+                        }
+                    } else if (p.getOffer().size() == 1) {
+                        switch (p.getNb()) {
+                            case 1:
+                                this.hand1p1.setVisible(true);
+                                this.hand2p1.setVisible(false);
+                                break;
+                            case 2:
+                                this.hand1p2.setVisible(true);
+                                this.hand2p2.setVisible(false);
+                                break;
+                            case 3:
+                                this.hand1p3.setVisible(true);
+                                this.hand2p3.setVisible(false);
+                                break;
+                            case 4:
+                                this.hand1p4.setVisible(true);
+                                this.hand2p4.setVisible(false);
+                                break;
+                        }
+                    } else if (p.getOffer().size() == 2) {
+                        switch (p.getNb()) {
+                            case 1:
+                                this.hand1p1.setVisible(true);
+                                this.hand2p1.setVisible(true);
+                                break;
+                            case 2:
+                                this.hand1p2.setVisible(true);
+                                this.hand2p2.setVisible(true);
+                                break;
+                            case 3:
+                                this.hand1p3.setVisible(true);
+                                this.hand2p3.setVisible(true);
+                                break;
+                            case 4:
+                                this.hand1p4.setVisible(true);
+                                this.hand2p4.setVisible(true);
+                                break;
+                        }
+                    }
+                }
             }
             if (arg instanceof Player) {
-            	if (arg.equals(((RoundsManager) o).getFinalWinner())) {
-            		this.winner.setText("The winner is "+((Player) arg).getName());
-            		this.winner.setVisible(true);
-            	}
+                if (arg.equals(((RoundsManager) o).getFinalWinner())) {
+                    this.winner.setText("The winner is " + ((Player) arg).getName());
+                    this.winner.setVisible(true);
+                }
             }
-        } 
+        }
         //Player
         else if (o instanceof Player) {
-        	this.panel.repaint();
-        	//Player1
+            this.panel.repaint();
+            //Player1
             if (((Player) o).getNb() == 1) {
-            	if (arg instanceof Jest) {
+                if (arg instanceof Jest) {
                     for (int i = 0; i < ((Jest) arg).getJestCards().size(); i++) {
                         this.jestp1.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
                         this.jestp1.get(i).setVisible(true);
                     }
                 } else if (arg == null) {
-	            	if(((Player) o).isPlaying() == true) {
-	            		this.p1.setVisible(true);
-	            		this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
+                    if (((Player) o).isPlaying() == true) {
+                        this.p1.setVisible(true);
+                        this.hand1p1.setImagePath(((Player) o).getHand().get(0).getImagePath());
                         this.hand2p1.setImagePath(((Player) o).getHand().get(1).getImagePath());
-	            	}
-	            	else if(((Player) o).isPlaying() == false){
-	            		this.p1.setVisible(false);
-	            		if(((Player) o).getHand().get(0).isHidden()){
-	            			this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            		if(((Player) o).getHand().get(1).isHidden()){
-	            			this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            	}	
-            	} else if (arg instanceof Score) {
-            		this.s1.setText("Score : " + ((Score) arg).getScore());
-            		this.s1.setVisible(true);
-            	  }
+                    } else if (((Player) o).isPlaying() == false) {
+                        this.p1.setVisible(false);
+                        if (((Player) o).getHand().get(0).isHidden()) {
+                            this.hand1p1.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                        if (((Player) o).getHand().get(1).isHidden()) {
+                            this.hand2p1.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                    }
+                } else if (arg instanceof Score) {
+                    this.s1.setText("Score : " + ((Score) arg).getScore());
+                    this.s1.setVisible(true);
+                }
             }
             //Player2
             if (((Player) o).getNb() == 2) {
@@ -648,80 +644,77 @@ public class Board extends Panel implements Observer {
                     for (int i = 0; i < ((Jest) arg).getJestCards().size(); i++) {
                         this.jestp2.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
                         this.jestp2.get(i).setVisible(true);
-                    } 
+                    }
                 } else if (arg == null) {
-	            	if(((Player) o).isPlaying() == true) {
-	            		this.p2.setVisible(true);
-	            		this.hand1p2.setImagePath(((Player) o).getHand().get(0).getImagePath());
+                    if (((Player) o).isPlaying() == true) {
+                        this.p2.setVisible(true);
+                        this.hand1p2.setImagePath(((Player) o).getHand().get(0).getImagePath());
                         this.hand2p2.setImagePath(((Player) o).getHand().get(1).getImagePath());
-	            	}
-	            	else if(((Player) o).isPlaying() == false){
-	            		this.p2.setVisible(false);
-	            		if(((Player) o).getHand().get(0).isHidden()){
-	            			this.hand1p2.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            		if(((Player) o).getHand().get(1).isHidden()){
-	            			this.hand2p2.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            	}
-            	} else if (arg instanceof Score) {
-            		this.s2.setText("Score : " + ((Score) arg).getScore());
-            		this.s2.setVisible(true);
-            	  }
+                    } else if (((Player) o).isPlaying() == false) {
+                        this.p2.setVisible(false);
+                        if (((Player) o).getHand().get(0).isHidden()) {
+                            this.hand1p2.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                        if (((Player) o).getHand().get(1).isHidden()) {
+                            this.hand2p2.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                    }
+                } else if (arg instanceof Score) {
+                    this.s2.setText("Score : " + ((Score) arg).getScore());
+                    this.s2.setVisible(true);
+                }
             }
             //Player3
             if (((Player) o).getNb() == 3) {
-            	if (arg instanceof Jest) {
+                if (arg instanceof Jest) {
                     for (int i = 0; i < ((Jest) arg).getJestCards().size(); i++) {
                         this.jestp3.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
                         this.jestp3.get(i).setVisible(true);
                     }
                 } else if (arg == null) {
-	            	if(((Player) o).isPlaying() == true) {
-	            		this.p3.setVisible(true);
-	            		this.hand1p3.setImagePath(((Player) o).getHand().get(0).getImagePath());
+                    if (((Player) o).isPlaying() == true) {
+                        this.p3.setVisible(true);
+                        this.hand1p3.setImagePath(((Player) o).getHand().get(0).getImagePath());
                         this.hand2p3.setImagePath(((Player) o).getHand().get(1).getImagePath());
-	            	}
-	            	else if(((Player) o).isPlaying() == false){
-	            		this.p3.setVisible(false);
-	            		if(((Player) o).getHand().get(0).isHidden()){
-	            			this.hand1p3.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            		if(((Player) o).getHand().get(1).isHidden()){
-	            			this.hand2p3.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            	}
-            	} else if (arg instanceof Score) {
-            		this.s3.setText("Score : " + ((Score) arg).getScore());
-            		this.s3.setVisible(true);
-            	  }
+                    } else if (((Player) o).isPlaying() == false) {
+                        this.p3.setVisible(false);
+                        if (((Player) o).getHand().get(0).isHidden()) {
+                            this.hand1p3.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                        if (((Player) o).getHand().get(1).isHidden()) {
+                            this.hand2p3.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                    }
+                } else if (arg instanceof Score) {
+                    this.s3.setText("Score : " + ((Score) arg).getScore());
+                    this.s3.setVisible(true);
+                }
             }
             //Player4
             if (((Player) o).getNb() == 4) {
-            	if (arg instanceof Jest) {
+                if (arg instanceof Jest) {
                     for (int i = 0; i < ((Jest) arg).getJestCards().size(); i++) {
                         this.jestp4.get(i).setImagePath(((Jest) arg).getJestCards().get(i).getImagePath());
                         this.jestp4.get(i).setVisible(true);
                     }
                 } else if (arg == null) {
-	            	if(((Player) o).isPlaying() == true) {
-	            		this.p4.setVisible(true);
-	            		this.hand1p4.setImagePath(((Player) o).getHand().get(0).getImagePath());
+                    if (((Player) o).isPlaying() == true) {
+                        this.p4.setVisible(true);
+                        this.hand1p4.setImagePath(((Player) o).getHand().get(0).getImagePath());
                         this.hand2p4.setImagePath(((Player) o).getHand().get(1).getImagePath());
-	            	}
-	            	else if(((Player) o).isPlaying() == false){
-	            		this.p4.setVisible(false);
-	            		if(((Player) o).getHand().get(0).isHidden()){
-	            			this.hand1p4.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            		if(((Player) o).getHand().get(1).isHidden()){
-	            			this.hand2p4.setImagePath("pictures/CardsPng/back.jpg");
-	            		}
-	            	}
-            	} else if (arg instanceof Score) {
-            		this.s4.setText("Score : " + ((Score) arg).getScore());
-            		this.s4.setVisible(true);
-            	  }
+                    } else if (((Player) o).isPlaying() == false) {
+                        this.p4.setVisible(false);
+                        if (((Player) o).getHand().get(0).isHidden()) {
+                            this.hand1p4.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                        if (((Player) o).getHand().get(1).isHidden()) {
+                            this.hand2p4.setImagePath("pictures/CardsPng/back.jpg");
+                        }
+                    }
+                } else if (arg instanceof Score) {
+                    this.s4.setText("Score : " + ((Score) arg).getScore());
+                    this.s4.setVisible(true);
+                }
             }
         }
     }

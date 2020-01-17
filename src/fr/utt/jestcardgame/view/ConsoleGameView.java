@@ -1,21 +1,21 @@
-
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.model.OptionsData;
 import fr.utt.jestcardgame.model.RoundsManager;
-import fr.utt.jestcardgame.observer.Observable;
-import fr.utt.jestcardgame.observer.Observer;
+
 /**
- *This class is where all the different console output are stored 
+ * This class is where all the different console output are stored
+ *
  * @author Edgar
  */
-public abstract class ConsoleGameView{
-	/**
-	 *Static method that can be call at any moment by the program in order to display a message to the console
-	 *It uses the enum <code>ConsoleOutput</code> as a parameter
-	 *@param co ConsoleOutput enumeration
-	 */
-	public static void display(ConsoleOutput co) {
+public abstract class ConsoleGameView {
+    /**
+     * Static method that can be call at any moment by the program in order to display a message to the console
+     * It uses the enum <code>ConsoleOutput</code> as a parameter
+     *
+     * @param co ConsoleOutput enumeration
+     */
+    public static void display(ConsoleOutput co) {
         switch (co) {
             case MainMenu:
                 System.out.println("Welcome to JestGame !");

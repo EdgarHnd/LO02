@@ -24,7 +24,7 @@ public class GameManager extends Observable {
     /**
      * Return the <code>GameManager</code> instance already existing. If not, it will create a new one.
      *
-     * @return gm
+     * @return GameManager instance "gm"
      */
     public static GameManager getInstance() {
 

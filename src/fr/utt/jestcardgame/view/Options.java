@@ -7,9 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  * This class define the Options panel where the main player can select the different settings that he wants for the game
  * This class extends the class Panel in order to get the basic settings for our panels
+ *
  * @author Edgar
  */
 public class Options extends Panel {
@@ -24,8 +26,10 @@ public class Options extends Panel {
     private JButton startB;
 
     private int nbPlayer;
+
     /**
      * Constructor for the class
+     *
      * @param dim Dimension the size we want
      * @param gvc GameViewController to control the players input (not yet implemented)
      */
@@ -33,9 +37,10 @@ public class Options extends Panel {
         super(dim, gvc);
         initPanel();
     }
+
     /**
-     * Method where all the graphical components needed for the game will be created and placed on the panel
-     * This is where all the parameters are set for our JLabels, Buttons and CheckBoxs
+     * Method where all the graphical components needed for the game will be created and placed on the panel.
+     * This is where all the parameters are set for our JLabels, Buttons and CheckBoxs.
      */
     @Override
     protected void initPanel() {
@@ -86,7 +91,7 @@ public class Options extends Panel {
         comboBoxRealPlayer.addActionListener(new ActionChooseNumberRealPLayer());
         panel.add(comboBoxRealPlayer);
 
-        String[] listVariant = {"Choose a variant...","No variant","Variant 1 : Super Joker", "Variant 2 : Power of Heart", "Variant 3 : Bad Clubs"};
+        String[] listVariant = {"Choose a variant...", "No variant", "Variant 1 : Super Joker", "Variant 2 : Power of Heart", "Variant 3 : Bad Clubs"};
         comboBoxVariant = new JComboBox(listVariant);
         comboBoxVariant.setSelectedIndex(0);
         comboBoxVariant.setBounds(500, 500, 200, 30);
@@ -113,38 +118,44 @@ public class Options extends Panel {
         panel.add(back);
 
     }
+
     /**
-     *Setter for the number of player
-     *@param nbPlayer int representing the number of player we want for the game
+     * Setter for the number of player
+     *
+     * @param nbPlayer int representing the number of player we want for the game
      */
     public void setNbPlayer(int nbPlayer) {
         this.nbPlayer = nbPlayer;
     }
+
     /**
      * Inner class implementing ActionListener to send the settings for the variant to the model
      */
-    private class ActionChooseVariant implements ActionListener{
+    private class ActionChooseVariant implements ActionListener {
 
-        public ActionChooseVariant(){
+        public ActionChooseVariant() {
 
         }
+
         /**
          * method to link the player input to the model
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            OptionsData.setVariant(comboBoxVariant.getSelectedIndex()-1);
+            OptionsData.setVariant(comboBoxVariant.getSelectedIndex() - 1);
             System.out.println("Variant for this game : " + OptionsData.getVariant());
         }
     }
+
     /**
      * Inner class implementing ActionListener to send the settings for the number of real players to the model
      */
     private class ActionChooseNumberRealPLayer implements ActionListener {
 
-        public ActionChooseNumberRealPLayer(){
+        public ActionChooseNumberRealPLayer() {
 
         }
+
         /**
          * method to link the player input to the model
          */
@@ -155,6 +166,7 @@ public class Options extends Panel {
             System.out.println(OptionsData.getNbVirtualPlayer() + " VIRTUAL PLAYER(S)");
         }
     }
+
     /**
      * Inner class implementing ActionListener to validate the settings for the number of players and inform the model
      */
@@ -163,12 +175,13 @@ public class Options extends Panel {
         public ActionValidateNumberOfPlayer() {
         }
 
-        public void UInterfacePrintNbPlayers(int nbPlayer){
+        public void UInterfacePrintNbPlayers(int nbPlayer) {
             OptionsData.setNbPlayer(nbPlayer);
             System.out.println(OptionsData.getNbPlayer() + " players will play the next game. \n");
             showNbPlayers.setText(OptionsData.getNbPlayer() + " players will play the next game.");
             comboBoxRealPlayer.setEnabled(true);
         }
+
         /**
          * method to link the player input to the model
          */
@@ -179,11 +192,12 @@ public class Options extends Panel {
                 UInterfacePrintNbPlayers(3);
                 comboBoxRealPlayer.removeItem(four);
             } else if (rb2.isSelected()) {
-               UInterfacePrintNbPlayers(4);
+                UInterfacePrintNbPlayers(4);
                 comboBoxRealPlayer.addItem(four);
             }
         }
     }
+
     /**
      * Inner class implementing ActionListener to send the settings for the number of players to the model
      */
@@ -197,6 +211,7 @@ public class Options extends Panel {
             this.optionView = optionView;
             this.validate = validate;
         }
+
         /**
          * method to link the player input to the model
          */

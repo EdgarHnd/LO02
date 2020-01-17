@@ -9,7 +9,7 @@ import fr.utt.jestcardgame.view.setupException;
 import java.util.InputMismatchException;
 
 /**
- * Class which allows the user to setup different parameters of the game, such as :
+ * Abstract class which allows the user to setup different parameters of the game, such as :
  * The number of players, and more precisely the number of real and virtual players
  * The user can also choose one variant among the three variants available.
  * <p>

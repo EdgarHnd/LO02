@@ -22,7 +22,7 @@ public class GameBoard extends Observable implements Visitor {
     /**
      * Return the <code>GameBoard</code> instance already existing. If not, it will create a new one.
      *
-     * @return gb
+     * @return GameBoard instance "gb"
      */
     public static GameBoard getInstance() {
 
