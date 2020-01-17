@@ -83,8 +83,6 @@ public class Player extends Observable implements Visitable{
 	public void receiveCard(Card c) {
 		this.hand.add(c);
 		this.setChanged();
-		this.notifyObservers(c);
-		//this.notifyObservers();
 		System.out.println("notify receivedCard");
 		try {
 			TimeUnit.MILLISECONDS.sleep(500);
@@ -137,8 +135,6 @@ public class Player extends Observable implements Visitable{
 	}
 	
 	public void pickOffer() {
-		/*this.setChanged();
-		this.notifyObservers();*/
 		this.setPlaying(true);
 		strategy.pickOfferStrategy(this);
 		try {

@@ -89,12 +89,6 @@ public class GameManager extends Observable{
 		GameOptions.setup();
 	}
 
-	/*public void startGame() {
-		System.out.println("New Game !");
-		this.setChanged();
-		this.notifyObservers();
-	}*/
-
 	public void updateGameState(String newState) {
 		gameState = newState;
 		setChanged();

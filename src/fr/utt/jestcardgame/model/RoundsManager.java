@@ -24,6 +24,7 @@ public class RoundsManager extends Observable{
 	private boolean turnOver = false;
 	private GameBoard gb = GameBoard.getInstance();
 	private Player finalWinner;
+	private String state;
 	
 	public static RoundsManager getInstance(){
 		
@@ -35,6 +36,15 @@ public class RoundsManager extends Observable{
 	}
 	
 	//Getters
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+		this.setChanged();
+		this.notifyObservers();
+	}
 	
 	public void setTurnOver(boolean turnOver) {
 		this.turnOver = turnOver;
@@ -101,6 +111,7 @@ public class RoundsManager extends Observable{
 		System.out.println("add ob to gb "+this.listObserver.get(0));
 		this.gb.addObserver(this.listObserver.get(0));
 		this.gb.notifyOb();
+		this.state = "Make offer";
 		this.setChanged();
 		this.notifyObservers();
 		//----------------
@@ -114,6 +125,9 @@ public class RoundsManager extends Observable{
 		
 		//This is the player with the best offer
 		this.showAllOffers();
+		this.setState("Pick offer");
+		this.setChanged();
+		this.notifyObservers();
 		this.checkBestOffer().pickOffer();
 		
 		
@@ -131,6 +145,7 @@ public class RoundsManager extends Observable{
 			System.out.println("\nThe deck still has :" + Deck.getInstance().getCards());
 			Deck.getInstance().gather();
 			Deck.getInstance().dealStack();
+			this.setState("Make offer");
 			for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 				System.out.println("It's " + this.listPlayers.get(i).getName() + "'s turn ");
 				this.listPlayers.get(i).makeOffer();
@@ -139,6 +154,7 @@ public class RoundsManager extends Observable{
 			this.turnOver = false;
 			//This is the player with the best offer
 			this.showAllOffers();
+			//this.setState("Pick offer");
 			this.checkBestOffer().pickOffer();
 			
 			
@@ -148,6 +164,9 @@ public class RoundsManager extends Observable{
 				}
 			}
 		}
+		this.setState("GameOver");
+		this.setChanged();
+		this.notifyObservers();
 		System.out.println("No more cards, time to show your JESTS !");
 		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			//add visitor			
@@ -196,11 +215,11 @@ public class RoundsManager extends Observable{
 	//return the player with the best offer
 	public Player checkBestOffer() {
 		//just a default value
+		//this.setState("Pick offer");
 		Player bestOfferPlayer = new Player("Default",10, new RealPlayerStrategy());
 		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None,"pictures/CardsPng/rulescard.png"));
 		bestOfferPlayer.hand.add(new Card(Kind.Default,Suit.None,Trophys.None,"pictures/CardsPng/rulescard.png"));
 		bestOfferPlayer.hand.get(0).setHidden(false);
-		
 		
 		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 					if(this.listPlayers.get(i).offeredCard().cardValue() > bestOfferPlayer.offeredCard().cardValue() 
@@ -224,6 +243,7 @@ public class RoundsManager extends Observable{
 	}
 	
 	public Player nextPlayer() {
+		this.setState("Pick offer");
 		Player nextToPlay = null;
 		for(int i = 0; i < OptionsData.getNbPlayer(); i++) {
 			if(this.listPlayers.get(i).isNext) {
@@ -274,8 +294,5 @@ public class RoundsManager extends Observable{
 		}
 		return listNb;
 	}
-
-	public void printFinalRanking() {
-		
-	}
+	
 }
