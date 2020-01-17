@@ -20,7 +20,6 @@ public class RoundsManager extends Observable{
 	
 	private static RoundsManager rm= null;
 	protected int roundNb = 0;
-	protected int currentPlayer;
 	protected ArrayList<Player> listPlayers;
 	private boolean turnOver = false;
 	private GameBoard gb = GameBoard.getInstance();

@@ -2,12 +2,23 @@ package fr.utt.jestcardgame.model;
 
 import java.util.Iterator;
 
+/**
+ * Class which implements the interface {@link fr.utt.jestcardgame.model.ChooseStrategy}.
+ * It's a virtual player offensive strategy, it means this player will choose the highest value card to offer or to pick.
+ * This class also determine the next player who will play for the round.
+ *
+ * @author Elina
+ */
 public class OffensiveStrategy implements ChooseStrategy {
 
     private int bestCardValue;
     private int index;
     private Player playerSelected;
 
+    /**
+     * Strategy method of the virtual player which consist to make an offer from its hand, here it's the highest value card.
+     * @param player Player who use these methods to do an action during the game.
+     */
     @Override
     public void makeOfferStrategy(Player player) {
         bestCardValue = 0;
@@ -26,7 +37,6 @@ public class OffensiveStrategy implements ChooseStrategy {
      * Strategy method of the virtual player which consist to pick the best offer visible on the game board.
      * It means the AI player will automatically pick a faced up card.
      *
-     * @author Elina
      * @param player
      */
     @Override
@@ -44,6 +54,10 @@ public class OffensiveStrategy implements ChooseStrategy {
         }
     }
 
+    /**
+     * Sets the next player for this round, selected according to the action done before.
+     * @param playerSelected Player from whom we took a card (picking offer).
+     */
     public void setNextPlayer(Player playerSelected){
         if(!playerSelected.getHasPlayed()) {
             playerSelected.isNext = true;
@@ -74,6 +88,13 @@ public class OffensiveStrategy implements ChooseStrategy {
         }
     }
 
+    /**
+     * Counts the number of complete offers available on the game board.
+     * It's an important information in order to make a good choice during the game.
+     *
+     * @param me Player who use these methods to do an action during the game.
+     * @return nbCompleteOffers
+     */
     public int countNbCompleteOffers(Player me){
         int nbCompleteOffers = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
@@ -84,6 +105,10 @@ public class OffensiveStrategy implements ChooseStrategy {
         return nbCompleteOffers;
     }
 
+    /**
+     * Adds the player's available card to his own offer, in case there is no more complete offer.
+     * @param me Player who use these methods to do an action during the game.
+     */
     public void addMyOwnOfferToMyJest(Player me){
         me.jest.addToJest(me.offer.pollFirst());
         System.out.println("The AI's Jest is now : " + me.getJest().getJestCards().toString());
@@ -93,6 +118,10 @@ public class OffensiveStrategy implements ChooseStrategy {
         RoundsManager.getInstance().setTurnOver(true);
     }
 
+    /**
+     * Adds the only card available to the player's jest, iin case there is just one complete offer.
+     * @param me Player who use these methods to do an action during the game.
+     */
     public void addTheOnlyCardAvailableToMyJest(Player me){
         int index = 0;
         for (int i = 0 ; i < RoundsManager.getInstance().listPlayers.size(); i++) {
@@ -108,6 +137,10 @@ public class OffensiveStrategy implements ChooseStrategy {
         setNextPlayer(playerSelected);
     }
 
+    /**
+     * Adds the best card (here it's the highest value card from the game board) to the player's jest.
+     * @param me Player who use these methods to do an action during the game.
+     */
     public void addTheBestCardToMyJest(Player me){
         int bestCardValueToPick = 0;
         Iterator<Player> itr = RoundsManager.getInstance().listPlayers.iterator();

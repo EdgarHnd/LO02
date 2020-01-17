@@ -41,7 +41,7 @@ public abstract class GameOptions extends Observable {
 		return OptionsData.nbPlayer;
 	}
 
-	public static int consolePutNbRealPlayer(int nbPlayer) throws setupException {
+	public static int consolePutNbRealPlayer(int nbPlayer) {
 			OptionsData.nbPlayer = nbPlayer;
 			boolean correctNumber = false;
 			while (!correctNumber) {

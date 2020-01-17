@@ -13,7 +13,6 @@ public class GameManager extends Observable{
 
 	private static GameManager gm= null;
 	private String gameState;
-	private int userChoice;
 	private Observer board;
 	
 	public static GameManager getInstance(){

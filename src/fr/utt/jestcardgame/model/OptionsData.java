@@ -1,8 +1,6 @@
 package fr.utt.jestcardgame.model;
 
-import fr.utt.jestcardgame.observer.Observable;
-
-public class OptionsData extends Observable {
+public class OptionsData {
     protected static int nbPlayer;
     protected static int nbRealPlayer;
     protected static int nbVirtualPlayer;

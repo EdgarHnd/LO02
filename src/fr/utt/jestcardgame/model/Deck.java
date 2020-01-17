@@ -12,7 +12,6 @@ import java.util.LinkedList;
  * It contains all the method needed to interact with the deck.
  *
  * @author Edgar
- * @version 1.0
  */
 
 public class Deck {
@@ -48,7 +47,7 @@ public class Deck {
 		getCards().add(new Card(Kind.Three, Suit.Diamonds, Trophys.LowestDiamond,"pictures/CardsPng/3diamond.png"));
 		getCards().add(new Card(Kind.Three,Suit.Hearts,Trophys.Joker,"pictures/CardsPng/3heart.png"));
 		getCards().add(new Card(Kind.Two,Suit.Hearts,Trophys.Joker,"pictures/CardsPng/2heart.png"));		
-		getCards().add(new Card(Kind.Two,Suit.Spades,Trophys.MajorityTree,"pictures/CardsPng/2spade.png"));
+		getCards().add(new Card(Kind.Two,Suit.Spades,Trophys.MajorityThree,"pictures/CardsPng/2spade.png"));
 		getCards().add(new Card(Kind.Two,Suit.Clubs,Trophys.LowestHeart,"pictures/CardsPng/2club.png"));
 		getCards().add(new Card(Kind.Two,Suit.Diamonds,Trophys.HighestDiamond,"pictures/CardsPng/2diamond.png"));
 		

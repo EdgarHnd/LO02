@@ -55,7 +55,7 @@ public enum Trophys {
 			return p.getJest().majority(Kind.Two);
 		}
 	},	
-	MajorityTree{
+	MajorityThree {
 		@Override
 		int deserveTrophy(Player p) {
 			return p.getJest().majority(Kind.Three);

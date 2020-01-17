@@ -1,14 +1,13 @@
 package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.controler.GameViewControler;
-import fr.utt.jestcardgame.observer.Observable;
 
 import javax.swing.*;
 import java.awt.*;
 
 //Class centrale panneau permettant de regrouper les attributs communs
 
-public abstract class Panel extends Observable {
+public abstract class Panel {
 	protected JPanel panel;
 	protected GameViewControler gvc;
 	

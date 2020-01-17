@@ -2,15 +2,13 @@ package fr.utt.jestcardgame.view;
 
 import fr.utt.jestcardgame.controler.GameViewControler;
 import fr.utt.jestcardgame.model.OptionsData;
-import fr.utt.jestcardgame.observer.Observable;
-import fr.utt.jestcardgame.observer.Observer;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Options extends Panel implements Observer {
+public class Options extends Panel {
 
     private JButton back;
     private JRadioButton rb1;
@@ -107,11 +105,6 @@ public class Options extends Panel implements Observer {
 
     public void setNbPlayer(int nbPlayer) {
         this.nbPlayer = nbPlayer;
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-
     }
 
     private class ActionChooseVariant implements ActionListener{

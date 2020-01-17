@@ -16,7 +16,6 @@ public class Player extends Observable implements Visitable{
 	protected LinkedList<Card> hand;
 	protected LinkedList<Card> offer;
 	protected Jest jest;
-	protected int finalBoolean;
 	protected Score score;
 	protected boolean hasPlayed = false;
 	protected boolean isPlaying = false;
