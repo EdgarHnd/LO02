@@ -7,19 +7,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * Class representing a panel to show the rules of the game
+ * This class extends from the class <code>Panel</code> in order to set basic attributes
+ * @author Edgar
+ */
 public class Rules extends Panel{
 	
 	private String imagePath = "pictures/Other/rules.png";
 	private Image im;
 	private JButton back;
 	private JLabel rul;
-
+	/**
+     * Constructor for this class
+     * @param dim Dimension for the panel
+     * @param gvc GameViewController to control the players input
+     */
 	public Rules(Dimension dim, GameViewControler gvc) {
 		super(dim, gvc);
 		this.initPanel();
 	}
-
+	/**
+     * Method use to print out the image corresponding to the rules
+     * Create and place the back button needed to go back to the main menu
+     */
 	@Override
 	protected void initPanel() {
 		try {

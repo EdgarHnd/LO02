@@ -8,22 +8,32 @@ import fr.utt.jestcardgame.observer.Observer;
 import javax.swing.*;
 import java.awt.*;
 
-//Classe Accueil héritant de panneau qui correspond à l'écran principal du jeu
-
-public class Welcome extends Panel implements Observer {
+/**
+ * Class representing the Welcome panel where the player can navigate throught the main menu
+ * This class extends from the class <code>Panel</code> in order to set basic attributes
+ * @author Edgar
+ */
+public class Welcome extends Panel {
 
 	private JButton optionsB;
 	private JButton quitB;
 	private JButton rulesB;
 	private CardLabel card;
 	private CardLabel cardback;
-	
-	
+	/**
+     * Constructor for this class
+     * @param dim Dimension for the panel
+     * @param gvc GameViewController to control the players input
+     */
 	public Welcome(Dimension dim, GameViewControler gvc) {
 		super(dim,gvc);
 		this.initPanel();
 	}
-
+	/**
+     * Method to create and place all the graphic elements needed in our panel
+     * The elements consist of the buttons to interacte with the menu,
+     * JLabel, JTextArea and CardLabel in order to make everything look nicer
+     */
 	@Override
 	protected void initPanel() {
 		this.panel.setLayout(null);
@@ -49,8 +59,6 @@ public class Welcome extends Panel implements Observer {
 		this.quitB.addActionListener(this.gvc.getQuit());
 		this.optionsB.addActionListener(this.gvc.getOptions());
 		
-		//this.panel.add(new JLabel(new ImageIcon("images/accueil.jpg")), BorderLayout.CENTER);
-		
 
 		JTextArea texte = new JTextArea(	"Welcome to Jest Game\n" +
 											"To start a new game press START\n" +
@@ -74,10 +82,5 @@ public class Welcome extends Panel implements Observer {
 		this.cardback.setVerticalAlignment(JLabel.CENTER);
 		this.cardback.setBounds(200, 300, this.cardback.getFactor() * 34, this.cardback.getFactor() * 48);
 		this.panel.add(cardback);
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-
 	}
 }
